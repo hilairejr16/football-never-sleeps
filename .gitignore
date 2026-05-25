@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+
+# Turbo
+.turbo/
+
+# Generated media
+apps/ai-engine/generated/
+automation/output/
+
+# Database
+*.sqlite
+*.db
+
+# Docker volumes (local)
+postgres-data/
+redis-data/
+
+# Certificates
+*.pem
+*.key
+*.crt

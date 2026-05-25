@@ -1,0 +1,142 @@
+name: GoalRush Global — CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  # ─── Lint & Type Check ────────────────────────────────────
+  quality:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run type-check --workspace=apps/web
+
+      - name: Lint
+        run: npm run lint --workspace=apps/web
+
+  # ─── Deploy Frontend → Vercel ────────────────────────────
+  deploy-web:
+    name: Deploy Web → Vercel
+    runs-on: ubuntu-latest
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel Environment
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: apps/web
+
+      - name: Build
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: apps/web
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        working-directory: apps/web
+
+  # ─── Deploy API → Railway ─────────────────────────────────
+  deploy-api:
+    name: Deploy API → Railway
+    runs-on: ubuntu-latest
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy API to Railway
+        run: railway up --service goalrush-api --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # ─── Deploy AI Engine → Railway ───────────────────────────
+  deploy-ai:
+    name: Deploy AI Engine → Railway
+    runs-on: ubuntu-latest
+    needs: quality
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy AI Engine to Railway
+        run: railway up --service goalrush-ai --detach
+        working-directory: apps/ai-engine
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # ─── Deploy Automation → Railway ──────────────────────────
+  deploy-automation:
+    name: Deploy Automation → Railway
+    runs-on: ubuntu-latest
+    needs: [deploy-api, deploy-ai]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy Automation to Railway
+        run: railway up --service goalrush-automation --detach
+        working-directory: automation
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+  # ─── Health Check after deploy ────────────────────────────
+  health-check:
+    name: Post-Deploy Health Check
+    runs-on: ubuntu-latest
+    needs: [deploy-web, deploy-api, deploy-ai]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Wait for services to boot
+        run: sleep 30
+
+      - name: Check API health
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.API_URL }}/health)
+          if [ "$STATUS" != "200" ]; then echo "API health check failed: $STATUS"; exit 1; fi
+          echo "API is healthy ✓"
+
+      - name: Check AI Engine health
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" ${{ secrets.AI_ENGINE_URL }}/health)
+          if [ "$STATUS" != "200" ]; then echo "AI Engine health check failed: $STATUS"; exit 1; fi
+          echo "AI Engine is healthy ✓"
+
+      - name: Notify success
+        run: echo "🚀 GoalRush Global deployed successfully!"

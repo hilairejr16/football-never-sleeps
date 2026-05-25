@@ -1,0 +1,11 @@
+FROM node:20-alpine
+WORKDIR /app
+
+COPY package.json turbo.json ./
+COPY automation/package.json ./automation/
+
+RUN npm install --workspace=automation
+
+COPY automation/ ./automation/
+
+CMD ["node", "automation/cron/scheduler.js"]

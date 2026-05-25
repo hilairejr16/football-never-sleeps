@@ -1,0 +1,21 @@
+{
+  "name": "@goalrush/automation",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node cron/scheduler.js",
+    "dev": "nodemon cron/scheduler.js",
+    "post:twitter": "node social/twitter.js",
+    "post:instagram": "node social/instagram.js"
+  },
+  "dependencies": {
+    "node-cron": "^3.0.3",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "twitter-api-v2": "^1.17.2",
+    "pino": "^9.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}

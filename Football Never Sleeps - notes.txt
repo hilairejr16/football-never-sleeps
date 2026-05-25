@@ -1,0 +1,454 @@
+Use this master prompt inside [Claude AI](https://claude.ai?utm_source=chatgpt.com) to build a complete automated global football media ecosystem.
+
+---
+
+# MASTER CLAUDE PROMPT — GLOBAL FACELESS FOOTBALL MEDIA EMPIRE
+
+```text
+ACT AS:
+
+You are a Fortune 500:
+- Chief Technology Officer (CTO)
+- Senior Full Stack Engineer
+- AI Automation Architect
+- Social Media Growth Strategist
+- Sports Media Executive
+- DevOps Engineer
+- UI/UX Designer
+- TikTok Growth Expert
+- Instagram Growth Expert
+- X (Twitter) Growth Expert
+- YouTube Shorts Strategist
+- AI Video Automation Engineer
+
+Your mission is to build a COMPLETE GLOBAL FACELESS FOOTBALL MEDIA ECOSYSTEM.
+
+====================================================
+PROJECT NAME
+====================================================
+
+GoalRush Global
+
+Slogan:
+“Football Never Sleeps.”
+
+====================================================
+OBJECTIVE
+====================================================
+
+Create a FULLY AUTOMATED faceless football media brand that publishes:
+
+- Breaking football news
+- Match results
+- Match schedules
+- Live score updates
+- Tactical analysis
+- Player news
+- Transfer rumors
+- Goal reactions
+- Football memes
+- AI voiceover videos
+- Match predictions
+- Statistics
+- Historical football facts
+- Polls
+- Viral football content
+
+The system must automatically publish content DAILY, HOURLY, WEEKLY, and LIVE during football matches.
+
+====================================================
+PLATFORMS
+====================================================
+
+Build and automate content for:
+
+1. TikTok
+2. Instagram Reels
+3. X (Twitter)
+4. YouTube Shorts
+5. Facebook Reels
+6. Telegram
+7. Discord
+8. Website Blog
+9. Mobile App API Ready
+
+====================================================
+FOOTBALL COVERAGE
+====================================================
+
+Cover ALL major leagues and competitions:
+
+- Premier League
+- La Liga
+- Serie A
+- Bundesliga
+- Ligue 1
+- UEFA Champions League
+- UEFA Europa League
+- FIFA World Cup
+- Copa America
+- MLS (USA)
+- Liga Portugal
+- Saudi Pro League
+- Argentina League
+- Brazil Serie A
+- Belgium Pro League
+- Haiti National Team
+- CONCACAF
+- African Football
+- Women’s Football
+- Youth Football
+
+====================================================
+TARGET AUDIENCE
+====================================================
+
+- Football fans worldwide
+- Ages 15–45
+- Mobile-first audience
+- TikTok users
+- Football bettors
+- Fantasy football players
+- Football meme culture audience
+- Haitian football community
+- International football audience
+
+====================================================
+BRAND STYLE
+====================================================
+
+STYLE:
+- Modern
+- Sports media aesthetic
+- Dark mode UI
+- Black / White / Red / Gold color palette
+- Viral sports graphics
+- ESPN + Bleacher Report + 433 inspired
+
+Tone:
+- Exciting
+- Fast-paced
+- Emotional
+- Viral
+- Engaging
+- Global
+
+====================================================
+BUILD REQUIREMENTS
+====================================================
+
+Create EVERYTHING required for production:
+
+====================================================
+1. WEBSITE
+====================================================
+
+Build a COMPLETE responsive football media platform including:
+
+Pages:
+- Home
+- Breaking News
+- Live Scores
+- Fixtures
+- Results
+- Transfer News
+- Teams
+- Players
+- Match Analysis
+- Video Highlights
+- Predictions
+- Betting Trends
+- Statistics
+- League Tables
+- About
+- Contact
+- Privacy Policy
+- Terms
+- Admin Dashboard
+
+Features:
+- Real-time live scores
+- Auto-updating match data
+- Auto-post articles
+- AI-generated football news
+- Trending matches section
+- Search functionality
+- Mobile responsive design
+- SEO optimized
+- Newsletter signup
+- Ad placement system
+- Social media embeds
+- Push notifications
+
+====================================================
+2. SOCIAL MEDIA AUTOMATION
+====================================================
+
+Create complete automation systems for:
+
+TikTok:
+- Auto-generate short videos
+- AI captions
+- AI voiceovers
+- Match result templates
+- Viral hooks
+- Hashtag generation
+- Auto-post scheduling
+
+Instagram:
+- Auto-create Reels
+- Carousel posts
+- Match graphics
+- Story automation
+- Meme generation
+
+X (Twitter):
+- Auto live tweet matches
+- Match stats threads
+- Transfer alerts
+- Polls
+- Breaking news posts
+
+YouTube Shorts:
+- AI-generated football shorts
+- Match recap videos
+- Historical football content
+- Top 10 lists
+
+====================================================
+3. AI CONTENT ENGINE
+====================================================
+
+Build a COMPLETE AI content engine that automatically generates:
+
+- Match summaries
+- Post-match analysis
+- Transfer news articles
+- Match predictions
+- Player comparisons
+- Football trivia
+- Viral hooks
+- Captions
+- SEO blog posts
+- Voiceover scripts
+- YouTube descriptions
+- Hashtags
+- Poll questions
+
+====================================================
+4. AUTOMATION SYSTEM
+====================================================
+
+Create full automation pipelines:
+
+DAILY AUTOMATION:
+- Morning football news
+- Match schedules
+- Daily predictions
+- Transfer updates
+
+HOURLY AUTOMATION:
+- Score updates
+- Breaking news
+- Viral football clips
+- Social media posts
+
+LIVE MATCH AUTOMATION:
+- Goal alerts
+- Red cards
+- Match statistics
+- Half-time updates
+- Full-time summaries
+
+WEEKLY AUTOMATION:
+- Team rankings
+- Top goals
+- Best players
+- Weekly football recap
+- Transfer roundups
+
+====================================================
+5. AI VIDEO GENERATION
+====================================================
+
+Build a system that automatically creates faceless football videos using:
+
+- AI voiceovers
+- Dynamic subtitles
+- Match graphics
+- Highlight animations
+- Background music
+- Auto-editing templates
+- Vertical 9:16 format
+- TikTok/Reels optimized
+
+Generate:
+- Match recap videos
+- Player comparison videos
+- Football facts videos
+- Breaking news videos
+- Prediction videos
+
+====================================================
+6. DATA/APIs
+====================================================
+
+Integrate football APIs for:
+- Live scores
+- Match schedules
+- Player statistics
+- League tables
+- Transfer news
+
+Build:
+- API management layer
+- Caching system
+- Error handling
+- Rate limiting
+- Data synchronization
+
+====================================================
+7. ADMIN DASHBOARD
+====================================================
+
+Build an enterprise-level admin dashboard with:
+
+- Analytics
+- Post scheduling
+- AI prompt management
+- Social account management
+- Revenue tracking
+- Trending topics monitor
+- Match monitoring
+- Video generation controls
+- Engagement metrics
+
+====================================================
+8. MONETIZATION
+====================================================
+
+Build systems for:
+
+- Google AdSense
+- Sponsorship banners
+- Affiliate marketing
+- Betting partnerships
+- Merchandise store
+- Premium memberships
+- Donation system
+- Newsletter monetization
+
+====================================================
+9. SEO + VIRAL GROWTH
+====================================================
+
+Implement:
+- Advanced SEO
+- Schema markup
+- Viral headline generation
+- Football keyword optimization
+- Social metadata
+- OpenGraph support
+- TikTok SEO strategy
+- Instagram growth strategy
+- X growth strategy
+
+====================================================
+10. TECH STACK
+====================================================
+
+Use MODERN scalable technologies.
+
+Frontend:
+- Next.js
+- React
+- Tailwind CSS
+- Framer Motion
+
+Backend:
+- Node.js
+- Express
+- Python microservices
+
+Database:
+- PostgreSQL
+- Redis
+
+AI:
+- OpenAI APIs
+- Claude APIs
+- ElevenLabs
+- Stable Diffusion
+
+Automation:
+- n8n
+- Zapier
+- Make.com
+- Cron jobs
+
+Deployment:
+- Docker
+- Kubernetes
+- Cloudflare
+- Vercel
+- AWS
+
+====================================================
+11. DELIVERABLES
+====================================================
+
+Generate:
+
+1. Full system architecture
+2. Database schema
+3. Folder structure
+4. UI/UX design system
+5. Complete frontend code
+6. Complete backend code
+7. API integrations
+8. Automation workflows
+9. Social media templates
+10. AI prompts
+11. SEO strategy
+12. Growth strategy
+13. Monetization roadmap
+14. Deployment guide
+15. Security implementation
+16. Scalability plan
+
+====================================================
+12. OUTPUT FORMAT
+====================================================
+
+Provide:
+- Production-ready code
+- Enterprise-level architecture
+- Step-by-step implementation
+- Complete automation workflows
+- Clean modern UI
+- Fully responsive layouts
+- Scalable infrastructure
+- Secure authentication
+- Documentation for everything
+
+====================================================
+FINAL OBJECTIVE
+====================================================
+
+Create the ultimate automated global football media company capable of reaching:
+- 1M+ followers
+- Millions of monthly views
+- Automated publishing 24/7
+- Multi-platform growth
+- Revenue generation worldwide
+
+The system must function like:
+- ESPN
+- Bleacher Report
+- 433
+- Fabrizio Romano
+- OneFootball
+- BR Football
+
+combined into ONE AI-powered automated football media empire.
+```

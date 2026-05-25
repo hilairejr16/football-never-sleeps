@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-brand-border;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-brand-black text-brand-white font-sans;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-brand-red text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brand-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-red;
+  }
+}
+
+/* ─── Components ──────────────────────────────────────────── */
+@layer components {
+  /* Cards */
+  .gr-card {
+    @apply bg-brand-card border border-brand-border rounded-xl overflow-hidden
+           transition-all duration-300 hover:border-brand-red/40 hover:shadow-lg
+           hover:shadow-brand-red/5;
+  }
+
+  .gr-card-sm {
+    @apply bg-brand-card border border-brand-border rounded-lg overflow-hidden
+           transition-all duration-200 hover:border-brand-muted;
+  }
+
+  /* Buttons */
+  .gr-btn-primary {
+    @apply bg-brand-red hover:bg-brand-red-hover text-white font-semibold
+           px-6 py-2.5 rounded-lg transition-all duration-200
+           active:scale-95 focus:outline-none focus:ring-2
+           focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-brand-black;
+  }
+
+  .gr-btn-ghost {
+    @apply text-brand-gray hover:text-white hover:bg-brand-card
+           px-4 py-2 rounded-lg transition-all duration-200 font-medium;
+  }
+
+  .gr-btn-gold {
+    @apply bg-brand-gold hover:bg-brand-gold-light text-brand-black font-bold
+           px-6 py-2.5 rounded-lg transition-all duration-200 active:scale-95;
+  }
+
+  /* Badges */
+  .gr-badge-live {
+    @apply inline-flex items-center gap-1.5 bg-live/10 text-live text-xs
+           font-bold px-2.5 py-1 rounded-full border border-live/20;
+  }
+
+  .gr-badge-red {
+    @apply inline-flex items-center bg-brand-red/10 text-brand-red-light
+           text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  .gr-badge-gold {
+    @apply inline-flex items-center bg-brand-gold/10 text-brand-gold
+           text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+
+  /* Section headings */
+  .gr-section-title {
+    @apply text-2xl font-display tracking-wider text-white uppercase
+           flex items-center gap-3;
+  }
+
+  .gr-section-title::before {
+    @apply content-[''] block w-1 h-7 bg-brand-red rounded-full;
+  }
+
+  /* Score display */
+  .gr-score {
+    @apply font-display text-3xl tracking-widest text-white;
+  }
+
+  /* Ticker */
+  .gr-ticker-wrapper {
+    @apply overflow-hidden whitespace-nowrap;
+  }
+
+  .gr-ticker-track {
+    @apply inline-flex gap-0 animate-ticker;
+  }
+
+  /* Shimmer loading */
+  .gr-shimmer {
+    @apply relative overflow-hidden bg-brand-card;
+  }
+
+  .gr-shimmer::after {
+    @apply content-[''] absolute inset-0 bg-shimmer bg-[length:200%_100%]
+           animate-pulse;
+  }
+
+  /* Navigation */
+  .gr-nav-link {
+    @apply text-brand-gray hover:text-white text-sm font-medium
+           transition-colors duration-200 relative py-1;
+  }
+
+  .gr-nav-link.active {
+    @apply text-white;
+  }
+
+  .gr-nav-link.active::after {
+    @apply content-[''] absolute bottom-0 left-0 right-0 h-0.5
+           bg-brand-red rounded-full;
+  }
+}
+
+/* ─── Utilities ───────────────────────────────────────────── */
+@layer utilities {
+  .text-gradient-red {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #d4af37, #f0cf6a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient-red {
+    border-image: linear-gradient(135deg, #dc2626, transparent) 1;
+  }
+
+  .glow-red {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}

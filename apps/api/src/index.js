@@ -1,0 +1,131 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const compression = require('compression');
+const http = require('http');
+const { Server: SocketServer } = require('socket.io');
+const pino = require('pino');
+
+const { setupDatabase } = require('./config/database');
+const { setupRedis } = require('./config/redis');
+const { globalRateLimit } = require('./middleware/rateLimit');
+const { errorHandler } = require('./middleware/errorHandler');
+
+// Routes
+const matchRoutes = require('./routes/matches');
+const newsRoutes = require('./routes/news');
+const transferRoutes = require('./routes/transfers');
+const standingsRoutes = require('./routes/standings');
+const predictionRoutes = require('./routes/predictions');
+const playerRoutes = require('./routes/players');
+const teamRoutes = require('./routes/teams');
+const leagueRoutes = require('./routes/leagues');
+const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
+
+const { startLiveScoreWorker } = require('./workers/liveScores');
+
+const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
+const app = express();
+const server = http.createServer(app);
+
+// ─── WebSocket Setup ───────────────────────────────────────
+const io = new SocketServer(server, {
+  cors: {
+    origin: process.env.APP_URL || 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  },
+});
+
+// Make io accessible to routes
+app.set('io', io);
+
+io.on('connection', socket => {
+  logger.info({ socketId: socket.id }, 'Client connected');
+
+  socket.on('subscribe:match', matchId => {
+    socket.join(`match:${matchId}`);
+  });
+
+  socket.on('subscribe:live', () => {
+    socket.join('live-scores');
+  });
+
+  socket.on('disconnect', () => {
+    logger.info({ socketId: socket.id }, 'Client disconnected');
+  });
+});
+
+// ─── Middleware ────────────────────────────────────────────
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(cors({
+  origin: process.env.APP_URL || 'http://localhost:3000',
+  credentials: true,
+}));
+app.use(compression());
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('combined', {
+  stream: { write: msg => logger.info(msg.trim()) },
+}));
+app.use(globalRateLimit);
+
+// ─── Health Check ──────────────────────────────────────────
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'GoalRush Global API',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ─── API Routes ────────────────────────────────────────────
+app.use('/matches',     matchRoutes);
+app.use('/news',        newsRoutes);
+app.use('/transfers',   transferRoutes);
+app.use('/standings',   standingsRoutes);
+app.use('/predictions', predictionRoutes);
+app.use('/players',     playerRoutes);
+app.use('/teams',       teamRoutes);
+app.use('/leagues',     leagueRoutes);
+app.use('/auth',        authRoutes);
+app.use('/admin',       adminRoutes);
+
+// ─── 404 handler ──────────────────────────────────────────
+app.use((req, res) => {
+  res.status(404).json({ status: 'error', message: 'Route not found' });
+});
+
+// ─── Global error handler ──────────────────────────────────
+app.use(errorHandler);
+
+// ─── Bootstrap ─────────────────────────────────────────────
+async function bootstrap() {
+  try {
+    await setupDatabase();
+    logger.info('Database connected');
+
+    await setupRedis();
+    logger.info('Redis connected');
+
+    const PORT = process.env.PORT || 4000;
+    server.listen(PORT, () => {
+      logger.info(`GoalRush API running on port ${PORT}`);
+    });
+
+    // Start background workers
+    startLiveScoreWorker(io);
+    logger.info('Live score worker started');
+
+  } catch (err) {
+    logger.error(err, 'Failed to start server');
+    process.exit(1);
+  }
+}
+
+bootstrap();
+
+module.exports = { app, io };
