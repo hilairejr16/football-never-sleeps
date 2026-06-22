@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd apps/web && npm run build",
-  "outputDirectory": "apps/web/.next",
-  "installCommand": "npm install",
   "framework": "nextjs",
   "rewrites": [
     {
@@ -30,10 +27,6 @@
     {
       "path": "/api/cron/daily",
       "schedule": "0 6 * * *"
-    },
-    {
-      "path": "/api/cron/hourly",
-      "schedule": "0 * * * *"
     }
   ]
 }
