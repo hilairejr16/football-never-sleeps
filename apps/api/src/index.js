@@ -35,8 +35,10 @@ const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const worldCupRoutes = require('./routes/worldcup');
 const ttsRoutes      = require('./routes/tts');
+const contentRoutes  = require('./routes/content');
 
-const { startLiveScoreWorker } = require('./workers/liveScores');
+const { startLiveScoreWorker }    = require('./workers/liveScores');
+const { startContentScheduler }   = require('./workers/contentScheduler');
 
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
 const app = express();
@@ -123,6 +125,7 @@ app.use('/auth',        authRoutes);
 app.use('/admin',       adminRoutes);
 app.use('/world-cup',   worldCupRoutes);
 app.use('/tts',         ttsRoutes);
+app.use('/content',     contentRoutes);
 
 // ─── 404 handler ──────────────────────────────────────────
 app.use((req, res) => {
@@ -163,6 +166,13 @@ async function bootstrap() {
     logger.info('Live score worker started');
   } catch (err) {
     logger.error(err, 'Live score worker failed to start');
+  }
+
+  try {
+    startContentScheduler();
+    logger.info('Content pipeline scheduler started (breaking:5m, hourly, daily 8am, weekly Mon)');
+  } catch (err) {
+    logger.error(err, 'Content scheduler failed to start');
   }
 }
 
