@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://goalrush-api.railway.app/:path*"
+      "destination": "https://renewed-ambition-production-ea0a.up.railway.app/:path*"
     }
   ],
   "headers": [
