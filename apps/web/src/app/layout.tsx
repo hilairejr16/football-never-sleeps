@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#dc2626',
+  themeColor: '#0f1923',
   width: 'device-width',
   initialScale: 1,
 };
@@ -73,9 +73,9 @@ export default function RootLayout({
           position="bottom-right"
           toastOptions={{
             style: {
-              background: '#1a1a1a',
-              color: '#ffffff',
-              border: '1px solid #2a2a2a',
+              background: '#1e2d3d',
+              color: '#f0f4f8',
+              border: '1px solid #2d4258',
             },
           }}
         />

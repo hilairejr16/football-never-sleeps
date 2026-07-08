@@ -9,22 +9,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // GoalRush Brand Palette
+        // GoalRush Brand Palette — friendly navy-slate
         brand: {
-          black:  '#0a0a0a',
-          dark:   '#111111',
-          card:   '#1a1a1a',
-          border: '#2a2a2a',
-          muted:  '#3a3a3a',
-          red:    '#dc2626',
-          'red-hover': '#b91c1c',
-          'red-light': '#ef4444',
-          gold:   '#d4af37',
-          'gold-light': '#f0cf6a',
-          white:  '#ffffff',
-          gray:   '#a1a1aa',
+          black:  '#0f1923',
+          dark:   '#16212e',
+          card:   '#1e2d3d',
+          border: '#2d4258',
+          muted:  '#4a6070',
+          red:    '#e63946',
+          'red-hover': '#c1121f',
+          'red-light': '#ff6b6b',
+          gold:   '#f4a261',
+          'gold-light': '#f7c59f',
+          white:  '#f0f4f8',
+          gray:   '#94a3b8',
         },
-        live: '#16a34a',
+        live: '#10b981',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -66,11 +66,11 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'hero-gradient':    'linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%)',
-        'card-gradient':    'linear-gradient(180deg, #1a1a1a 0%, #111111 100%)',
-        'red-gradient':     'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)',
-        'gold-gradient':    'linear-gradient(135deg, #d4af37 0%, #a87e1a 100%)',
-        'shimmer':          'linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%)',
+        'hero-gradient':    'linear-gradient(135deg, #0f1923 0%, #1a2535 50%, #0f1923 100%)',
+        'card-gradient':    'linear-gradient(180deg, #1e2d3d 0%, #16212e 100%)',
+        'red-gradient':     'linear-gradient(135deg, #e63946 0%, #c1121f 100%)',
+        'gold-gradient':    'linear-gradient(135deg, #f4a261 0%, #e76f51 100%)',
+        'shimmer':          'linear-gradient(90deg, #1e2d3d 25%, #2d4258 50%, #1e2d3d 75%)',
       },
     },
   },

@@ -148,29 +148,29 @@
 /* ─── Utilities ───────────────────────────────────────────── */
 @layer utilities {
   .text-gradient-red {
-    background: linear-gradient(135deg, #dc2626, #ef4444);
+    background: linear-gradient(135deg, #e63946, #ff6b6b);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #d4af37, #f0cf6a);
+    background: linear-gradient(135deg, #f4a261, #f7c59f);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .border-gradient-red {
-    border-image: linear-gradient(135deg, #dc2626, transparent) 1;
+    border-image: linear-gradient(135deg, #e63946, transparent) 1;
   }
 
   .glow-red {
-    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    box-shadow: 0 0 24px rgba(230, 57, 70, 0.35);
   }
 
   .glow-gold {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 0 24px rgba(244, 162, 97, 0.35);
   }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
