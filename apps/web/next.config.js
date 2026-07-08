@@ -24,6 +24,12 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: '/analysis', destination: '/news',       permanent: false },
+      { source: '/players',  destination: '/teams',      permanent: false },
+    ];
+  },
   async rewrites() {
     return [
       {

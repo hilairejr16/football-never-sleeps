@@ -7,6 +7,12 @@ const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
 
 async function fetchTopStories(): Promise<NewsArticle[]> {
   try {
+    // Prefer WC articles
+    const wcRes = await fetch(`${BASE}/news?category=world-cup&limit=4`, { next: { revalidate: 60 } });
+    if (wcRes.ok) {
+      const { data } = await wcRes.json();
+      if (Array.isArray(data) && data.length >= 2) return data;
+    }
     const res = await fetch(`${BASE}/news?limit=4`, { next: { revalidate: 60 } });
     if (res.ok) {
       const { data } = await res.json();
@@ -156,9 +162,9 @@ export default async function HeroSection() {
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: 'Live Matches',  value: stats.liveCount > 0 ? String(stats.liveCount) : '2' },
-                  { label: 'WC Matches',    value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '2' },
-                  { label: "Today's News",  value: '14' },
+                  { label: 'Live Matches',  value: stats.liveCount > 0 ? String(stats.liveCount) : '0' },
+                  { label: 'WC Today',      value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '0' },
+                  { label: 'QF Starts',     value: 'Jul 10' },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <div className="font-display text-3xl text-white">{stat.value}</div>

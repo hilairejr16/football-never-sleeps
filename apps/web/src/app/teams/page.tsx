@@ -32,7 +32,7 @@ const QF_TEAMS = [
     formation: '4-2-3-1', ranking: 4, goalsFor: 11, goalsAgainst: 6,
     keyPlayers: ['Florian Wirtz (4G 3A)', 'Kai Havertz (5G)', 'Kimmich (4A)'],
     form: 'WDWWW', strength: 87,
-    path: ['Group B — 2nd', 'R16: vs Portugal 3–2', 'QF: TBD'],
+    path: ['Group B — 2nd', 'R16: vs Belgium 2–1', 'QF: TBD'],
     info: 'Defensively exposed at times but deadly on the counter with Wirtz pulling strings.',
   },
   {

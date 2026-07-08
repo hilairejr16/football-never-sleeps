@@ -1,9 +1,17 @@
 import Link from 'next/link';
 import { Zap, Twitter, Instagram, Youtube, Facebook } from 'lucide-react';
 
-const LEAGUES = [
-  'Premier League', 'La Liga', 'Serie A', 'Bundesliga', 'Ligue 1',
-  'Champions League', 'Europa League', 'World Cup', 'MLS', 'Saudi Pro League',
+const LEAGUES: { name: string; href: string }[] = [
+  { name: 'Premier League',   href: '/league/premier-league' },
+  { name: 'La Liga',          href: '/league/la-liga' },
+  { name: 'Serie A',          href: '/league/serie-a' },
+  { name: 'Bundesliga',       href: '/league/bundesliga' },
+  { name: 'Ligue 1',          href: '/league/ligue-1' },
+  { name: 'Champions League', href: '/league/champions-league' },
+  { name: 'Europa League',    href: '/league/europa-league' },
+  { name: 'World Cup 2026',   href: '/world-cup' },
+  { name: 'MLS',              href: '/league/mls' },
+  { name: 'Saudi Pro League', href: '/league/saudi-pro-league' },
 ];
 
 const QUICK_LINKS = [
@@ -125,12 +133,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {LEAGUES.map(league => (
-                <li key={league}>
+                <li key={league.href}>
                   <Link
-                    href={`/league/${league.toLowerCase().replace(/\s+/g, '-')}`}
+                    href={league.href}
                     className="text-brand-gray hover:text-white text-sm transition-colors"
                   >
-                    {league}
+                    {league.name}
                   </Link>
                 </li>
               ))}

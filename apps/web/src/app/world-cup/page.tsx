@@ -30,14 +30,25 @@ function daysUntilFinal() {
 
 function wcStage(): string {
   const d = new Date().toISOString().slice(0, 10);
-  if (d <= '2026-07-02') return 'Group Stage';
-  if (d <= '2026-07-08') return 'Round of 16';
+  if (d < '2026-07-01') return 'Group Stage';
+  if (d < '2026-07-07') return 'Round of 16';
   if (d <= '2026-07-12') return 'Quarter-Finals';
   if (d <= '2026-07-16') return 'Semi-Finals';
   if (d <= '2026-07-18') return '3rd Place Play-off';
-  if (d === '2026-07-19') return '🏆 THE FINAL';
+  if (d <= '2026-07-19') return '🏆 THE FINAL';
   return 'Completed';
 }
+
+const WC_TOP_SCORERS_FALLBACK = [
+  { id: 1, name: 'Kylian Mbappé',     nationality: 'France',    photo: '', teamId: 0, stats: { goals: 6, assists: 2, appearances: 5, yellowCards: 0, redCards: 0, minutesPlayed: 450, rating: 8.9 }, firstName: 'Kylian', lastName: 'Mbappé',    age: 27, position: 'Forward', marketValue: 0 },
+  { id: 2, name: 'Vinícius Jr',        nationality: 'Brazil',    photo: '', teamId: 0, stats: { goals: 5, assists: 4, appearances: 5, yellowCards: 1, redCards: 0, minutesPlayed: 450, rating: 9.1 }, firstName: 'Vinícius', lastName: 'Jr',       age: 25, position: 'Forward', marketValue: 0 },
+  { id: 3, name: 'Harry Kane',         nationality: 'England',   photo: '', teamId: 0, stats: { goals: 5, assists: 0, appearances: 5, yellowCards: 0, redCards: 0, minutesPlayed: 450, rating: 8.1 }, firstName: 'Harry',   lastName: 'Kane',      age: 32, position: 'Forward', marketValue: 0 },
+  { id: 4, name: 'Julián Álvarez',     nationality: 'Argentina', photo: '', teamId: 0, stats: { goals: 5, assists: 1, appearances: 5, yellowCards: 0, redCards: 0, minutesPlayed: 430, rating: 8.4 }, firstName: 'Julián',  lastName: 'Álvarez',   age: 26, position: 'Forward', marketValue: 0 },
+  { id: 5, name: 'Lamine Yamal',       nationality: 'Spain',     photo: '', teamId: 0, stats: { goals: 4, assists: 6, appearances: 5, yellowCards: 0, redCards: 0, minutesPlayed: 450, rating: 9.3 }, firstName: 'Lamine',  lastName: 'Yamal',     age: 18, position: 'Forward', marketValue: 0 },
+  { id: 6, name: 'Christian Pulisic',  nationality: 'USA',       photo: '', teamId: 0, stats: { goals: 4, assists: 2, appearances: 5, yellowCards: 1, redCards: 0, minutesPlayed: 420, rating: 8.2 }, firstName: 'Christian', lastName: 'Pulisic', age: 27, position: 'Forward', marketValue: 0 },
+  { id: 7, name: 'Cristiano Ronaldo',  nationality: 'Portugal',  photo: '', teamId: 0, stats: { goals: 4, assists: 0, appearances: 5, yellowCards: 1, redCards: 0, minutesPlayed: 405, rating: 7.8 }, firstName: 'Cristiano', lastName: 'Ronaldo', age: 41, position: 'Forward', marketValue: 0 },
+  { id: 8, name: 'Kai Havertz',        nationality: 'Germany',   photo: '', teamId: 0, stats: { goals: 4, assists: 1, appearances: 5, yellowCards: 0, redCards: 0, minutesPlayed: 450, rating: 8.0 }, firstName: 'Kai',     lastName: 'Havertz',   age: 27, position: 'Forward', marketValue: 0 },
+];
 
 function MatchRow({ match }: { match: Match }) {
   const isLive = match.status === 'LIVE' || match.status === 'HT';
@@ -103,7 +114,7 @@ export default async function WorldCupPage() {
   const allToday = todayMatches ?? [];
   const allDone  = (results ?? []).slice(0, 12);
   const allNext  = (upcoming ?? []).slice(0, 8);
-  const topScorers = (scorers ?? []).slice(0, 10);
+  const topScorers = (scorers ?? []).length > 0 ? (scorers ?? []).slice(0, 8) : WC_TOP_SCORERS_FALLBACK;
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 lg:px-6 py-8">
@@ -156,9 +167,9 @@ export default async function WorldCupPage() {
           <div className="mt-8 flex flex-wrap gap-2">
             {[
               { label: 'Group Stage',      done: true },
-              { label: 'Round of 16',      done: new Date() > new Date('2026-07-02') },
-              { label: 'Quarter-Finals',   done: new Date() > new Date('2026-07-08') },
-              { label: 'Semi-Finals',      done: new Date() > new Date('2026-07-12') },
+              { label: 'Round of 16',      done: true },
+              { label: 'Quarter-Finals',   done: new Date() > new Date('2026-07-12') },
+              { label: 'Semi-Finals',      done: new Date() > new Date('2026-07-16') },
               { label: 'Final',            done: new Date() > new Date('2026-07-19') },
             ].map(s => (
               <span
@@ -286,13 +297,15 @@ export default async function WorldCupPage() {
 
           {/* Quick Links */}
           <div className="gr-card p-5">
-            <h3 className="text-white font-semibold mb-4">World Cup News</h3>
+            <h3 className="text-white font-semibold mb-4">World Cup Hub</h3>
             <div className="space-y-2">
               {[
-                { label: 'Match Reports',   href: '/news?category=world-cup' },
-                { label: 'Match Previews',  href: '/news?category=world-cup' },
-                { label: 'Top Stories',     href: '/news' },
-                { label: 'Predictions',     href: '/predictions' },
+                { label: '📋 QF Fixtures & Schedule', href: '/fixtures' },
+                { label: '📊 R16 Results',             href: '/results' },
+                { label: '🔮 QF Predictions',          href: '/predictions' },
+                { label: '👥 Team Profiles',           href: '/teams' },
+                { label: '📈 Tournament Statistics',   href: '/statistics' },
+                { label: '📰 WC News & Analysis',      href: '/news' },
               ].map(link => (
                 <Link
                   key={link.label}
