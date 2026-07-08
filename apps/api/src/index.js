@@ -104,25 +104,35 @@ app.use(errorHandler);
 
 // ─── Bootstrap ─────────────────────────────────────────────
 async function bootstrap() {
+  const PORT = process.env.PORT || 4000;
+
+  // Start HTTP server first so healthcheck passes immediately
+  server.listen(PORT, () => {
+    logger.info(`GoalRush API running on port ${PORT}`);
+  });
+
+  // Connect to database (non-fatal on failure so server stays up)
   try {
     await setupDatabase();
     logger.info('Database connected');
+  } catch (err) {
+    logger.error(err, 'Database connection failed — API running in degraded mode');
+  }
 
+  // Connect to Redis (non-fatal)
+  try {
     await setupRedis();
     logger.info('Redis connected');
+  } catch (err) {
+    logger.error(err, 'Redis connection failed — caching disabled');
+  }
 
-    const PORT = process.env.PORT || 4000;
-    server.listen(PORT, () => {
-      logger.info(`GoalRush API running on port ${PORT}`);
-    });
-
-    // Start background workers
+  // Start background workers
+  try {
     startLiveScoreWorker(io);
     logger.info('Live score worker started');
-
   } catch (err) {
-    logger.error(err, 'Failed to start server');
-    process.exit(1);
+    logger.error(err, 'Live score worker failed to start');
   }
 }
 

@@ -199,18 +199,36 @@ Write a 150-word tactical analysis: what this means for both clubs. Return plain
 // ─── Hashtag Generator ─────────────────────────────────────
 
 async function generateHashtags(topic, platform) {
-  const { data } = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [{
-      role: 'user',
-      content: `Generate 15 viral football hashtags for "${topic}" optimized for ${platform}.
-Return JSON array: ["#Tag1", "#Tag2", ...]`,
-    }],
-    max_tokens: 200,
-  });
+  const openai = getOpenAI();
+  if (!openai) {
+    // Fall back to Claude if OpenAI is not configured
+    const message = await anthropic.messages.create({
+      model: 'claude-opus-4-7',
+      max_tokens: 200,
+      messages: [{
+        role: 'user',
+        content: `Generate 15 viral football hashtags for "${topic}" optimized for ${platform}. Return JSON array only: ["#Tag1", "#Tag2", ...]`,
+      }],
+    });
+    try {
+      const match = message.content[0].text.match(/\[[\s\S]*\]/);
+      return match ? JSON.parse(match[0]) : ['#Football', '#GoalRush'];
+    } catch {
+      return ['#Football', '#GoalRush', '#LiveFootball'];
+    }
+  }
 
   try {
-    const text = data.choices[0].message.content;
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [{
+        role: 'user',
+        content: `Generate 15 viral football hashtags for "${topic}" optimized for ${platform}.
+Return JSON array: ["#Tag1", "#Tag2", ...]`,
+      }],
+      max_tokens: 200,
+    });
+    const text = response.choices[0].message.content;
     const match = text.match(/\[[\s\S]*\]/);
     return match ? JSON.parse(match[0]) : ['#Football', '#GoalRush'];
   } catch {
