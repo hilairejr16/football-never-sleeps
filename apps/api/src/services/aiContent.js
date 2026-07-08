@@ -1,9 +1,18 @@
 const Anthropic = require('@anthropic-ai/sdk');
-const OpenAI = require('openai');
 const { cacheGetOrSet } = require('../config/redis');
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// Lazy OpenAI client — only instantiated if OPENAI_API_KEY is present
+let _openai = null;
+function getOpenAI() {
+  if (!_openai) {
+    if (!process.env.OPENAI_API_KEY) return null;
+    const OpenAI = require('openai');
+    _openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  }
+  return _openai;
+}
 
 // ─── Article Generation ────────────────────────────────────
 
