@@ -34,7 +34,7 @@ router.post('/register', authRateLimit, asyncHandler(async (req, res) => {
   const hash = await bcrypt.hash(password, 12);
   const { rows } = await query(
     `INSERT INTO users (email, password, name, role, created_at)
-     VALUES ($1, $2, $3, 'user', NOW()) RETURNING id, email, name, role, created_at`,
+     VALUES ($1, $2, $3, 'viewer', NOW()) RETURNING id, email, name, role, created_at`,
     [email.toLowerCase(), hash, name],
   );
 
