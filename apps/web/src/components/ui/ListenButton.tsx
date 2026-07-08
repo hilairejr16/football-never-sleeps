@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Headphones, Pause, Play, Loader2 } from 'lucide-react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
@@ -15,8 +15,22 @@ interface ListenButtonProps {
 
 export default function ListenButton({ text, title, className }: ListenButtonProps) {
   const [state, setState] = useState<State>('idle');
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const blobUrlRef = useRef<string | null>(null);
+  const audioRef    = useRef<HTMLAudioElement | null>(null);
+  const blobUrlRef  = useRef<string | null>(null);
+
+  // Clean up audio + blob URL on unmount to prevent memory leaks
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+        blobUrlRef.current = null;
+      }
+    };
+  }, []);
 
   const handleClick = useCallback(async (e: React.MouseEvent) => {
     e.preventDefault();

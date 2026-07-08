@@ -1,10 +1,19 @@
 const express = require('express');
 const { Readable } = require('stream');
+const rateLimit = require('express-rate-limit');
 
 const router = express.Router();
 const VOICE_ID = 'pNInz6obpgDQGcFmaJgB'; // ElevenLabs — Adam
 
-router.post('/article', async (req, res) => {
+const ttsRateLimit = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'TTS rate limit exceeded — please wait a few minutes.' },
+});
+
+router.post('/article', ttsRateLimit, async (req, res) => {
   const apiKey = process.env.ELEVENLABS_API_KEY;
   if (!apiKey) {
     return res.status(503).json({ error: 'TTS not configured' });
@@ -12,7 +21,10 @@ router.post('/article', async (req, res) => {
 
   const { text, title } = req.body;
   if (!text || typeof text !== 'string') {
-    return res.status(400).json({ error: 'text is required' });
+    return res.status(400).json({ error: 'text is required and must be a string' });
+  }
+  if (title !== undefined && typeof title !== 'string') {
+    return res.status(400).json({ error: 'title must be a string' });
   }
 
   const content = [title, text].filter(Boolean).join('. ').slice(0, 5000);

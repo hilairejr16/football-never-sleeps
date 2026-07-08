@@ -20,7 +20,7 @@ function tournamentStage() {
   const today = new Date();
   const d = today.toISOString().slice(0, 10);
   if (d <= '2026-07-02') return 'Group Stage';
-  if (d <= '2026-07-08') return 'Round of 16';
+  if (d <  '2026-07-08') return 'Round of 16';
   if (d <= '2026-07-12') return 'Quarter-Finals';
   if (d <= '2026-07-16') return 'Semi-Finals';
   if (d <= '2026-07-18') return '3rd Place Play-off';

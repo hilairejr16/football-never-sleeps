@@ -49,3 +49,7 @@ redis-data/
 *.pem
 *.key
 *.crt
+
+# Local notes (may contain credentials — never commit)
+Football Never Sleeps - notes.txt
+*.notes.txt
