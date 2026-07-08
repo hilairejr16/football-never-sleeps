@@ -2,16 +2,19 @@ import Link from 'next/link';
 import { Zap, Twitter, Instagram, Youtube, Facebook } from 'lucide-react';
 
 const LEAGUES: { name: string; href: string }[] = [
-  { name: 'Premier League',   href: '/league/premier-league' },
-  { name: 'La Liga',          href: '/league/la-liga' },
-  { name: 'Serie A',          href: '/league/serie-a' },
-  { name: 'Bundesliga',       href: '/league/bundesliga' },
-  { name: 'Ligue 1',          href: '/league/ligue-1' },
-  { name: 'Champions League', href: '/league/champions-league' },
-  { name: 'Europa League',    href: '/league/europa-league' },
-  { name: 'World Cup 2026',   href: '/world-cup' },
-  { name: 'MLS',              href: '/league/mls' },
-  { name: 'Saudi Pro League', href: '/league/saudi-pro-league' },
+  { name: 'Premier League',      href: '/league/premier-league' },
+  { name: 'La Liga',             href: '/league/la-liga' },
+  { name: 'Serie A',             href: '/league/serie-a' },
+  { name: 'Bundesliga',          href: '/league/bundesliga' },
+  { name: 'Ligue 1',             href: '/league/ligue-1' },
+  { name: 'Champions League',    href: '/league/champions-league' },
+  { name: 'Europa League',       href: '/league/europa-league' },
+  { name: 'World Cup 2026',      href: '/world-cup' },
+  { name: 'Copa América',        href: '/league/copa-america' },
+  { name: 'CONCACAF Gold Cup',   href: '/league/gold-cup' },
+  { name: 'UEFA European Champ.', href: '/league/euro-championship' },
+  { name: 'MLS',                 href: '/league/mls' },
+  { name: 'Saudi Pro League',    href: '/league/saudi-pro-league' },
 ];
 
 const QUICK_LINKS = [

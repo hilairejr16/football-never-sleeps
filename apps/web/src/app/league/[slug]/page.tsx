@@ -7,16 +7,19 @@ export const revalidate = 300;
 
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
 
-const LEAGUE_MAP: Record<string, { id: number; name: string; flag: string; country: string; season: number; note?: string }> = {
-  'premier-league':    { id: 39,  name: 'Premier League',    flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England',  season: 2025, note: 'Season on hold — summer break' },
-  'la-liga':           { id: 140, name: 'La Liga',            flag: '🇪🇸', country: 'Spain',    season: 2025, note: 'Season on hold — summer break' },
-  'serie-a':           { id: 135, name: 'Serie A',            flag: '🇮🇹', country: 'Italy',    season: 2025, note: 'Season on hold — summer break' },
-  'bundesliga':        { id: 78,  name: 'Bundesliga',         flag: '🇩🇪', country: 'Germany',  season: 2025, note: 'Season on hold — summer break' },
-  'ligue-1':           { id: 61,  name: 'Ligue 1',            flag: '🇫🇷', country: 'France',   season: 2025, note: 'Season on hold — summer break' },
-  'champions-league':  { id: 2,   name: 'Champions League',   flag: '⭐', country: 'Europe',   season: 2025, note: '2025/26 draw in August' },
-  'europa-league':     { id: 3,   name: 'Europa League',      flag: '🌟', country: 'Europe',   season: 2025, note: '2025/26 draw in August' },
-  'mls':               { id: 253, name: 'MLS',                flag: '🇺🇸', country: 'USA',      season: 2026, note: 'Suspended for World Cup' },
-  'saudi-pro-league':  { id: 307, name: 'Saudi Pro League',   flag: '🇸🇦', country: 'Saudi Arabia', season: 2025, note: 'Season complete' },
+const LEAGUE_MAP: Record<string, { id: number; name: string; flag: string; country: string; season: number; note?: string; info?: string }> = {
+  'premier-league':    { id: 39,  name: 'Premier League',          flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England',       season: 2025, note: 'Season on hold — summer break' },
+  'la-liga':           { id: 140, name: 'La Liga',                  flag: '🇪🇸', country: 'Spain',         season: 2025, note: 'Season on hold — summer break' },
+  'serie-a':           { id: 135, name: 'Serie A',                  flag: '🇮🇹', country: 'Italy',         season: 2025, note: 'Season on hold — summer break' },
+  'bundesliga':        { id: 78,  name: 'Bundesliga',               flag: '🇩🇪', country: 'Germany',       season: 2025, note: 'Season on hold — summer break' },
+  'ligue-1':           { id: 61,  name: 'Ligue 1',                  flag: '🇫🇷', country: 'France',        season: 2025, note: 'Season on hold — summer break' },
+  'champions-league':  { id: 2,   name: 'UEFA Champions League',    flag: '⭐', country: 'Europe',        season: 2025, note: '2025/26 draw in August' },
+  'europa-league':     { id: 3,   name: 'UEFA Europa League',       flag: '🌟', country: 'Europe',        season: 2025, note: '2025/26 draw in August' },
+  'copa-america':      { id: 9,   name: 'Copa América',             flag: '🌎', country: 'South America', season: 2024, note: 'Next edition: 2028', info: 'The Copa América 2024 was held in the USA. Argentina are the reigning champions. The next edition is scheduled for 2028.' },
+  'gold-cup':          { id: 22,  name: 'CONCACAF Gold Cup',        flag: '🏅', country: 'CONCACAF',      season: 2025, note: 'Next edition: 2027', info: 'The CONCACAF Gold Cup is the premier national team competition for North and Central America and the Caribbean. The 2025 edition was won by Mexico.' },
+  'euro-championship': { id: 4,   name: 'UEFA European Championship', flag: '🇪🇺', country: 'Europe',   season: 2024, note: 'Next edition: Euro 2028', info: 'The UEFA European Championship 2024 was held in Germany. Spain won a record 4th European title, beating England 2–1 in the Berlin final.' },
+  'mls':               { id: 253, name: 'MLS',                      flag: '🇺🇸', country: 'USA',          season: 2026, note: 'Suspended for World Cup' },
+  'saudi-pro-league':  { id: 307, name: 'Saudi Pro League',         flag: '🇸🇦', country: 'Saudi Arabia', season: 2025, note: 'Season complete' },
 };
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
@@ -37,13 +40,16 @@ async function fetchStandings(leagueId: number, season: number) {
 }
 
 const OTHER_LEAGUES = [
-  { slug: 'premier-league',   name: 'Premier League',   flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
-  { slug: 'la-liga',          name: 'La Liga',           flag: '🇪🇸' },
-  { slug: 'serie-a',          name: 'Serie A',           flag: '🇮🇹' },
-  { slug: 'bundesliga',       name: 'Bundesliga',        flag: '🇩🇪' },
-  { slug: 'ligue-1',          name: 'Ligue 1',           flag: '🇫🇷' },
-  { slug: 'champions-league', name: 'Champions League',  flag: '⭐' },
-  { slug: 'mls',              name: 'MLS',               flag: '🇺🇸' },
+  { slug: 'premier-league',   name: 'Premier League',        flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { slug: 'la-liga',          name: 'La Liga',               flag: '🇪🇸' },
+  { slug: 'serie-a',          name: 'Serie A',               flag: '🇮🇹' },
+  { slug: 'bundesliga',       name: 'Bundesliga',            flag: '🇩🇪' },
+  { slug: 'ligue-1',          name: 'Ligue 1',               flag: '🇫🇷' },
+  { slug: 'champions-league', name: 'Champions League',      flag: '⭐' },
+  { slug: 'copa-america',     name: 'Copa América',          flag: '🌎' },
+  { slug: 'gold-cup',         name: 'CONCACAF Gold Cup',     flag: '🏅' },
+  { slug: 'euro-championship',name: 'UEFA Euro Champ.',      flag: '🇪🇺' },
+  { slug: 'mls',              name: 'MLS',                   flag: '🇺🇸' },
 ];
 
 export default async function LeaguePage({ params }: { params: { slug: string } }) {
@@ -81,7 +87,7 @@ export default async function LeaguePage({ params }: { params: { slug: string } 
           <div className="mt-4 px-4 py-3 bg-brand-dark rounded-lg border border-brand-gold/20">
             <p className="text-brand-gold text-sm font-semibold">{league.note}</p>
             <p className="text-brand-gray text-xs mt-1">
-              All European top-flight leagues are on summer break for the FIFA World Cup 2026 (July). New seasons begin August 2026.
+              {league.info ?? 'All European top-flight leagues are on summer break for the FIFA World Cup 2026 (July). New seasons begin August 2026.'}
             </p>
           </div>
         )}

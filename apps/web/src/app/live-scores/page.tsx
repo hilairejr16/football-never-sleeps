@@ -8,8 +8,11 @@ import type { Match } from '@/lib/types';
 const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
 
 const LEAGUES_FILTER = [
-  { id: 'wc',  label: '🏆 World Cup 2026', leagueId: 'wc' },
-  { id: 'all', label: 'All Leagues',       leagueId: '' },
+  { id: 'wc',  label: '🏆 World Cup 2026' },
+  { id: 'all', label: 'All Leagues' },
+  { id: '9',   label: '🌎 Copa América' },
+  { id: '22',  label: '🏅 Gold Cup' },
+  { id: '4',   label: '🇪🇺 Euro Champ.' },
   { id: '39',  label: 'Premier League' },
   { id: '140', label: 'La Liga' },
   { id: '135', label: 'Serie A' },
