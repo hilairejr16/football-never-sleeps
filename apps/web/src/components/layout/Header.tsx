@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
   { href: '/',              label: 'Home' },
+  { href: '/world-cup',     label: '🏆 World Cup', highlight: true },
   { href: '/live-scores',   label: 'Live Scores' },
   { href: '/news',          label: 'News' },
   { href: '/fixtures',      label: 'Fixtures' },
@@ -62,13 +63,14 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-1">
-            {NAV_LINKS.map(({ href, label }) => (
+            {NAV_LINKS.map(({ href, label, highlight }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
                   'gr-nav-link px-3',
-                  pathname === href && 'active'
+                  pathname === href && 'active',
+                  highlight && pathname !== href && 'text-yellow-400 hover:text-yellow-300'
                 )}
               >
                 {label}

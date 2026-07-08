@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import HeroSection from '@/components/sections/HeroSection';
+import WorldCupBanner from '@/components/sections/WorldCupBanner';
 import LiveScoresSection from '@/components/sections/LiveScoresSection';
 import LatestNewsSection from '@/components/sections/LatestNewsSection';
 import TransferNewsSection from '@/components/sections/TransferNewsSection';
@@ -17,6 +18,9 @@ export const revalidate = 60; // ISR — revalidate every 60 seconds
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      {/* World Cup 2026 — Featured Banner (shows until July 19) */}
+      <WorldCupBanner />
+
       {/* Hero — Breaking News + Featured Match */}
       <HeroSection />
 

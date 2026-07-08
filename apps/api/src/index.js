@@ -33,6 +33,7 @@ const teamRoutes = require('./routes/teams');
 const leagueRoutes = require('./routes/leagues');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const worldCupRoutes = require('./routes/worldcup');
 
 const { startLiveScoreWorker } = require('./workers/liveScores');
 
@@ -68,14 +69,31 @@ io.on('connection', socket => {
 });
 
 // ─── Middleware ────────────────────────────────────────────
-app.use(helmet({ contentSecurityPolicy: false }));
+// Trust Railway / Vercel reverse proxy so rate limiting works on real client IPs
+app.set('trust proxy', 1);
+
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc:  ["'self'"],
+      scriptSrc:   ["'self'"],
+      styleSrc:    ["'self'", "'unsafe-inline'"],
+      imgSrc:      ["'self'", 'data:', 'https:'],
+      connectSrc:  ["'self'", process.env.APP_URL || 'http://localhost:3000'],
+      fontSrc:     ["'self'", 'https://fonts.gstatic.com'],
+      objectSrc:   ["'none'"],
+      frameAncestors: ["'none'"],
+    },
+  },
+  crossOriginEmbedderPolicy: false,
+}));
 app.use(cors({
   origin: process.env.APP_URL || 'http://localhost:3000',
   credentials: true,
 }));
 app.use(compression());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 app.use(morgan('combined', {
   stream: { write: msg => logger.info(msg.trim()) },
 }));
@@ -102,6 +120,7 @@ app.use('/teams',       teamRoutes);
 app.use('/leagues',     leagueRoutes);
 app.use('/auth',        authRoutes);
 app.use('/admin',       adminRoutes);
+app.use('/world-cup',   worldCupRoutes);
 
 // ─── 404 handler ──────────────────────────────────────────
 app.use((req, res) => {

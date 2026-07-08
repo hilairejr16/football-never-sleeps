@@ -6,6 +6,7 @@ const ok = (res, data) => res.json({ status: 'success', data });
 
 // Hardcoded popular leagues — no API credit burn
 const LEAGUES = [
+  { id: 1,   name: 'FIFA World Cup',    country: 'World',    logo: 'https://media.api-sports.io/football/leagues/1.png',   type: 'Cup', featured: true, season: 2026 },
   { id: 39,  name: 'Premier League',    country: 'England',  logo: 'https://media.api-sports.io/football/leagues/39.png',  type: 'League' },
   { id: 140, name: 'La Liga',           country: 'Spain',    logo: 'https://media.api-sports.io/football/leagues/140.png', type: 'League' },
   { id: 135, name: 'Serie A',           country: 'Italy',    logo: 'https://media.api-sports.io/football/leagues/135.png', type: 'League' },

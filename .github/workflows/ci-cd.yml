@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  schedule:
+    # Daily security pen test at 03:00 UTC
+    - cron: '0 3 * * *'
+    # Daily World Cup content update at 06:30 UTC (after overnight matches finish)
+    - cron: '30 6 * * *'
 
 env:
   NODE_VERSION: "20"
@@ -55,3 +60,91 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://renewed-ambition-production-ea0a.up.railway.app/health)
           if [ "$STATUS" != "200" ]; then echo "API health check failed: $STATUS"; exit 1; fi
           echo "API is healthy"
+
+  # ─── Daily Security Pen Test ──────────────────────────────
+  pentest:
+    name: Daily Security Pen Test
+    runs-on: ubuntu-latest
+    # Run on schedule trigger OR after health-check on main pushes
+    if: github.event_name == 'schedule' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    needs: []
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install API dependencies
+        run: npm install --legacy-peer-deps
+        working-directory: apps/api
+
+      - name: Wait for API to be available (scheduled run)
+        if: github.event_name == 'schedule'
+        run: |
+          for i in {1..12}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://renewed-ambition-production-ea0a.up.railway.app/health)
+            if [ "$STATUS" = "200" ]; then echo "API ready"; break; fi
+            echo "Attempt $i — API not ready (HTTP $STATUS), retrying in 10s..."
+            sleep 10
+          done
+
+      - name: Run security pen test
+        env:
+          PENTEST_TARGET: https://renewed-ambition-production-ea0a.up.railway.app
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run pentest
+        working-directory: apps/api
+        continue-on-error: true  # Don't fail the deploy pipeline — report only
+
+      - name: Upload pen test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pentest-results-${{ github.run_id }}
+          path: apps/api/pentest-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+  # ─── World Cup 2026 Daily Content Update ──────────────────
+  wc-daily-update:
+    name: World Cup 2026 — Daily Update
+    runs-on: ubuntu-latest
+    # Runs on the 06:30 UTC schedule trigger only, until July 19 2026
+    if: github.event_name == 'schedule'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install API dependencies
+        run: npm install --legacy-peer-deps
+        working-directory: apps/api
+
+      - name: Check if tournament is still active
+        id: wc_check
+        run: |
+          TODAY=$(date -u +%Y-%m-%d)
+          FINAL="2026-07-19"
+          if [[ "$TODAY" > "$FINAL" ]]; then
+            echo "active=false" >> $GITHUB_OUTPUT
+            echo "World Cup is over — skipping update"
+          else
+            echo "active=true" >> $GITHUB_OUTPUT
+            echo "World Cup active — running update for $TODAY"
+          fi
+
+      - name: Run World Cup daily content update
+        if: steps.wc_check.outputs.active == 'true'
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          NODE_ENV: production
+        run: npm run wc:update
+        working-directory: apps/api

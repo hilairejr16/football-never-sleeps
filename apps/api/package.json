@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "pentest": "node src/scripts/pentest.js",
+    "pentest:local": "PENTEST_TARGET=http://localhost:4000 node src/scripts/pentest.js",
+    "pentest:prod": "PENTEST_TARGET=https://renewed-ambition-production-ea0a.up.railway.app node src/scripts/pentest.js",
+    "wc:update": "node src/scripts/wcDailyUpdate.js"
   },
   "dependencies": {
     "express": "^4.19.2",
