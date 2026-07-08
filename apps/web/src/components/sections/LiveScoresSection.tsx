@@ -2,96 +2,76 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, RefreshCw } from 'lucide-react';
+import { ArrowRight, RefreshCw, Trophy } from 'lucide-react';
 import MatchCard from '@/components/cards/MatchCard';
 import type { Match } from '@/lib/types';
 
-const MOCK_MATCHES: Match[] = [
-  {
-    id: 101, status: 'LIVE', minute: 72,
-    homeTeam: { id: 33, name: 'Manchester United', shortName: 'MAN UTD', logo: '', country: 'England' },
-    awayTeam: { id: 34, name: 'Liverpool', shortName: 'LIV', logo: '', country: 'England' },
-    homeScore: 2, awayScore: 2,
-    date: new Date().toISOString(),
-    league: { id: 39, name: 'Premier League', shortName: 'PL', logo: '', country: 'England', season: 2025, type: 'League' },
-  },
-  {
-    id: 102, status: 'LIVE', minute: 41,
-    homeTeam: { id: 541, name: 'Real Madrid', shortName: 'RMA', logo: '', country: 'Spain' },
-    awayTeam: { id: 529, name: 'Barcelona', shortName: 'BAR', logo: '', country: 'Spain' },
-    homeScore: 1, awayScore: 0,
-    date: new Date().toISOString(),
-    league: { id: 140, name: 'La Liga', shortName: 'LL', logo: '', country: 'Spain', season: 2025, type: 'League' },
-  },
-  {
-    id: 103, status: 'HT',
-    homeTeam: { id: 85, name: 'PSG', shortName: 'PSG', logo: '', country: 'France' },
-    awayTeam: { id: 1, name: 'Bayern Munich', shortName: 'BAY', logo: '', country: 'Germany' },
-    homeScore: 1, awayScore: 1,
-    date: new Date().toISOString(),
-    league: { id: 2, name: 'Champions League', shortName: 'UCL', logo: '', country: 'Europe', season: 2025, type: 'Cup' },
-  },
-  {
-    id: 104, status: 'LIVE', minute: 18,
-    homeTeam: { id: 49, name: 'Chelsea', shortName: 'CHE', logo: '', country: 'England' },
-    awayTeam: { id: 42, name: 'Arsenal', shortName: 'ARS', logo: '', country: 'England' },
-    homeScore: 0, awayScore: 1,
-    date: new Date().toISOString(),
-    league: { id: 39, name: 'Premier League', shortName: 'PL', logo: '', country: 'England', season: 2025, type: 'League' },
-  },
-  {
-    id: 105, status: 'LIVE', minute: 55,
-    homeTeam: { id: 489, name: 'AC Milan', shortName: 'MIL', logo: '', country: 'Italy' },
-    awayTeam: { id: 505, name: 'Inter Milan', shortName: 'INT', logo: '', country: 'Italy' },
-    homeScore: 0, awayScore: 0,
-    date: new Date().toISOString(),
-    league: { id: 135, name: 'Serie A', shortName: 'SA', logo: '', country: 'Italy', season: 2025, type: 'League' },
-  },
-  {
-    id: 106, status: 'SCHEDULED',
-    homeTeam: { id: 157, name: 'Bayern Munich', shortName: 'BAY', logo: '', country: 'Germany' },
-    awayTeam: { id: 165, name: 'Borussia Dortmund', shortName: 'BVB', logo: '', country: 'Germany' },
-    homeScore: null, awayScore: null,
-    date: new Date(Date.now() + 1000 * 60 * 90).toISOString(),
-    league: { id: 78, name: 'Bundesliga', shortName: 'BL', logo: '', country: 'Germany', season: 2025, type: 'League' },
-  },
-];
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+
+const FILTERS = [
+  { id: 'wc',  label: '🏆 World Cup', leagueId: '1' },
+  { id: 'all', label: 'All Leagues',  leagueId: '' },
+  { id: '39',  label: 'Premier League' },
+  { id: '140', label: 'La Liga' },
+  { id: '135', label: 'Serie A' },
+  { id: '2',   label: 'Champions League' },
+] as const;
 
 export default function LiveScoresSection() {
-  const [matches, setMatches] = useState<Match[]>(MOCK_MATCHES);
+  const [matches, setMatches]       = useState<Match[]>([]);
   const [lastUpdated, setLastUpdated] = useState(new Date());
-  const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState<'all' | 'live' | 'scheduled'>('all');
+  const [loading, setLoading]       = useState(false);
+  const [filter, setFilter]         = useState<'wc' | 'all' | string>('wc');
 
   const fetchMatches = async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/matches/today');
+      // World Cup filter: use /world-cup/today, others use /matches/today
+      const leagueParam = FILTERS.find(f => f.id === filter)?.leagueId ?? filter;
+      const url = filter === 'wc'
+        ? `${BASE}/world-cup/today`
+        : leagueParam
+          ? `${BASE}/matches/today?league=${leagueParam}`
+          : `${BASE}/matches/today`;
+
+      const res = await fetch(url);
       if (res.ok) {
         const { data } = await res.json();
-        if (data?.length) setMatches(data);
-        setLastUpdated(new Date());
+        if (Array.isArray(data) && data.length > 0) {
+          setMatches(data);
+          setLastUpdated(new Date());
+        }
       }
     } catch { /* keep current data */ }
     finally { setLoading(false); }
   };
 
   useEffect(() => {
+    fetchMatches();
     const interval = setInterval(fetchMatches, 30_000);
     return () => clearInterval(interval);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter]);
 
-  const filtered = filter === 'all'
+  const live      = matches.filter(m => m.status === 'LIVE' || m.status === 'HT');
+  const upcoming  = matches.filter(m => m.status === 'SCHEDULED');
+  const finished  = matches.filter(m => m.status === 'FT' || m.status === 'AET' || m.status === 'PEN');
+  const displayed = filter === 'wc'
     ? matches
-    : filter === 'live'
-    ? matches.filter(m => m.status === 'LIVE' || m.status === 'HT')
-    : matches.filter(m => m.status === 'SCHEDULED');
+    : matches.slice(0, 6);
 
   return (
     <div>
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
-        <h2 className="gr-section-title">Live Scores</h2>
+        <h2 className="gr-section-title">
+          {filter === 'wc' ? (
+            <span className="flex items-center gap-2">
+              <Trophy className="w-5 h-5 text-yellow-400" />
+              World Cup Live
+            </span>
+          ) : 'Live Scores'}
+        </h2>
         <div className="flex items-center gap-3">
           <button
             onClick={fetchMatches}
@@ -101,8 +81,14 @@ export default function LiveScoresSection() {
             <RefreshCw className="w-4 h-4" />
           </button>
           <span className="text-brand-gray text-xs hidden sm:block">
-            Updated {lastUpdated.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })}
+            {lastUpdated.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' })}
           </span>
+          {live.length > 0 && (
+            <span className="gr-badge-live text-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-dot" />
+              {live.length} Live
+            </span>
+          )}
           <Link href="/live-scores" className="text-brand-red text-xs font-semibold flex items-center gap-1 hover:gap-2 transition-all">
             See All <ArrowRight className="w-3 h-3" />
           </Link>
@@ -110,36 +96,48 @@ export default function LiveScoresSection() {
       </div>
 
       {/* Filter Pills */}
-      <div className="flex gap-2 mb-4">
-        {(['all', 'live', 'scheduled'] as const).map(f => (
+      <div className="flex gap-2 mb-4 overflow-x-auto no-scrollbar pb-1">
+        {FILTERS.map(f => (
           <button
-            key={f}
-            onClick={() => setFilter(f)}
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-              filter === f
-                ? 'bg-brand-red text-white'
+            key={f.id}
+            onClick={() => setFilter(f.id)}
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap flex-shrink-0 transition-all ${
+              filter === f.id
+                ? f.id === 'wc'
+                  ? 'bg-yellow-500 text-black'
+                  : 'bg-brand-red text-white'
                 : 'bg-brand-card text-brand-gray border border-brand-border hover:border-brand-muted'
             }`}
           >
-            {f.charAt(0).toUpperCase() + f.slice(1)}
-            {f === 'live' && (
-              <span className="ml-1.5 w-1.5 h-1.5 rounded-full bg-live inline-block animate-live-dot" />
-            )}
+            {f.label}
           </button>
         ))}
       </div>
 
       {/* Match Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {filtered.map(match => (
-          <MatchCard key={match.id} match={match} variant="compact" />
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <div className="text-center py-12 text-brand-gray">
-          <p className="text-lg">No matches right now</p>
-          <p className="text-sm mt-1">Check back soon for live action</p>
+      {displayed.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {displayed.map(match => (
+            <MatchCard key={match.id} match={match} variant="compact" />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-12 bg-brand-card rounded-xl border border-brand-border">
+          {filter === 'wc' ? (
+            <>
+              <Trophy className="w-10 h-10 text-yellow-400/30 mx-auto mb-3" />
+              <p className="text-white font-semibold">No World Cup matches right now</p>
+              <p className="text-brand-gray text-sm mt-1">Quarter-Finals begin July 10</p>
+              <Link href="/world-cup" className="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold mt-3 hover:text-yellow-300">
+                View Full Schedule <ArrowRight className="w-3 h-3" />
+              </Link>
+            </>
+          ) : (
+            <>
+              <p className="text-brand-gray text-lg">No matches right now</p>
+              <p className="text-brand-gray text-sm mt-1">All major leagues are on summer break for World Cup 2026</p>
+            </>
+          )}
         </div>
       )}
     </div>
