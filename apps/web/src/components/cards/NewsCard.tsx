@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Clock, Eye } from 'lucide-react';
 import { cn, formatTimeAgo, formatViews, truncate } from '@/lib/utils';
 import type { NewsArticle } from '@/lib/types';
+import ListenButton from '@/components/ui/ListenButton';
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -147,10 +148,15 @@ export default function NewsCard({
             <Clock className="w-3 h-3" />
             {formatTimeAgo(article.publishedAt)}
           </span>
-          <span className="flex items-center gap-1">
-            <Eye className="w-3 h-3" />
-            {formatViews(article.views)}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="flex items-center gap-1">
+              <Eye className="w-3 h-3" />
+              {formatViews(article.views)}
+            </span>
+            <div onClick={e => e.stopPropagation()}>
+              <ListenButton text={article.excerpt || article.title} title={article.title} />
+            </div>
+          </div>
         </div>
       </div>
     </Link>

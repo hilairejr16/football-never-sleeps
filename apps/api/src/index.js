@@ -34,6 +34,7 @@ const leagueRoutes = require('./routes/leagues');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const worldCupRoutes = require('./routes/worldcup');
+const ttsRoutes      = require('./routes/tts');
 
 const { startLiveScoreWorker } = require('./workers/liveScores');
 
@@ -121,6 +122,7 @@ app.use('/leagues',     leagueRoutes);
 app.use('/auth',        authRoutes);
 app.use('/admin',       adminRoutes);
 app.use('/world-cup',   worldCupRoutes);
+app.use('/tts',         ttsRoutes);
 
 // ─── 404 handler ──────────────────────────────────────────
 app.use((req, res) => {

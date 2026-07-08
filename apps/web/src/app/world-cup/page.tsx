@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Trophy, Clock, Star, TrendingUp, ArrowRight, Flag } from 'lucide-react';
 import type { Match, Standing, Player } from '@/lib/types';
+import WCSummaryPlayer from '@/components/ui/WCSummaryPlayer';
 
 export const metadata: Metadata = {
   title: 'FIFA World Cup 2026 — Live Results, Scores & Updates',
@@ -141,6 +142,13 @@ export default async function WorldCupPage() {
               <p className="text-yellow-400/60 text-sm mt-2 font-medium tracking-wide">
                 USA · Canada · Mexico &nbsp;·&nbsp; 48 Nations &nbsp;·&nbsp; {stage}
               </p>
+              <div className="mt-3">
+                <WCSummaryPlayer
+                  stage={stage}
+                  daysLeft={daysLeft}
+                  topScorers={topScorers.map(p => ({ name: p.name, nationality: p.nationality, goals: (p.stats as { goals?: number })?.goals ?? 0 }))}
+                />
+              </div>
             </div>
 
             {/* Countdown to final */}
