@@ -1,7 +1,14 @@
 const Anthropic = require('@anthropic-ai/sdk');
 const { cacheGetOrSet } = require('../config/redis');
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+// Lazy Anthropic client — avoids crash at module load if key is missing
+let _anthropic = null;
+function getAnthropic() {
+  if (!_anthropic) {
+    _anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'placeholder' });
+  }
+  return _anthropic;
+}
 
 // Lazy OpenAI client — only instantiated if OPENAI_API_KEY is present
 let _openai = null;
@@ -19,7 +26,7 @@ function getOpenAI() {
 async function generateNewsArticle({ topic, matchData, tone = 'exciting', length = 'medium' }) {
   const wordCount = length === 'short' ? 200 : length === 'medium' ? 500 : 900;
 
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: 'claude-opus-4-7',
     max_tokens: 2000,
     messages: [{
@@ -67,7 +74,7 @@ async function generateMatchSummary(match) {
   const cacheKey = `ai:summary:${match.id}`;
 
   return cacheGetOrSet(cacheKey, async () => {
-    const message = await anthropic.messages.create({
+    const message = await getAnthropic().messages.create({
       model: 'claude-opus-4-7',
       max_tokens: 1000,
       messages: [{
@@ -87,7 +94,7 @@ Write 3-4 vivid paragraphs. Make it feel like Sky Sports commentary. Return plai
 // ─── Match Prediction ──────────────────────────────────────
 
 async function generateMatchPrediction(homeTeam, awayTeam, recentForm) {
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: 'claude-opus-4-7',
     max_tokens: 800,
     messages: [{
@@ -121,7 +128,7 @@ Ensure homeWinPct + drawPct + awayWinPct = 100.`,
 // ─── Video Script ──────────────────────────────────────────
 
 async function generateVideoScript({ topic, platform, duration = 60, style = 'energetic' }) {
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: 'claude-opus-4-7',
     max_tokens: 1000,
     messages: [{
@@ -156,7 +163,7 @@ async function generateSocialPost({ content, platform, type = 'news' }) {
   const limits = { twitter: 280, instagram: 2200, tiktok: 150, facebook: 500 };
   const limit = limits[platform] || 280;
 
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: 'claude-opus-4-7',
     max_tokens: 400,
     messages: [{
@@ -178,7 +185,7 @@ Return JSON: {"text": "...", "hashtags": [...]}`,
 // ─── Transfer Analysis ─────────────────────────────────────
 
 async function generateTransferAnalysis(transfer) {
-  const message = await anthropic.messages.create({
+  const message = await getAnthropic().messages.create({
     model: 'claude-opus-4-7',
     max_tokens: 600,
     messages: [{
@@ -202,7 +209,7 @@ async function generateHashtags(topic, platform) {
   const openai = getOpenAI();
   if (!openai) {
     // Fall back to Claude if OpenAI is not configured
-    const message = await anthropic.messages.create({
+    const message = await getAnthropic().messages.create({
       model: 'claude-opus-4-7',
       max_tokens: 200,
       messages: [{

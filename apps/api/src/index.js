@@ -1,4 +1,13 @@
 require('dotenv').config();
+
+// Prevent any uncaught error from killing the process before healthcheck responds
+process.on('uncaughtException', err => {
+  console.error('[uncaughtException]', err.message);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[unhandledRejection]', reason);
+});
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
