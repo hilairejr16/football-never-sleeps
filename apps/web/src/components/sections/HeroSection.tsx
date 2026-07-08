@@ -36,73 +36,89 @@ async function fetchTodayStats() {
   }
 }
 
-// World Cup 2026 fallback articles — accurate for July 8, 2026 (knockout stages)
+// World Cup 2026 fallback articles — QF Preview, July 8 2026
 const WC_FALLBACK_ARTICLES: NewsArticle[] = [
   {
-    id: 'wc-1',
-    title: 'World Cup 2026 Quarter-Finals Set: The Last Eight Nations Are Known',
-    slug: 'wc-2026-quarter-finals-confirmed',
-    excerpt: 'The Round of 16 is complete and the eight nations battling for the FIFA World Cup 2026 trophy have been confirmed. Upsets, drama, and golden moments define the knockout stage so far.',
+    id: 'wc-qf-1',
+    title: 'QF Preview: Brazil vs England & Spain vs France — July 10 Double-Header',
+    slug: 'wc-2026-qf-preview-brazil-england-spain-france',
+    excerpt: 'Two explosive Quarter-Final clashes land on July 10. Brazil take on England at MetLife Stadium while Spain and France collide in Dallas in a fixture dripping with superstar quality.',
     content: '',
     category: 'breaking',
-    tags: ['World Cup 2026', 'FIFA', 'Quarter-Finals'],
+    tags: ['World Cup 2026', 'Quarter-Finals', 'Brazil', 'England', 'Spain', 'France'],
     imageUrl: '/news/wc-hero.jpg',
-    imageAlt: 'World Cup 2026 Trophy',
+    imageAlt: 'World Cup 2026 Quarter-Finals',
     author: 'GoalRush AI',
-    publishedAt: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+    publishedAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
     isBreaking: true,
-    views: 1_420_000,
+    views: 1_850_000,
     readTime: 5,
   },
   {
-    id: 'wc-2',
-    title: 'Golden Boot Race Heats Up: The Top Scorers Battle for World Cup Glory',
-    slug: 'wc-2026-golden-boot-race',
-    excerpt: 'With the knockout stages in full swing, the race for the Golden Boot is fiercer than ever. Only a handful of goals separate the leading marksmen.',
+    id: 'wc-qf-2',
+    title: "Mbappé vs Yamal: The Greatest Stage Awaits as Spain Face France in Dallas",
+    slug: 'wc-2026-spain-france-qf-mbappe-yamal',
+    excerpt: "Kylian Mbappé meets Lamine Yamal in the World Cup's most anticipated Quarter-Final. Two generations, one giant stage — AT&T Stadium will be electric on July 10.",
     content: '',
     category: 'analysis',
-    tags: ['World Cup 2026', 'Golden Boot', 'Top Scorers'],
-    imageUrl: '/news/wc-scorers.jpg',
-    imageAlt: 'World Cup top scorers',
+    tags: ['World Cup 2026', 'Spain', 'France', 'Mbappé', 'Yamal', 'Quarter-Finals'],
+    imageUrl: '/news/spain-france.jpg',
+    imageAlt: 'Spain vs France World Cup QF',
     author: 'GoalRush AI',
-    publishedAt: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
+    publishedAt: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
     isBreaking: false,
-    views: 890_000,
-    readTime: 4,
-  },
-  {
-    id: 'wc-3',
-    title: "Host Nation USA: Can the Americans Deliver a Fairytale World Cup Run?",
-    slug: 'usa-world-cup-2026-host-nation-run',
-    excerpt: 'Playing in front of record-breaking home crowds, the USMNT are living the World Cup dream on home soil. The question is — how far can they go?',
-    content: '',
-    category: 'analysis',
-    tags: ['World Cup 2026', 'USA', 'USMNT'],
-    imageUrl: '/news/usa-wc.jpg',
-    imageAlt: 'USMNT World Cup',
-    author: 'GoalRush AI',
-    publishedAt: new Date(Date.now() - 1000 * 60 * 200).toISOString(),
-    isBreaking: false,
-    views: 654_000,
+    views: 1_240_000,
     readTime: 6,
   },
   {
-    id: 'wc-4',
-    title: 'Transfer Bombs Ready to Drop: Clubs Eye World Cup Stars After the Final',
-    slug: 'summer-2026-transfer-window-wc-targets',
-    excerpt: 'With the World Cup final just 11 days away, Europe\'s biggest clubs have their shortlists ready. The summer 2026 transfer window is set to be explosive.',
+    id: 'wc-qf-3',
+    title: "USA vs Portugal: Ronaldo's Last Dance Against a Nation That Won't Back Down",
+    slug: 'wc-2026-usa-portugal-qf-ronaldo-usmnt',
+    excerpt: "Cristiano Ronaldo's final World Cup chapter meets the USMNT's home-crowd dream. July 11 at NRG Stadium, Houston — one of the most emotionally charged fixtures in WC history.",
     content: '',
-    category: 'transfer',
-    tags: ['Transfers', 'World Cup 2026', 'Summer Window'],
-    imageUrl: '/news/transfers-wc.jpg',
-    imageAlt: 'Summer transfer window',
+    category: 'analysis',
+    tags: ['World Cup 2026', 'USA', 'Portugal', 'Ronaldo', 'USMNT', 'Quarter-Finals'],
+    imageUrl: '/news/usa-portugal.jpg',
+    imageAlt: 'USA vs Portugal World Cup QF',
     author: 'GoalRush AI',
-    publishedAt: new Date(Date.now() - 1000 * 60 * 300).toISOString(),
+    publishedAt: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
     isBreaking: false,
-    views: 478_000,
+    views: 980_000,
     readTime: 5,
   },
+  {
+    id: 'wc-qf-4',
+    title: "Germany vs Argentina: The WC's Fiercest Rivalry Returns at SoFi Stadium",
+    slug: 'wc-2026-germany-argentina-qf-sofi',
+    excerpt: 'Five World Cup finals between them. Decades of the sport\'s biggest moments. Germany and Argentina meet again on July 11 in Los Angeles — and history will be made.',
+    content: '',
+    category: 'analysis',
+    tags: ['World Cup 2026', 'Germany', 'Argentina', 'Quarter-Finals', 'Rivalry'],
+    imageUrl: '/news/germany-argentina.jpg',
+    imageAlt: 'Germany vs Argentina World Cup QF',
+    author: 'GoalRush AI',
+    publishedAt: new Date(Date.now() - 1000 * 60 * 270).toISOString(),
+    isBreaking: false,
+    views: 870_000,
+    readTime: 6,
+  },
 ];
+
+function daysUntilFinal(): number {
+  const final = new Date('2026-07-19T00:00:00Z');
+  const now = new Date();
+  return Math.max(0, Math.ceil((final.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+}
+
+function wcCurrentStageLabel(): string {
+  const d = new Date().toISOString().slice(0, 10);
+  if (d <= '2026-07-07') return 'Round of 16';
+  if (d <= '2026-07-12') return 'QF · Jul 10–12';
+  if (d <= '2026-07-16') return 'Semi-Finals';
+  if (d <= '2026-07-18') return '3rd Place';
+  if (d <= '2026-07-19') return '🏆 THE FINAL';
+  return 'World Cup Complete';
+}
 
 export default async function HeroSection() {
   const [articles, stats] = await Promise.all([fetchTopStories(), fetchTodayStats()]);
@@ -136,11 +152,11 @@ export default async function HeroSection() {
                   World Cup 2026
                 </span>
               </div>
-              <div className="text-white/60 text-xs mb-3">Quarter-Finals · July 10–12</div>
+              <div className="text-white/60 text-xs mb-3">{wcCurrentStageLabel()}</div>
               <div className="grid grid-cols-3 gap-2 text-center">
                 {[
-                  { label: 'WC Today',      value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '2' },
-                  { label: 'Days to Final', value: '11' },
+                  { label: 'WC Today',      value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '0' },
+                  { label: 'Days to Final', value: String(daysUntilFinal()) },
                   { label: 'Nations Left',  value: '8' },
                 ].map(s => (
                   <div key={s.label}>
@@ -164,7 +180,7 @@ export default async function HeroSection() {
                 {[
                   { label: 'Live Matches',  value: stats.liveCount > 0 ? String(stats.liveCount) : '0' },
                   { label: 'WC Today',      value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '0' },
-                  { label: 'QF Starts',     value: 'Jul 10' },
+                  { label: 'QF Kick-off',   value: 'Jul 10' },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <div className="font-display text-3xl text-white">{stat.value}</div>

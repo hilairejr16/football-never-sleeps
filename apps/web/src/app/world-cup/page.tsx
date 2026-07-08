@@ -31,9 +31,9 @@ function daysUntilFinal() {
 
 function wcStage(): string {
   const d = new Date().toISOString().slice(0, 10);
-  if (d < '2026-07-01') return 'Group Stage';
-  if (d < '2026-07-07') return 'Round of 16';
-  if (d <= '2026-07-12') return 'Quarter-Finals';
+  if (d <= '2026-07-03') return 'Group Stage';
+  if (d <= '2026-07-07') return 'Round of 16';   // last R16 match: Jul 7
+  if (d <= '2026-07-12') return 'Quarter-Finals'; // QF rest Jul 8–9, matches Jul 10–12
   if (d <= '2026-07-16') return 'Semi-Finals';
   if (d <= '2026-07-18') return '3rd Place Play-off';
   if (d <= '2026-07-19') return '🏆 THE FINAL';

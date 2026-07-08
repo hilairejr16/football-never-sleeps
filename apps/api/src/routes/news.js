@@ -11,8 +11,10 @@ const ok = (res, data, meta = {}) => res.json({ status: 'success', data, ...meta
 
 // GET /news
 router.get('/', asyncHandler(async (req, res) => {
-  const { limit = 20, page = 1, category } = req.query;
-  const offset = (parseInt(page) - 1) * parseInt(limit);
+  const limit = Math.min(Math.max(parseInt(req.query.limit) || 20, 1), 100);
+  const page  = Math.max(parseInt(req.query.page)  || 1,  1);
+  const { category } = req.query;
+  const offset = (page - 1) * limit;
   const cacheKey = `news:list:${limit}:${page}:${category || 'all'}`;
 
   const data = await cacheGetOrSet(cacheKey, async () => {
@@ -50,6 +52,7 @@ router.get('/breaking', asyncHandler(async (req, res) => {
 router.get('/search', asyncHandler(async (req, res) => {
   const { q } = req.query;
   if (!q || q.length < 2) return res.status(400).json({ status: 'error', message: 'Query too short' });
+  if (q.length > 200) return res.status(400).json({ status: 'error', message: 'Query too long (max 200 chars)' });
 
   const { rows } = await query(
     `SELECT * FROM articles
@@ -65,13 +68,14 @@ router.get('/search', asyncHandler(async (req, res) => {
 // GET /news/category/:category
 router.get('/category/:category', asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const { page = 1, limit = 20 } = req.query;
-  const offset = (parseInt(page) - 1) * parseInt(limit);
+  const limit = Math.min(Math.max(parseInt(req.query.limit) || 20, 1), 100);
+  const page  = Math.max(parseInt(req.query.page)  || 1,  1);
+  const offset = (page - 1) * limit;
 
   const { rows } = await query(
     `SELECT * FROM articles WHERE category = $1 AND published = true
      ORDER BY published_at DESC LIMIT $2 OFFSET $3`,
-    [category, parseInt(limit), offset],
+    [category, limit, offset],
   );
 
   ok(res, rows);

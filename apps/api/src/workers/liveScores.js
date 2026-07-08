@@ -53,6 +53,13 @@ function startLiveScoreWorker(io) {
         });
       });
 
+      // Prune finished matches to prevent unbounded memory growth
+      const DONE = new Set(['FT', 'AET', 'CANC', 'ABD']);
+      const activeIds = new Set(matches.map(m => m.id));
+      for (const [id, entry] of lastScores) {
+        if (!activeIds.has(id) && DONE.has(entry.status)) lastScores.delete(id);
+      }
+
       // Broadcast full live score update to all clients
       io.to('live-scores').emit('scores-update', matches);
 

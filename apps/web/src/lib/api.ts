@@ -101,19 +101,21 @@ export const teamApi = {
 
 // ─── Admin ─────────────────────────────────────────────────
 
+const adminAuthHeader = () => ({
+  Authorization: `Bearer ${
+    typeof window !== 'undefined' ? localStorage.getItem('gr_token') ?? '' : ''
+  }`,
+});
+
 export const adminApi = {
   getStats: () =>
-    fetchApi<DashboardStats>('/admin/stats', {
-      headers: {
-        Authorization: `Bearer ${
-          typeof window !== 'undefined' ? localStorage.getItem('gr_token') ?? '' : ''
-        }`,
-      },
-    }),
+    fetchApi<DashboardStats>('/admin/stats', { headers: adminAuthHeader() }),
   triggerContentGeneration: (type: string) =>
     fetchApi<{ jobId: string }>('/admin/generate', {
       method: 'POST',
+      headers: adminAuthHeader(),
       body: JSON.stringify({ type }),
     }),
-  getScheduledPosts: () => fetchApi<unknown[]>('/admin/scheduled'),
+  getScheduledPosts: () =>
+    fetchApi<unknown[]>('/admin/scheduled', { headers: adminAuthHeader() }),
 };

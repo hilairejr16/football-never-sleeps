@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 exports.requireAuth = (req, res, next) => {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    return res.status(500).json({ status: 'error', message: 'Server configuration error' });
+  }
+
   const authHeader = req.headers.authorization;
   if (!authHeader?.startsWith('Bearer ')) {
     return res.status(401).json({ status: 'error', message: 'Authentication required' });
@@ -8,7 +13,7 @@ exports.requireAuth = (req, res, next) => {
 
   const token = authHeader.slice(7);
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const payload = jwt.verify(token, secret);
     req.user = payload;
     next();
   } catch {

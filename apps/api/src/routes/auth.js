@@ -59,7 +59,7 @@ router.post('/login', authRateLimit, asyncHandler(async (req, res) => {
     return res.status(401).json({ status: 'error', message: 'Invalid credentials' });
   }
 
-  const { password_hash, ...safeUser } = user;
+  const { password: _pw, ...safeUser } = user;
   ok(res, { user: safeUser, token: signToken(user) });
 }));
 

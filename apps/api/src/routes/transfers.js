@@ -8,8 +8,10 @@ const ok = (res, data, meta = {}) => res.json({ status: 'success', data, ...meta
 
 // GET /transfers
 router.get('/', asyncHandler(async (req, res) => {
-  const { limit = 20, page = 1, status } = req.query;
-  const offset = (parseInt(page) - 1) * parseInt(limit);
+  const limit = Math.min(Math.max(parseInt(req.query.limit) || 20, 1), 100);
+  const page  = Math.max(parseInt(req.query.page)  || 1,  1);
+  const { status } = req.query;
+  const offset = (page - 1) * limit;
   const cacheKey = `transfers:${limit}:${page}:${status || 'all'}`;
 
   const data = await cacheGetOrSet(cacheKey, async () => {

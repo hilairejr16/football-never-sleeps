@@ -59,9 +59,14 @@ export default function AdminPage() {
   const handleGenerate = async (type: string) => {
     setGenerating(true);
     try {
-      await fetch('/api/admin/generate', {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('gr_token') ?? '' : '';
+      const base  = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+      await fetch(`${base}/admin/generate`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ type }),
       });
     } catch { /* ignore */ }
