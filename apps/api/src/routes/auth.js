@@ -33,7 +33,7 @@ router.post('/register', authRateLimit, asyncHandler(async (req, res) => {
 
   const hash = await bcrypt.hash(password, 12);
   const { rows } = await query(
-    `INSERT INTO users (email, password_hash, name, role, created_at)
+    `INSERT INTO users (email, password, name, role, created_at)
      VALUES ($1, $2, $3, 'user', NOW()) RETURNING id, email, name, role, created_at`,
     [email.toLowerCase(), hash, name],
   );
@@ -54,7 +54,7 @@ router.post('/login', authRateLimit, asyncHandler(async (req, res) => {
     return res.status(401).json({ status: 'error', message: 'Invalid credentials' });
   }
 
-  const valid = await bcrypt.compare(password, user.password_hash);
+  const valid = await bcrypt.compare(password, user.password);
   if (!valid) {
     return res.status(401).json({ status: 'error', message: 'Invalid credentials' });
   }

@@ -8,20 +8,20 @@ const ok = (res, data, meta = {}) => res.json({ status: 'success', data, ...meta
 
 // GET /transfers
 router.get('/', asyncHandler(async (req, res) => {
-  const { limit = 20, page = 1, window: transferWindow } = req.query;
+  const { limit = 20, page = 1, status } = req.query;
   const offset = (parseInt(page) - 1) * parseInt(limit);
-  const cacheKey = `transfers:${limit}:${page}:${transferWindow || 'all'}`;
+  const cacheKey = `transfers:${limit}:${page}:${status || 'all'}`;
 
   const data = await cacheGetOrSet(cacheKey, async () => {
     let sql = `SELECT * FROM transfers`;
     const params = [];
 
-    if (transferWindow && transferWindow !== 'all') {
-      params.push(transferWindow);
-      sql += ` WHERE transfer_window = $${params.length}`;
+    if (status && status !== 'all') {
+      params.push(status);
+      sql += ` WHERE status = $${params.length}`;
     }
 
-    sql += ` ORDER BY transfer_date DESC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
+    sql += ` ORDER BY created_at DESC LIMIT $${params.length + 1} OFFSET $${params.length + 2}`;
     params.push(parseInt(limit), offset);
 
     const { rows } = await query(sql, params);
