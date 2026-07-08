@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import { RefreshCw, Trophy, Clock, Flag, Calendar } from 'lucide-react';
 import MatchCard from '@/components/cards/MatchCard';
 import type { Match } from '@/lib/types';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const LEAGUES_FILTER = [
   { id: 'wc',  label: '🏆 World Cup 2026' },

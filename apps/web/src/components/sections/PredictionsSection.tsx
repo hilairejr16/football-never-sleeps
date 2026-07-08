@@ -1,9 +1,9 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import { ArrowRight, Target, TrendingUp, Trophy } from 'lucide-react';
 import { getPredictionOutcome, formatPercentage } from '@/lib/utils';
 import type { Prediction } from '@/lib/types';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 async function fetchPredictions(): Promise<Prediction[]> {
   try {

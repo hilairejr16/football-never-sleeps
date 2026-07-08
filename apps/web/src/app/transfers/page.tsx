@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import { Clock, TrendingUp } from 'lucide-react';
 import TransferCard from '@/components/cards/TransferCard';
 import type { Transfer } from '@/lib/types';
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 120;
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 const STATUS_TABS = ['All', 'Confirmed', 'Rumours', 'Completed'];
 

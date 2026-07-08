@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Flag, Trophy, ArrowRight } from 'lucide-react';
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 300;
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 async function fetchResults() {
   try {

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import { ArrowRight, Trophy, Clock, Zap } from 'lucide-react';
 import type { Match } from '@/lib/types';
 
 const WC_FINAL = new Date('2026-07-19T00:00:00Z');
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0 });

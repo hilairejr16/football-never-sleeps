@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import { ArrowRight, RefreshCw, Trophy } from 'lucide-react';
 import MatchCard from '@/components/cards/MatchCard';
 import type { Match } from '@/lib/types';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const FILTERS = [
   { id: 'wc',  label: '🏆 World Cup', leagueId: '1' },

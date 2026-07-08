@@ -1,9 +1,9 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import NewsCard from '@/components/cards/NewsCard';
 import type { NewsArticle } from '@/lib/types';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 const CATEGORIES = ['All', 'World Cup', 'Breaking', 'Transfers', 'Analysis', 'Match Reports'];
 

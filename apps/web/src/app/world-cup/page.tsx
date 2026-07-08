@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Trophy, Clock, Star, TrendingUp, ArrowRight, Flag } from 'lucide-react';
 import type { Match, Standing, Player } from '@/lib/types';
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 const WC_FINAL_DATE = '2026-07-19';
 

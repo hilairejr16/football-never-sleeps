@@ -5,7 +5,7 @@ import { Trophy, ArrowRight } from 'lucide-react';
 
 export const revalidate = 300;
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'https://renewed-ambition-production-ea0a.up.railway.app';
 
 const LEAGUE_MAP: Record<string, { id: number; name: string; flag: string; country: string; season: number; note?: string; info?: string }> = {
   'premier-league':    { id: 39,  name: 'Premier League',          flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England',       season: 2025, note: 'Season on hold — summer break' },

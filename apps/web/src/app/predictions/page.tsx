@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { Target, TrendingUp, Trophy, RefreshCw, Zap } from 'lucide-react';
 import type { Prediction } from '@/lib/types';
 import { getPredictionOutcome, formatPercentage } from '@/lib/utils';
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const WC_QF_PREDICTIONS: Prediction[] = [
   {
