@@ -148,7 +148,7 @@
 /* ─── Utilities ───────────────────────────────────────────── */
 @layer utilities {
   .text-gradient-red {
-    background: linear-gradient(135deg, #e63946, #ff6b6b);
+    background: linear-gradient(135deg, #3b82f6, #93c5fd);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -162,11 +162,11 @@
   }
 
   .border-gradient-red {
-    border-image: linear-gradient(135deg, #e63946, transparent) 1;
+    border-image: linear-gradient(135deg, #3b82f6, transparent) 1;
   }
 
   .glow-red {
-    box-shadow: 0 0 24px rgba(230, 57, 70, 0.35);
+    box-shadow: 0 0 24px rgba(59, 130, 246, 0.35);
   }
 
   .glow-gold {
