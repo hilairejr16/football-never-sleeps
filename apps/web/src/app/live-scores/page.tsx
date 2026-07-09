@@ -23,15 +23,18 @@ const LEAGUES_FILTER = [
 
 // ── WC 2026 static data (fallback when API has nothing) ──────────────────────
 
+const WC_LEAGUE = { id: 1, name: 'FIFA World Cup 2026', shortName: 'WC 2026', logo: '', country: 'World', season: 2026, type: 'International' } as const;
+const mkTeam = (name: string) => ({ id: 0, name, shortName: name, logo: '', country: '' });
+
 const WC_R16_RESULTS: Match[] = [
-  { id: 'r16_1', date: '2026-07-04T23:00:00Z', homeTeam: { name: 'Spain',    logo: '' }, awayTeam: { name: 'Japan',       logo: '' }, homeScore: 2, awayScore: 0, status: 'FT',  minute: 90 },
-  { id: 'r16_2', date: '2026-07-04T19:00:00Z', homeTeam: { name: 'Germany',  logo: '' }, awayTeam: { name: 'Belgium',     logo: '' }, homeScore: 2, awayScore: 1, status: 'FT',  minute: 90 },
-  { id: 'r16_3', date: '2026-07-05T23:00:00Z', homeTeam: { name: 'France',   logo: '' }, awayTeam: { name: 'Poland',      logo: '' }, homeScore: 4, awayScore: 1, status: 'FT',  minute: 90 },
-  { id: 'r16_4', date: '2026-07-05T19:00:00Z', homeTeam: { name: 'England',  logo: '' }, awayTeam: { name: 'Senegal',     logo: '' }, homeScore: 2, awayScore: 0, status: 'FT',  minute: 90 },
-  { id: 'r16_5', date: '2026-07-06T23:00:00Z', homeTeam: { name: 'Brazil',   logo: '' }, awayTeam: { name: 'Mexico',      logo: '' }, homeScore: 3, awayScore: 1, status: 'FT',  minute: 90 },
-  { id: 'r16_6', date: '2026-07-06T19:00:00Z', homeTeam: { name: 'Argentina',logo: '' }, awayTeam: { name: 'Morocco',     logo: '' }, homeScore: 2, awayScore: 1, status: 'AET', minute: 120 },
-  { id: 'r16_7', date: '2026-07-07T23:00:00Z', homeTeam: { name: 'Portugal', logo: '' }, awayTeam: { name: 'Switzerland', logo: '' }, homeScore: 3, awayScore: 0, status: 'FT',  minute: 90 },
-  { id: 'r16_8', date: '2026-07-07T19:00:00Z', homeTeam: { name: 'USA',      logo: '' }, awayTeam: { name: 'Iran',        logo: '' }, homeScore: 2, awayScore: 1, status: 'FT',  minute: 90 },
+  { id: 101, date: '2026-07-04T23:00:00Z', homeTeam: mkTeam('Spain'),     awayTeam: mkTeam('Japan'),       homeScore: 2, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 102, date: '2026-07-04T19:00:00Z', homeTeam: mkTeam('Germany'),   awayTeam: mkTeam('Belgium'),     homeScore: 2, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 103, date: '2026-07-05T23:00:00Z', homeTeam: mkTeam('France'),    awayTeam: mkTeam('Poland'),      homeScore: 4, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 104, date: '2026-07-05T19:00:00Z', homeTeam: mkTeam('England'),   awayTeam: mkTeam('Senegal'),     homeScore: 2, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 105, date: '2026-07-06T23:00:00Z', homeTeam: mkTeam('Brazil'),    awayTeam: mkTeam('Mexico'),      homeScore: 3, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 106, date: '2026-07-06T19:00:00Z', homeTeam: mkTeam('Argentina'), awayTeam: mkTeam('Morocco'),     homeScore: 2, awayScore: 1, status: 'AET', minute: 120, league: WC_LEAGUE },
+  { id: 107, date: '2026-07-07T23:00:00Z', homeTeam: mkTeam('Portugal'),  awayTeam: mkTeam('Switzerland'), homeScore: 3, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 108, date: '2026-07-07T19:00:00Z', homeTeam: mkTeam('USA'),       awayTeam: mkTeam('Iran'),        homeScore: 2, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
 ];
 
 interface WCFixture {

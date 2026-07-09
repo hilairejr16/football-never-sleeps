@@ -9,12 +9,12 @@ import type { Match } from '@/lib/types';
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
 const FILTERS = [
-  { id: 'wc',  label: '🏆 World Cup', leagueId: '1' },
-  { id: 'all', label: 'All Leagues',  leagueId: '' },
-  { id: '39',  label: 'Premier League' },
-  { id: '140', label: 'La Liga' },
-  { id: '135', label: 'Serie A' },
-  { id: '2',   label: 'Champions League' },
+  { id: 'wc',  label: '🏆 World Cup',    leagueId: '1'  },
+  { id: 'all', label: 'All Leagues',     leagueId: ''   },
+  { id: '39',  label: 'Premier League',  leagueId: '39' },
+  { id: '140', label: 'La Liga',         leagueId: '140'},
+  { id: '135', label: 'Serie A',         leagueId: '135'},
+  { id: '2',   label: 'Champions League',leagueId: '2'  },
 ] as const;
 
 export default function LiveScoresSection() {
