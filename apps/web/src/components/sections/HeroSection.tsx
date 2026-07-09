@@ -41,66 +41,66 @@ async function fetchTodayStats() {
 const WC_FALLBACK_ARTICLES: NewsArticle[] = [
   {
     id: 'wc-qf-1',
-    title: 'Germany: The Dark Horses Nobody Is Talking About — Spain Better Be Ready for Jul 10',
-    slug: 'germany-dark-horses',
-    excerpt: 'Wirtz pulling strings, Havertz leading the line. Nagelsmann's Germany have quietly assembled the most balanced squad in the tournament. Spain face them at MetLife, Jul 10, 3 PM ET.',
+    title: 'France vs Morocco: Mbappé Eyes Semi-Final as Atlas Lions Aim for History Again',
+    slug: 'france-morocco-qf-preview',
+    excerpt: "Morocco shocked the world in 2022. They're doing it again in 2026. But Mbappé and a full-strength France stand in the way at Gillette Stadium, Boston — Jul 9, 4 PM ET.",
     content: '',
     category: 'breaking',
-    tags: ['World Cup 2026', 'Germany', 'Spain', 'Quarter-Finals', 'Wirtz'],
+    tags: ['World Cup 2026', 'France', 'Morocco', 'Quarter-Finals', 'Mbappé'],
     imageUrl: '/placeholder-news.svg',
-    imageAlt: 'Germany vs Spain World Cup QF MetLife Stadium',
+    imageAlt: 'France vs Morocco World Cup QF Gillette Stadium Boston',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
     isBreaking: true,
-    views: 1_850_000,
+    views: 1_920_000,
     readTime: 5,
   },
   {
     id: 'wc-qf-2',
-    title: 'England vs France: The Quarter-Final the World Has Been Waiting For',
-    slug: 'england-france-qf-preview',
-    excerpt: "Mbappé vs the Three Lions. Bellingham vs the French midfield. AT&T Stadium, Dallas — July 10, 7 PM ET.",
+    title: 'Norway vs England: Haaland Hunts His Greatest Prize — Hard Rock Stadium, Jul 11',
+    slug: 'norway-england-qf-preview',
+    excerpt: "The World Cup's biggest shock story meets England's golden generation. Haaland is unstoppable, but Bellingham and the Three Lions won't go quietly. Miami, 5 PM ET.",
     content: '',
     category: 'analysis',
-    tags: ['World Cup 2026', 'France', 'England', 'Mbappé', 'Bellingham', 'Quarter-Finals'],
+    tags: ['World Cup 2026', 'Norway', 'England', 'Haaland', 'Bellingham', 'Quarter-Finals'],
     imageUrl: '/placeholder-news.svg',
-    imageAlt: 'France vs England World Cup QF Dallas',
+    imageAlt: 'Norway vs England World Cup QF Miami',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
     isBreaking: false,
-    views: 1_240_000,
+    views: 1_340_000,
     readTime: 6,
   },
   {
     id: 'wc-qf-3',
-    title: 'Brazil vs Argentina: The Super Clásico That Shakes the World — Rose Bowl, Jul 11',
-    slug: 'brazil-argentina-qf-preview',
-    excerpt: "South America's eternal rivals collide. Brazil vs Argentina at the Rose Bowl, Los Angeles — July 11, 3 PM ET. One of them goes home.",
+    title: 'Spain vs Belgium: Yamal vs De Bruyne — The QF That Has Everything — SoFi Stadium Jul 10',
+    slug: 'spain-belgium-qf-preview',
+    excerpt: "Belgium's Golden Generation vs Spain's next one. The greatest midfielder of his era against the tournament's best young player. SoFi Stadium, Inglewood — Jul 10, 3 PM ET.",
     content: '',
     category: 'analysis',
-    tags: ['World Cup 2026', 'Brazil', 'Argentina', 'Quarter-Finals', 'Rose Bowl'],
+    tags: ['World Cup 2026', 'Spain', 'Belgium', 'Quarter-Finals', 'Yamal', 'De Bruyne'],
     imageUrl: '/placeholder-news.svg',
-    imageAlt: 'Brazil vs Argentina World Cup QF Rose Bowl',
+    imageAlt: 'Spain vs Belgium World Cup QF SoFi Stadium',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
     isBreaking: false,
-    views: 980_000,
+    views: 1_080_000,
     readTime: 5,
   },
   {
     id: 'wc-qf-4',
-    title: "Ronaldo's Last Dance: Four Goals, One Final Chance at Glory — Levi's Stadium Jul 12",
-    slug: 'ronaldo-last-dance-portugal',
-    excerpt: "At 41, he's still on the scoresheet. Portugal vs USA at Levi's Stadium, San Francisco — July 12, 7 PM ET.",
+    title: "Messi's Miracle Run: Argentina vs Switzerland — Can the Champions Reach the Final?",
+    slug: 'argentina-switzerland-qf-preview',
+    excerpt: "Messi and the reigning World Champions face Switzerland's penalty-shootout specialists at Arrowhead Stadium, Kansas City — Jul 11, 9 PM ET. History beckons.",
     content: '',
     category: 'analysis',
-    tags: ['World Cup 2026', 'Portugal', 'USA', 'Ronaldo', 'USMNT', 'Quarter-Finals'],
+    tags: ['World Cup 2026', 'Argentina', 'Switzerland', 'Messi', 'Quarter-Finals'],
     imageUrl: '/placeholder-news.svg',
-    imageAlt: "Ronaldo Portugal vs USA World Cup QF Levi's Stadium",
+    imageAlt: 'Argentina vs Switzerland World Cup QF Kansas City',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 270).toISOString(),
     isBreaking: false,
-    views: 870_000,
+    views: 1_150_000,
     readTime: 6,
   },
 ];
@@ -114,10 +114,10 @@ function daysUntilFinal(): number {
 function wcCurrentStageLabel(): string {
   const d = new Date().toISOString().slice(0, 10);
   if (d <= '2026-07-07') return 'Round of 16';
-  if (d <= '2026-07-12') return 'QF · Jul 10–12';
-  if (d <= '2026-07-16') return 'Semi-Finals';
-  if (d <= '2026-07-18') return '3rd Place';
-  if (d <= '2026-07-19') return '🏆 THE FINAL';
+  if (d <= '2026-07-11') return 'Quarter-Finals · Jul 9–11';
+  if (d <= '2026-07-15') return 'Semi-Finals · Jul 14–15';
+  if (d <= '2026-07-18') return '3rd Place · Jul 18';
+  if (d <= '2026-07-19') return '🏆 THE FINAL · Jul 19';
   return 'World Cup Complete';
 }
 

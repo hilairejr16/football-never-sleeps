@@ -55,27 +55,30 @@ interface KnockoutMatch {
 
 // ── Hardcoded tournament data ────────────────────────────────────────────────
 
+// Round of 16 — confirmed results (Jul 4-7 2026)
 const WC_R16: KnockoutMatch[] = [
-  { id: 'r16_1', homeTeam: 'Spain',     awayTeam: 'Japan',       homeScore: 2, awayScore: 0, status: 'FT',        date: '2026-07-04T23:00:00Z', venue: 'MetLife Stadium, NJ' },
-  { id: 'r16_2', homeTeam: 'Germany',   awayTeam: 'Belgium',     homeScore: 2, awayScore: 1, status: 'FT',        date: '2026-07-04T19:00:00Z', venue: 'AT&T Stadium, TX' },
-  { id: 'r16_3', homeTeam: 'France',    awayTeam: 'Poland',      homeScore: 4, awayScore: 1, status: 'FT',        date: '2026-07-05T23:00:00Z', venue: 'Rose Bowl, CA' },
-  { id: 'r16_4', homeTeam: 'England',   awayTeam: 'Senegal',     homeScore: 2, awayScore: 0, status: 'FT',        date: '2026-07-05T19:00:00Z', venue: "Levi's Stadium, CA" },
-  { id: 'r16_5', homeTeam: 'Brazil',    awayTeam: 'Mexico',      homeScore: 3, awayScore: 1, status: 'FT',        date: '2026-07-06T23:00:00Z', venue: 'NRG Stadium, TX' },
-  { id: 'r16_6', homeTeam: 'Argentina', awayTeam: 'Morocco',     homeScore: 2, awayScore: 1, status: 'AET',       date: '2026-07-06T19:00:00Z', venue: 'SoFi Stadium, CA' },
-  { id: 'r16_7', homeTeam: 'Portugal',  awayTeam: 'Switzerland', homeScore: 3, awayScore: 0, status: 'FT',        date: '2026-07-07T23:00:00Z', venue: 'Arrowhead Stadium, MO' },
-  { id: 'r16_8', homeTeam: 'USA',       awayTeam: 'Iran',        homeScore: 2, awayScore: 1, status: 'FT',        date: '2026-07-07T19:00:00Z', venue: 'MetLife Stadium, NJ' },
+  { id: 'r16_1', homeTeam: 'Morocco',     awayTeam: 'Canada',      homeScore: 3, awayScore: 0, status: 'FT',  date: '2026-07-04T19:00:00Z', venue: 'AT&T Stadium, Dallas' },
+  { id: 'r16_2', homeTeam: 'France',      awayTeam: 'Paraguay',    homeScore: 1, awayScore: 0, status: 'FT',  date: '2026-07-04T23:00:00Z', venue: 'MetLife Stadium, NJ' },
+  { id: 'r16_3', homeTeam: 'Norway',      awayTeam: 'Brazil',      homeScore: 2, awayScore: 0, status: 'FT',  date: '2026-07-05T19:00:00Z', venue: 'Rose Bowl, CA' },
+  { id: 'r16_4', homeTeam: 'England',     awayTeam: 'Mexico',      homeScore: 3, awayScore: 2, status: 'FT',  date: '2026-07-05T23:00:00Z', venue: 'AT&T Stadium, Dallas' },
+  { id: 'r16_5', homeTeam: 'Spain',       awayTeam: 'Portugal',    homeScore: 1, awayScore: 0, status: 'FT',  date: '2026-07-06T19:00:00Z', venue: 'SoFi Stadium, Inglewood' },
+  { id: 'r16_6', homeTeam: 'Belgium',     awayTeam: 'USA',         homeScore: 4, awayScore: 1, status: 'FT',  date: '2026-07-06T23:00:00Z', venue: 'Levi\'s Stadium, SF' },
+  { id: 'r16_7', homeTeam: 'Argentina',   awayTeam: 'Egypt',       homeScore: 3, awayScore: 2, status: 'FT',  date: '2026-07-07T19:00:00Z', venue: 'Hard Rock Stadium, Miami' },
+  { id: 'r16_8', homeTeam: 'Switzerland', awayTeam: 'Colombia',    homeScore: 0, awayScore: 0, status: 'PEN', date: '2026-07-07T23:00:00Z', venue: 'Arrowhead Stadium, Kansas City' },
 ];
 
+// Quarter-Finals — confirmed matchups (Jul 9-11 2026)
 const WC_QF: KnockoutMatch[] = [
-  { id: 'qf1', homeTeam: 'Spain',    awayTeam: 'Germany',   homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-10T19:00:00Z', venue: 'MetLife Stadium, NJ' },
-  { id: 'qf2', homeTeam: 'France',   awayTeam: 'England',   homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-10T23:00:00Z', venue: 'AT&T Stadium, TX' },
-  { id: 'qf3', homeTeam: 'Brazil',   awayTeam: 'Argentina', homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-11T19:00:00Z', venue: 'Rose Bowl, CA' },
-  { id: 'qf4', homeTeam: 'Portugal', awayTeam: 'USA',       homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-12T23:00:00Z', venue: "Levi's Stadium, CA" },
+  { id: 'qf1', homeTeam: 'France',      awayTeam: 'Morocco',     homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-09T20:00:00Z', venue: 'Gillette Stadium, Boston' },
+  { id: 'qf2', homeTeam: 'Spain',       awayTeam: 'Belgium',     homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-10T19:00:00Z', venue: 'SoFi Stadium, Inglewood CA' },
+  { id: 'qf3', homeTeam: 'Norway',      awayTeam: 'England',     homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-11T21:00:00Z', venue: 'Hard Rock Stadium, Miami' },
+  { id: 'qf4', homeTeam: 'Argentina',   awayTeam: 'Switzerland', homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-12T01:00:00Z', venue: 'Arrowhead Stadium, Kansas City' },
 ];
 
+// Semi-Finals (Jul 14-15 2026)
 const WC_SF: KnockoutMatch[] = [
-  { id: 'sf1', homeTeam: 'Spain/Germany Winner',    awayTeam: 'Brazil/Argentina Winner', homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-14T23:00:00Z', venue: 'MetLife Stadium, NJ' },
-  { id: 'sf2', homeTeam: 'France/England Winner',   awayTeam: 'Portugal/USA Winner',     homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-15T23:00:00Z', venue: 'AT&T Stadium, TX' },
+  { id: 'sf1', homeTeam: 'France/Morocco Winner',  awayTeam: 'Spain/Belgium Winner',     homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-14T19:00:00Z', venue: 'AT&T Stadium, Dallas' },
+  { id: 'sf2', homeTeam: 'Norway/England Winner',  awayTeam: 'Argentina/Switzerland Winner', homeScore: null, awayScore: null, status: 'SCHEDULED', date: '2026-07-15T19:00:00Z', venue: 'Mercedes-Benz Stadium, Atlanta' },
 ];
 
 const WC_FINAL_FIXTURE: KnockoutMatch = {

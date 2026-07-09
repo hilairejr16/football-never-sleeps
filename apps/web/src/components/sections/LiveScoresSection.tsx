@@ -6,11 +6,12 @@ import { ArrowRight, RefreshCw, Trophy, Calendar } from 'lucide-react';
 import MatchCard from '@/components/cards/MatchCard';
 import type { Match } from '@/lib/types';
 
+// Confirmed QF matchups — Jul 9-11 2026
 const QF_FIXTURES = [
-  { home: 'Spain',    homeFlag: '🇪🇸', away: 'Germany',   awayFlag: '🇩🇪', date: 'Thu Jul 10', time: '3:00 PM ET', venue: 'MetLife Stadium, NJ' },
-  { home: 'France',   homeFlag: '🇫🇷', away: 'England',   awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', date: 'Thu Jul 10', time: '7:00 PM ET', venue: 'AT&T Stadium, Dallas' },
-  { home: 'Brazil',   homeFlag: '🇧🇷', away: 'Argentina', awayFlag: '🇦🇷', date: 'Fri Jul 11', time: '3:00 PM ET', venue: 'Rose Bowl, CA' },
-  { home: 'Portugal', homeFlag: '🇵🇹', away: 'USA',       awayFlag: '🇺🇸', date: 'Sun Jul 12', time: '7:00 PM ET', venue: "Levi's Stadium, SF" },
+  { home: 'France',    homeFlag: '🇫🇷', away: 'Morocco',     awayFlag: '🇲🇦', date: 'Wed Jul 9',  time: '4:00 PM ET', venue: 'Gillette Stadium, Boston' },
+  { home: 'Spain',     homeFlag: '🇪🇸', away: 'Belgium',     awayFlag: '🇧🇪', date: 'Thu Jul 10', time: '3:00 PM ET', venue: 'SoFi Stadium, Inglewood CA' },
+  { home: 'Norway',    homeFlag: '🇳🇴', away: 'England',     awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', date: 'Fri Jul 11', time: '5:00 PM ET', venue: 'Hard Rock Stadium, Miami' },
+  { home: 'Argentina', homeFlag: '🇦🇷', away: 'Switzerland', awayFlag: '🇨🇭', date: 'Fri Jul 11', time: '9:00 PM ET', venue: 'Arrowhead Stadium, Kansas City' },
 ];
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';

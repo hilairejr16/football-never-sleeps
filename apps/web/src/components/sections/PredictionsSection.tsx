@@ -16,76 +16,76 @@ async function fetchPredictions(): Promise<Prediction[]> {
   return WC_PREDICTIONS_FALLBACK;
 }
 
-// World Cup 2026 Quarter-Final AI predictions
-// QF1 Thu Jul 10 19:00 UTC = 3 PM ET  | QF2 Thu Jul 10 23:00 UTC = 7 PM ET
-// QF3 Fri Jul 11 19:00 UTC = 3 PM ET  | QF4 Sun Jul 12 23:00 UTC = 7 PM ET
+// World Cup 2026 Quarter-Final AI predictions — confirmed matchups
+// QF1 Wed Jul 9  20:00 UTC = 4 PM ET  | QF2 Thu Jul 10 19:00 UTC = 3 PM ET
+// QF3 Fri Jul 11 21:00 UTC = 5 PM ET  | QF4 Sat Jul 12 01:00 UTC = 9 PM ET (Jul 11)
 const WC_PREDICTIONS_FALLBACK: Prediction[] = [
   {
     id: 'wcp1',
     match: {
       id: 3001, status: 'SCHEDULED',
-      homeTeam: { id: 10, name: 'Spain',   shortName: 'ESP', logo: '', country: 'Spain'   },
-      awayTeam: { id: 11, name: 'Germany', shortName: 'GER', logo: '', country: 'Germany' },
+      homeTeam: { id: 10, name: 'France',  shortName: 'FRA', logo: '', country: 'France'  },
+      awayTeam: { id: 11, name: 'Morocco', shortName: 'MAR', logo: '', country: 'Morocco' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-10T19:00:00Z').toISOString(), // 3 PM ET
+      date: new Date('2026-07-09T20:00:00Z').toISOString(), // 4 PM ET Wed Jul 9
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
-    homeWinPct: 40, drawPct: 24, awayWinPct: 36,
-    predictedScore: { home: 2, away: 1 },
-    btts: true, over25Goals: true,
-    keyFactor: "Spain's superior ball retention and Yamal's creative genius in tight spaces gives them the edge",
-    confidence: 71,
+    homeWinPct: 55, drawPct: 22, awayWinPct: 23,
+    predictedScore: { home: 2, away: 0 },
+    btts: false, over25Goals: false,
+    keyFactor: "France's depth and Mbappé's finishing power too much for Morocco's defensive resilience at Gillette",
+    confidence: 66,
     generatedAt: new Date().toISOString(),
   },
   {
     id: 'wcp2',
     match: {
       id: 3002, status: 'SCHEDULED',
-      homeTeam: { id: 12, name: 'France',  shortName: 'FRA', logo: '', country: 'France'  },
-      awayTeam: { id: 13, name: 'England', shortName: 'ENG', logo: '', country: 'England' },
+      homeTeam: { id: 12, name: 'Spain',   shortName: 'ESP', logo: '', country: 'Spain'   },
+      awayTeam: { id: 13, name: 'Belgium', shortName: 'BEL', logo: '', country: 'Belgium' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-10T23:00:00Z').toISOString(), // 7 PM ET — same day as QF1
+      date: new Date('2026-07-10T19:00:00Z').toISOString(), // 3 PM ET Thu Jul 10
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
-    homeWinPct: 42, drawPct: 26, awayWinPct: 32,
+    homeWinPct: 48, drawPct: 24, awayWinPct: 28,
     predictedScore: { home: 2, away: 1 },
     btts: true, over25Goals: true,
-    keyFactor: "Mbappé vs the English backline — whoever wins that duel likely wins the match",
-    confidence: 64,
+    keyFactor: "Yamal's creativity and Spain's pressing game should edge out De Bruyne's last World Cup run at SoFi",
+    confidence: 63,
     generatedAt: new Date().toISOString(),
   },
   {
     id: 'wcp3',
     match: {
       id: 3003, status: 'SCHEDULED',
-      homeTeam: { id: 14, name: 'Brazil',    shortName: 'BRA', logo: '', country: 'Brazil'    },
-      awayTeam: { id: 15, name: 'Argentina', shortName: 'ARG', logo: '', country: 'Argentina' },
+      homeTeam: { id: 14, name: 'Norway',  shortName: 'NOR', logo: '', country: 'Norway'  },
+      awayTeam: { id: 15, name: 'England', shortName: 'ENG', logo: '', country: 'England' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-11T19:00:00Z').toISOString(), // 3 PM ET Fri Jul 11
+      date: new Date('2026-07-11T21:00:00Z').toISOString(), // 5 PM ET Fri Jul 11
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
-    homeWinPct: 38, drawPct: 28, awayWinPct: 34,
+    homeWinPct: 35, drawPct: 28, awayWinPct: 37,
     predictedScore: { home: 1, away: 2 },
-    btts: true, over25Goals: false,
-    keyFactor: "Messi's genius and Argentina's tournament resilience tips the Super Clásico their way",
-    confidence: 58,
+    btts: true, over25Goals: true,
+    keyFactor: "Haaland's threat is real but England's experience in knockouts and Bellingham's quality edges it",
+    confidence: 55,
     generatedAt: new Date().toISOString(),
   },
   {
     id: 'wcp4',
     match: {
       id: 3004, status: 'SCHEDULED',
-      homeTeam: { id: 16, name: 'Portugal', shortName: 'POR', logo: '', country: 'Portugal' },
-      awayTeam: { id: 17, name: 'USA',      shortName: 'USA', logo: '', country: 'USA'      },
+      homeTeam: { id: 16, name: 'Argentina',   shortName: 'ARG', logo: '', country: 'Argentina'   },
+      awayTeam: { id: 17, name: 'Switzerland', shortName: 'SUI', logo: '', country: 'Switzerland' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-12T23:00:00Z').toISOString(), // 7 PM ET Sun Jul 12
+      date: new Date('2026-07-12T01:00:00Z').toISOString(), // 9 PM ET Fri Jul 11
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
-    homeWinPct: 52, drawPct: 22, awayWinPct: 26,
-    predictedScore: { home: 2, away: 1 },
-    btts: true, over25Goals: true,
-    keyFactor: "Ronaldo's experience on the biggest stage and Portugal's squad depth gives them the edge at Levi's",
-    confidence: 62,
+    homeWinPct: 58, drawPct: 22, awayWinPct: 20,
+    predictedScore: { home: 2, away: 0 },
+    btts: false, over25Goals: false,
+    keyFactor: "Messi and the reigning champions look fresh; Switzerland survive on penalties but Argentina too clinical",
+    confidence: 67,
     generatedAt: new Date().toISOString(),
   },
 ];

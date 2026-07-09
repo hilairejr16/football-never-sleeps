@@ -8,11 +8,12 @@ import type { Match } from '@/lib/types';
 const WC_FINAL = new Date('2026-07-19T00:00:00Z');
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
+// Confirmed QF matchups — Jul 9-11 2026
 const WC_NEXT_FIXTURES = [
-  { home: 'Spain',     away: 'Germany',   date: 'Jul 10', time: '3 PM ET' },
-  { home: 'France',   away: 'England',   date: 'Jul 10', time: '7 PM ET' },
-  { home: 'Brazil',   away: 'Argentina', date: 'Jul 11', time: '3 PM ET' },
-  { home: 'Portugal', away: 'USA',       date: 'Jul 12', time: '7 PM ET' },
+  { home: 'France',      away: 'Morocco',     date: 'Jul 9',  time: '4 PM ET' },
+  { home: 'Spain',       away: 'Belgium',     date: 'Jul 10', time: '3 PM ET' },
+  { home: 'Norway',      away: 'England',     date: 'Jul 11', time: '5 PM ET' },
+  { home: 'Argentina',   away: 'Switzerland', date: 'Jul 11', time: '9 PM ET' },
 ];
 
 function useCountdown() {
@@ -143,7 +144,7 @@ export default function WorldCupBanner() {
               <div className="min-w-0">
                 <div className="flex items-center gap-2 text-yellow-400/70 text-xs font-bold uppercase tracking-widest mb-2">
                   <Clock className="w-3.5 h-3.5" />
-                  Quarter-Finals — Jul 10–12
+                  Quarter-Finals — Jul 9–11
                 </div>
                 <div className="flex gap-2 overflow-x-auto no-scrollbar">
                   {WC_NEXT_FIXTURES.map(f => (

@@ -25,6 +25,76 @@ interface ArticleData {
 }
 
 const ARTICLES: ArticleData[] = [
+  // ── Confirmed QF articles (Jul 9–11 2026) ──────────────────────────────────
+  {
+    id: 'qf1', slug: 'france-morocco-qf-preview', isBreaking: true,
+    title: "France vs Morocco: Mbappé Eyes Semi-Final as Atlas Lions Aim for History Again",
+    excerpt: "Morocco shocked the world in 2022. They're doing it again in 2026. But Mbappé and a full-strength France stand in the way at Gillette Stadium, Boston — Jul 9, 4 PM ET.",
+    paragraphs: [
+      "In 2022, Morocco became the first African nation to reach the World Cup semi-finals. In 2026, they have gone one better — reaching the quarter-finals having beaten Canada 3–0 in the round of 16, a performance of technical precision and fierce defensive organisation that left Canadian fans stunned. The Atlas Lions are not a fairy tale. They are a genuine contender.",
+      "France arrive as the tournament's most complete side. Kylian Mbappé has six goals from five matches. Antoine Griezmann, at 35, is producing the best World Cup football of his career — three assists, tireless pressing, the intelligence to position himself in exactly the spaces Morocco's high defensive line leaves. Deschamps has built a team of frightening depth: if Mbappé has an off night, Ousmane Dembélé and Marcus Thuram are standing by.",
+      "Morocco's strength is their compactness. Coach Walid Regragui deploys a 4-3-3 that becomes a 4-5-1 out of possession, with the two attacking midfielders dropping to form a five-man midfield block. In possession, they transition with extraordinary speed — Hakim Ziyech's delivery and Sofyan Amrabat's distribution are the pivot points. Youssef En-Nesyri leads the line with intelligence and aerial dominance.",
+      "The tactical question is whether Morocco can do to France what they did to Spain, Portugal, and Belgium in 2022 — absorb relentless pressure and punish on the counter. France, aware of this, have worked specifically on quick ball recycling to prevent Morocco from setting their defensive block. The match will be decided in the first fifteen minutes of each half, when Regragui's team are most vulnerable before their organisation clicks into gear.",
+      "France are the clear favourites. The odds, the squads, the history — all point to Les Bleus. But Morocco have defied every prediction at every stage of this tournament. Gillette Stadium, Boston, 4 PM ET. Expect an upset attempt. Whether they can execute it is a different question."
+    ],
+    category: 'preview',
+    tags: ['World Cup 2026', 'France', 'Morocco', 'Quarter-Final', 'Mbappé', 'Gillette Stadium'],
+    imageAlt: 'France vs Morocco World Cup 2026 Quarter-Final Gillette Stadium',
+    author: 'GoalRush AI', publishedAt: new Date(Date.now() - 1000 * 60 * 20).toISOString(),
+    views: 1_920_000, readTime: 5, league: 'World Cup 2026',
+  },
+  {
+    id: 'qf2', slug: 'spain-belgium-qf-preview', isBreaking: false,
+    title: "Spain vs Belgium: Yamal vs De Bruyne — The QF That Has Everything",
+    excerpt: "Belgium's Golden Generation vs Spain's next one. The greatest midfielder of his era against the tournament's best young player. SoFi Stadium, Inglewood — Jul 10, 3 PM ET.",
+    paragraphs: [
+      "Kevin De Bruyne is 35 years old. He has been at the summit of world football for over a decade. He has won every major honour at club level with Manchester City. He has never won a World Cup. Against Spain's Lamine Yamal, in what may be the final time De Bruyne performs on a stage this large, the contrast of generations could not be more complete — or more compelling.",
+      "Belgium's run to the quarter-finals came via a stunning 4–1 demolition of the USMNT in the round of 16 — a match that announced them as genuine contenders. Romelu Lukaku, at 33, was irresistible: two goals, a penalty won, and the physicality to batter a young American back line into submission. De Bruyne has six assists, the most in the tournament. Belgium create chances at will.",
+      "Spain have the best possession statistics of any team remaining. 64% average. Three conceded in five games. Yamal has been the Player of the Tournament by any metric. The tactical question for De la Fuente is how to stop Belgium's direct counter-attack — their most dangerous weapon — without sacrificing the possession that makes Spain so effective going forward.",
+      "Rodri, anchoring Spain's midfield, will face his most demanding defensive test against De Bruyne's movement and passing range. Pedri and Dani Olmo must win the ball quickly when Spain lose it — Belgium transition faster than any team in the tournament. The full-backs, Carvajal and Cucurella, must be disciplined when Belgium's wingers run at them.",
+      "SoFi Stadium, Inglewood, California — July 10, 3 PM ET. The football is generational. The stakes are a World Cup semi-final. Spain are the favourites on form and statistics. Belgium have the experience and the individual quality to produce an upset. One of the most talented footballers of this generation goes home. The other goes to Dallas."
+    ],
+    category: 'preview',
+    tags: ['World Cup 2026', 'Spain', 'Belgium', 'Quarter-Final', 'Yamal', 'De Bruyne', 'SoFi Stadium'],
+    imageAlt: 'Spain vs Belgium World Cup 2026 Quarter-Final SoFi Stadium',
+    author: 'GoalRush AI', publishedAt: new Date(Date.now() - 1000 * 60 * 60).toISOString(),
+    views: 1_080_000, readTime: 5, league: 'World Cup 2026',
+  },
+  {
+    id: 'qf3', slug: 'norway-england-qf-preview', isBreaking: false,
+    title: "Norway vs England: Haaland Hunts His Greatest Prize — Hard Rock Stadium, Jul 11",
+    excerpt: "The World Cup's biggest shock story meets England's golden generation. Haaland is unstoppable, but Bellingham and the Three Lions won't go quietly. Miami, 5 PM ET.",
+    paragraphs: [
+      "Erling Haaland has eight goals from five World Cup matches. That number is not a typo. The Manchester City striker, who hit the crossbar twice in the group stage alone, has been a force of nature unlike anything this tournament has seen. Norway — ranked 22nd before the tournament, ignored in almost every analysis of potential dark horses — are in a World Cup quarter-final entirely on the back of their 26-year-old striker's relentless brilliance.",
+      "England arrive at Hard Rock Stadium having beaten Mexico 3–2 in the round of 16 — a match that went to the wire and showcased both England's quality and their vulnerability. Jude Bellingham was exceptional, scoring twice and orchestrating from deep. Harry Kane added his fourth tournament goal. Phil Foden was everywhere. Southgate's side have the creative quality to unlock almost any defence.",
+      "The question is: can England's defence stop Haaland? No team in the tournament has managed it. Germany tried a man-marker and he scored two headers anyway. Brazil doubled up and he found pockets of space between their lines. Norway's tactic is simple — get the ball quickly into Haaland's feet or over the top, and let him do what he does. Simple, brutal, effective.",
+      "Marc Cucco and Harry Maguire, England's central defensive pairing, will face the most demanding physical battle of their international careers. Trent Alexander-Arnold's ability to control Norway's wide threat is equally critical. In the other direction, England's full-backs must provide the attacking width that can stretch Norway's typically narrow defensive structure.",
+      "Hard Rock Stadium, Miami. July 11, 5 PM ET. The tournament's most relentless goalscorer versus England's most technically gifted generation. Norway are not here by accident. But England have the depth, the experience, and the individual quality to edge a match that will be decided, almost certainly, by a single moment of genius."
+    ],
+    category: 'preview',
+    tags: ['World Cup 2026', 'Norway', 'England', 'Quarter-Final', 'Haaland', 'Bellingham', 'Miami'],
+    imageAlt: 'Norway vs England World Cup 2026 Quarter-Final Hard Rock Stadium Miami',
+    author: 'GoalRush AI', publishedAt: new Date(Date.now() - 1000 * 60 * 100).toISOString(),
+    views: 1_340_000, readTime: 6, league: 'World Cup 2026',
+  },
+  {
+    id: 'qf4', slug: 'argentina-switzerland-qf-preview', isBreaking: false,
+    title: "Argentina vs Switzerland: Can the Champions Survive the Penalty Kings?",
+    excerpt: "Messi and the reigning World Champions face Switzerland's penalty-shootout specialists at Arrowhead Stadium, Kansas City — Jul 11, 9 PM ET. History beckons.",
+    paragraphs: [
+      "Switzerland qualified for this quarter-final via one of the most dramatic moments of the tournament — a 4–3 penalty shootout victory over Colombia in the round of 16, after a goalless 120 minutes. Granit Xhaka, ending his international career at 33, scored the decisive penalty. Yann Sommer saved two. It was nerve-shredding football. It was also a reminder that Switzerland are, statistically, the best penalty shootout team in World Cup history.",
+      "Argentina arrive as the reigning World Champions and one of the tournament's most dangerous teams. Lionel Messi has five goals and six assists from five matches — numbers that make no statistical sense for a 38-year-old, yet here they are. Julián Álvarez has been exceptional alongside him. Mac Allister and De Paul have been the best midfield partnership outside the tournament favourites.",
+      "The key tactical battle is Switzerland's defensive organisation versus Argentina's fluid attacking movement. Murat Yakin has built a structure of genuine defensive solidity: his 4-4-2 mid-block is difficult to penetrate against teams that lack creativity, and even against those that have it. Colombia created 21 chances and did not score in 120 minutes. Argentina are more dangerous than Colombia — but not infinitely so.",
+      "Arrowhead Stadium, Kansas City — a 76,000-seat venue that has hosted four World Cup matches already, each louder than the last. The 9 PM ET kick-off means the atmosphere will be at its most electric, the night air thick with tension. Argentina are the heavy favourites. Switzerland's response will be: we survived this far on the back of tactical intelligence and composure under the highest pressure. Why should tonight be different?",
+      "Messi has never lost a penalty shootout at a major tournament. Switzerland have never lost one at a World Cup. If this goes to penalties — and it might — it will be the greatest penalty shootout in World Cup history. Argentina, one suspects, would prefer not to find out."
+    ],
+    category: 'preview',
+    tags: ['World Cup 2026', 'Argentina', 'Switzerland', 'Quarter-Final', 'Messi', 'Haaland', 'Kansas City'],
+    imageAlt: 'Argentina vs Switzerland World Cup 2026 Quarter-Final Arrowhead Stadium',
+    author: 'GoalRush AI', publishedAt: new Date(Date.now() - 1000 * 60 * 140).toISOString(),
+    views: 1_150_000, readTime: 6, league: 'World Cup 2026',
+  },
+  // ── Earlier tournament coverage (historical) ─────────────────────────────
   {
     id: 'wc1', slug: 'england-france-qf-preview', isBreaking: true,
     title: 'England vs France: The Quarter-Final the World Has Been Waiting For',

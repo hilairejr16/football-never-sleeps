@@ -21,15 +21,16 @@ async function fetchFixtures(path: string): Promise<Match[]> {
   return [];
 }
 
+// Confirmed WC 2026 remaining schedule
 const WC_SCHEDULE = [
-  { round: 'QF 1',         date: 'Thu 10 Jul', time: '3:00 PM ET',  home: 'Spain',    away: 'Germany',   venue: 'MetLife Stadium, NJ' },
-  { round: 'QF 2',         date: 'Thu 10 Jul', time: '7:00 PM ET',  home: 'France',   away: 'England',   venue: 'AT&T Stadium, Dallas' },
-  { round: 'QF 3',         date: 'Fri 11 Jul', time: '3:00 PM ET',  home: 'Brazil',   away: 'Argentina', venue: 'Rose Bowl, CA' },
-  { round: 'QF 4',         date: 'Sun 12 Jul', time: '7:00 PM ET',  home: 'Portugal', away: 'USA',       venue: "Levi's Stadium, SF" },
-  { round: 'Semi-Final 1', date: 'Mon 14 Jul', time: '7:00 PM ET',  home: 'TBD',      away: 'TBD',       venue: 'MetLife Stadium, NJ' },
-  { round: 'Semi-Final 2', date: 'Tue 15 Jul', time: '7:00 PM ET',  home: 'TBD',      away: 'TBD',       venue: 'AT&T Stadium, Dallas' },
-  { round: '3rd Place',    date: 'Fri 18 Jul', time: '3:00 PM ET',  home: 'TBD',      away: 'TBD',       venue: 'Estadio Azteca, MX' },
-  { round: '🏆 THE FINAL', date: 'Sun 19 Jul', time: '7:00 PM ET',  home: 'TBD',      away: 'TBD',       venue: 'MetLife Stadium, NJ' },
+  { round: 'QF 1',         date: 'Wed 9 Jul',  time: '4:00 PM ET',  home: 'France',    away: 'Morocco',     venue: 'Gillette Stadium, Boston' },
+  { round: 'QF 2',         date: 'Thu 10 Jul', time: '3:00 PM ET',  home: 'Spain',     away: 'Belgium',     venue: 'SoFi Stadium, Inglewood CA' },
+  { round: 'QF 3',         date: 'Fri 11 Jul', time: '5:00 PM ET',  home: 'Norway',    away: 'England',     venue: 'Hard Rock Stadium, Miami' },
+  { round: 'QF 4',         date: 'Fri 11 Jul', time: '9:00 PM ET',  home: 'Argentina', away: 'Switzerland', venue: 'Arrowhead Stadium, Kansas City' },
+  { round: 'Semi-Final 1', date: 'Tue 14 Jul', time: '3:00 PM ET',  home: 'TBD',       away: 'TBD',         venue: 'AT&T Stadium, Dallas' },
+  { round: 'Semi-Final 2', date: 'Wed 15 Jul', time: '3:00 PM ET',  home: 'TBD',       away: 'TBD',         venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { round: '3rd Place',    date: 'Sat 18 Jul', time: '3:00 PM ET',  home: 'TBD',       away: 'TBD',         venue: 'Estadio Azteca, Mexico City' },
+  { round: '🏆 THE FINAL', date: 'Sun 19 Jul', time: '6:00 PM ET',  home: 'TBD',       away: 'TBD',         venue: 'MetLife Stadium, NJ' },
 ];
 
 function MatchRow({ match }: { match: Match }) {
@@ -101,8 +102,8 @@ export default async function FixturesPage() {
             ? wcToday.map(m => <MatchRow key={m.id} match={m}/>)
             : (
               <div className="px-5 py-6 text-center">
-                <p className="text-yellow-400 font-semibold text-sm">Rest day · Quarter-Finals begin tomorrow</p>
-                <p className="text-brand-gray text-xs mt-1">First QF: Spain vs Germany · Thu Jul 10 · 3 PM ET</p>
+                <p className="text-yellow-400 font-semibold text-sm">Quarter-Finals in progress · Jul 9–11</p>
+                <p className="text-brand-gray text-xs mt-1">France vs Morocco · Wed Jul 9 · 4 PM ET · Gillette Stadium, Boston</p>
                 <Link href="/world-cup" className="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold mt-3 hover:text-yellow-300 transition-colors">
                   View full bracket <ArrowRight className="w-3 h-3" />
                 </Link>
