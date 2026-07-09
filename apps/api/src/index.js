@@ -36,6 +36,7 @@ const adminRoutes = require('./routes/admin');
 const worldCupRoutes = require('./routes/worldcup');
 const ttsRoutes      = require('./routes/tts');
 const contentRoutes  = require('./routes/content');
+const socialRoutes   = require('./routes/social');
 
 const { startLiveScoreWorker }    = require('./workers/liveScores');
 const { startContentScheduler }   = require('./workers/contentScheduler');
@@ -126,6 +127,7 @@ app.use('/admin',       adminRoutes);
 app.use('/world-cup',   worldCupRoutes);
 app.use('/tts',         ttsRoutes);
 app.use('/content',     contentRoutes);
+app.use('/social',      socialRoutes);
 
 // ─── 404 handler ──────────────────────────────────────────
 app.use((req, res) => {
