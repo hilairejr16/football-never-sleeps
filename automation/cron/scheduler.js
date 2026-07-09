@@ -5,6 +5,7 @@ const { runDailyAutomation } = require('./daily');
 const { runHourlyAutomation } = require('./hourly');
 const { runLiveMatchAutomation } = require('./live-match');
 const { runWeeklyAutomation } = require('./weekly');
+const pipeline = require('../social/post-pipeline');
 
 const logger = pino({ level: 'info' });
 
@@ -65,23 +66,48 @@ cron.schedule('0 7 * * *', async () => {
 }, { timezone: 'UTC' });
 
 // ─── SOCIAL MEDIA POSTING SCHEDULE ───────────────────────
-// 9 AM — Morning football news post
-cron.schedule('0 9 * * *', () => schedulePost('morning-news'), { timezone: 'UTC' });
-// 12 PM — Midday update
-cron.schedule('0 12 * * *', () => schedulePost('midday-update'), { timezone: 'UTC' });
-// 6 PM — Evening highlights / transfer news
-cron.schedule('0 18 * * *', () => schedulePost('evening-highlights'), { timezone: 'UTC' });
-// 10 PM — Late night reaction / stats
-cron.schedule('0 22 * * *', () => schedulePost('night-stats'), { timezone: 'UTC' });
 
-async function schedulePost(type) {
-  const axios = require('axios');
+// 07:00 UTC — Morning briefing (today's WC + Gold Cup fixtures)
+cron.schedule('0 7 * * *', async () => {
+  logger.info('[Social] Posting morning briefing');
   try {
-    await axios.post(`${process.env.API_URL}/admin/generate`, { type });
+    await pipeline.postMorningBriefing();
+    logger.info('[Social] Morning briefing posted');
   } catch (err) {
-    logger.error({ err, type }, '[Cron] Scheduled post failed');
+    logger.error({ err }, '[Social] Morning briefing failed');
   }
-}
+}, { timezone: 'UTC' });
+
+// 09:00 UTC — WC daily summary (last night's results)
+cron.schedule('0 9 * * *', async () => {
+  logger.info('[Social] Posting World Cup daily summary');
+  try {
+    await pipeline.postWorldCupDailySummary();
+  } catch (err) {
+    logger.error({ err }, '[Social] WC summary failed');
+  }
+}, { timezone: 'UTC' });
+
+// 12:00 UTC — Gold Cup daily summary
+cron.schedule('0 12 * * *', async () => {
+  logger.info('[Social] Posting Gold Cup daily summary');
+  try {
+    await pipeline.postGoldCupDailySummary();
+  } catch (err) {
+    logger.error({ err }, '[Social] GC summary failed');
+  }
+}, { timezone: 'UTC' });
+
+// 22:00 UTC — Evening recap (all day's FT results)
+cron.schedule('0 22 * * *', async () => {
+  logger.info('[Social] Posting evening recap');
+  try {
+    await pipeline.postEveningRecap();
+    logger.info('[Social] Evening recap posted');
+  } catch (err) {
+    logger.error({ err }, '[Social] Evening recap failed');
+  }
+}, { timezone: 'UTC' });
 
 logger.info(`
 ╔═══════════════════════════════════════╗
@@ -90,10 +116,10 @@ logger.info(`
 ╚═══════════════════════════════════════╝
 
 Scheduled jobs:
-  📅 Daily     — 06:00 UTC (morning briefing + article generation)
-  ⏰ Hourly    — :00 UTC (score updates, breaking news check)
+  📅 Daily     — 06:00 UTC (article generation + AI engine)
+  ⏰ Hourly    — :00 UTC (score updates, breaking news)
   ⚽ Live      — Every 2 min (goal alerts, match monitoring)
   📊 Weekly    — Mon 08:00 UTC (weekly roundup)
-  🔮 Predict   — 07:00 UTC (daily match predictions)
-  📱 Social    — 09:00, 12:00, 18:00, 22:00 UTC
+  🔮 Predict   — 07:00 UTC (match predictions + morning briefing social)
+  📱 Social    — 07:00 morning briefing, 09:00 WC recap, 12:00 GC recap, 22:00 evening
 `);

@@ -1,8 +1,8 @@
 require('dotenv').config({ path: '../../.env' });
 const axios = require('axios');
+const pipeline = require('../social/post-pipeline');
 
 const API_URL = process.env.API_URL || 'http://localhost:4000';
-const AI_URL = process.env.AI_ENGINE_URL || 'http://localhost:8000';
 
 // Track previous state to detect changes
 const matchCache = new Map();
@@ -56,71 +56,24 @@ async function runLiveMatchAutomation() {
 }
 
 async function handleGoalEvent(match) {
-  const score = `${match.homeScore}-${match.awayScore}`;
-  const content = `⚽ GOAL! ${match.homeTeam.name} ${score} ${match.awayTeam.name} (${match.minute}') — ${match.league.name}`;
-
   try {
-    // Generate and publish real-time social posts
-    await axios.post(`${AI_URL}/generate/social-pack`, {
-      content,
-      platforms: ['twitter', 'telegram', 'instagram'],
-      post_type: 'goal',
-      match_data: match,
-    });
-
-    // Generate a quick video script for the goal
-    if (match.events?.length > 0) {
-      const lastGoal = match.events.filter(e => e.type === 'GOAL').pop();
-      if (lastGoal) {
-        await axios.post(`${AI_URL}/generate/video-script`, {
-          topic: `${lastGoal.player.name} scores for ${match.homeTeam.name}! ${score}`,
-          platform: 'TikTok',
-          duration: 30,
-          style: 'explosive',
-        });
-      }
-    }
+    // Detect which side scored using total goal count change
+    await pipeline.postGoalUpdate(match, 'Goal!', match.minute || '?');
   } catch (err) {
     console.error('[LiveMatch] Goal alert error:', err.message);
   }
 }
 
 async function handleStatusChange(match, previousStatus) {
-  const score = `${match.homeScore}-${match.awayScore}`;
-
-  if (match.status === 'HT') {
-    const content = `🔔 HALF TIME: ${match.homeTeam.name} ${score} ${match.awayTeam.name} | ${match.league.name}`;
-    await postUpdate(content, match, 'news');
-  }
-
-  if (match.status === 'FT') {
-    const content = `🏁 FULL TIME: ${match.homeTeam.name} ${score} ${match.awayTeam.name} | ${match.league.name}`;
-    await postUpdate(content, match, 'match-result');
-
-    // Generate full match summary
-    try {
-      await axios.post(`${AI_URL}/generate/article`, {
-        topic: `Match Report: ${match.homeTeam.name} ${score} ${match.awayTeam.name}`,
-        match_data: match,
-        tone: 'exciting',
-        length: 'medium',
-      });
-    } catch (err) {
-      console.error('[LiveMatch] Match report generation failed:', err.message);
-    }
-  }
-}
-
-async function postUpdate(content, match, type) {
   try {
-    await axios.post(`${AI_URL}/generate/social-pack`, {
-      content,
-      platforms: ['twitter', 'telegram', 'instagram', 'facebook'],
-      post_type: type,
-      match_data: match,
-    });
+    if (match.status === 'HT') {
+      await pipeline.postHalfTime(match);
+    }
+    if (['FT', 'AET', 'PEN'].includes(match.status)) {
+      await pipeline.postFullTime(match);
+    }
   } catch (err) {
-    console.error('[LiveMatch] Social post error:', err.message);
+    console.error('[LiveMatch] Status change post error:', err.message);
   }
 }
 
