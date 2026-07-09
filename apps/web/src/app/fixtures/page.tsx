@@ -99,7 +99,15 @@ export default async function FixturesPage() {
           </div>
           {wcToday.length > 0
             ? wcToday.map(m => <MatchRow key={m.id} match={m}/>)
-            : <div className="px-5 py-10 text-center text-brand-gray text-sm">No matches today · Next: QF July 10</div>}
+            : (
+              <div className="px-5 py-6 text-center">
+                <p className="text-yellow-400 font-semibold text-sm">Rest day · Quarter-Finals begin tomorrow</p>
+                <p className="text-brand-gray text-xs mt-1">First QF: Spain vs Germany · Thu Jul 10 · 3 PM ET</p>
+                <Link href="/world-cup" className="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold mt-3 hover:text-yellow-300 transition-colors">
+                  View full bracket <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
         </div>
 
         {/* Recent Results */}

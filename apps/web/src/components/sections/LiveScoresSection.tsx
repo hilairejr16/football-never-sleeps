@@ -2,9 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, RefreshCw, Trophy } from 'lucide-react';
+import { ArrowRight, RefreshCw, Trophy, Calendar } from 'lucide-react';
 import MatchCard from '@/components/cards/MatchCard';
 import type { Match } from '@/lib/types';
+
+const QF_FIXTURES = [
+  { home: 'Spain',    homeFlag: '🇪🇸', away: 'Germany',   awayFlag: '🇩🇪', date: 'Thu Jul 10', time: '3:00 PM ET', venue: 'MetLife Stadium, NJ' },
+  { home: 'France',   homeFlag: '🇫🇷', away: 'England',   awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', date: 'Thu Jul 10', time: '7:00 PM ET', venue: 'AT&T Stadium, TX' },
+  { home: 'Brazil',   homeFlag: '🇧🇷', away: 'Argentina', awayFlag: '🇦🇷', date: 'Fri Jul 11', time: '3:00 PM ET', venue: 'Rose Bowl, CA' },
+  { home: 'Portugal', homeFlag: '🇵🇹', away: 'USA',       awayFlag: '🇺🇸', date: 'Sun Jul 12', time: '7:00 PM ET', venue: "Levi's Stadium, CA" },
+];
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
@@ -122,21 +129,43 @@ export default function LiveScoresSection() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-brand-card rounded-xl border border-brand-border">
+        <div className="bg-brand-card rounded-xl border border-brand-border overflow-hidden">
           {filter === 'wc' ? (
             <>
-              <Trophy className="w-10 h-10 text-yellow-400/30 mx-auto mb-3" />
-              <p className="text-white font-semibold">No World Cup matches right now</p>
-              <p className="text-brand-gray text-sm mt-1">Quarter-Finals begin July 10</p>
-              <Link href="/world-cup" className="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold mt-3 hover:text-yellow-300">
-                View Full Schedule <ArrowRight className="w-3 h-3" />
-              </Link>
+              <div className="px-5 py-3 border-b border-brand-border/60 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-yellow-400" />
+                  <span className="text-yellow-400 text-sm font-bold">Quarter-Finals — Up Next</span>
+                </div>
+                <Link href="/world-cup" className="text-yellow-400/70 text-xs hover:text-yellow-300 transition-colors">
+                  Full bracket →
+                </Link>
+              </div>
+              <div className="divide-y divide-brand-border/40">
+                {QF_FIXTURES.map((m, i) => (
+                  <Link key={i} href="/fixtures" className="flex items-center gap-3 px-5 py-3.5 hover:bg-brand-dark/50 transition-colors group">
+                    <div className="w-20 flex-shrink-0">
+                      <div className="text-brand-gold text-[11px] font-bold">{m.date}</div>
+                      <div className="text-brand-muted text-[10px]">{m.time}</div>
+                    </div>
+                    <div className="flex-1 grid grid-cols-[1fr_28px_1fr] items-center gap-1 min-w-0">
+                      <span className="text-white text-sm font-semibold text-right truncate">{m.homeFlag} {m.home}</span>
+                      <span className="text-brand-gray text-xs text-center">vs</span>
+                      <span className="text-white text-sm font-semibold truncate">{m.away} {m.awayFlag}</span>
+                    </div>
+                    <ArrowRight className="w-3 h-3 text-brand-muted group-hover:text-yellow-400 flex-shrink-0 transition-colors" />
+                  </Link>
+                ))}
+              </div>
             </>
           ) : (
-            <>
-              <p className="text-brand-gray text-lg">No matches right now</p>
-              <p className="text-brand-gray text-sm mt-1">All major leagues are on summer break for World Cup 2026</p>
-            </>
+            <div className="text-center py-12">
+              <Trophy className="w-10 h-10 text-yellow-400/20 mx-auto mb-3" />
+              <p className="text-brand-gray">All major leagues on summer break for World Cup 2026</p>
+              <Link href="/world-cup" className="inline-flex items-center gap-1 text-yellow-400 text-xs font-semibold mt-3 hover:text-yellow-300">
+                World Cup Hub <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
           )}
         </div>
       )}

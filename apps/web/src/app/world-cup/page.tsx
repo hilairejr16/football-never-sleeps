@@ -401,12 +401,14 @@ export default async function WorldCupPage() {
             </div>
           )}
 
-          {/* Today in Football */}
+          {/* Today / QF Preview */}
           <div className="gr-card">
             <div className="px-5 py-4 border-b border-brand-border flex items-center justify-between">
               <h2 className="text-white font-semibold flex items-center gap-2">
-                <Clock className="w-4 h-4 text-brand-gold" />
-                Today in Football
+                {allToday.length > 0
+                  ? <><Clock className="w-4 h-4 text-brand-gold" />Today in Football</>
+                  : <><Calendar className="w-4 h-4 text-yellow-400" /><span className="text-yellow-400">Quarter-Finals — Full Schedule</span></>
+                }
               </h2>
               <span className="text-brand-gray text-xs">
                 {new Date().toLocaleDateString('en', { weekday: 'long', month: 'long', day: 'numeric' })}
@@ -416,46 +418,37 @@ export default async function WorldCupPage() {
             {allToday.length > 0 ? (
               allToday.map(m => <MatchRow key={m.id} match={m} />)
             ) : (
-              <div className="px-5 py-5">
-                <div className="flex items-center gap-3 mb-5 p-3 rounded-lg bg-yellow-500/5 border border-yellow-500/15">
-                  <Clock className="w-5 h-5 text-yellow-400/50 flex-shrink-0" />
-                  <div>
-                    <p className="text-white text-sm font-semibold">Rest Day — No World Cup Matches Today</p>
-                    <p className="text-brand-gray text-xs mt-0.5">Quarter-Finals begin July 10</p>
-                  </div>
+              <div>
+                <div className="px-5 py-3 bg-yellow-500/5 border-b border-yellow-500/10 flex items-center gap-3">
+                  <span className="text-yellow-400 text-sm">⚡</span>
+                  <p className="text-yellow-400 text-sm font-semibold">QF kick-off tomorrow — Jul 10</p>
+                  <span className="ml-auto text-yellow-400/50 text-xs">4 matches · 3 days</span>
                 </div>
-
-                <div className="flex items-center gap-2 text-brand-gray text-xs font-bold uppercase tracking-wider mb-3">
-                  <Calendar className="w-3.5 h-3.5" />
-                  Next Up — Quarter-Finals
-                </div>
-
-                <div className="space-y-2">
+                <div className="divide-y divide-brand-border/40">
                   {WC_QF.map(m => (
                     <Link
                       key={m.id}
                       href="/fixtures"
-                      className="flex items-center justify-between p-3 rounded-lg bg-brand-dark hover:bg-brand-border/20 transition-colors group"
+                      className="flex items-center gap-3 px-5 py-3.5 hover:bg-brand-dark/50 transition-colors group"
                     >
-                      <div className="flex-1 grid grid-cols-[1fr_28px_1fr] items-center gap-1 min-w-0">
-                        <span className="text-white text-sm font-semibold text-right truncate group-hover:text-brand-red transition-colors">{m.homeTeam}</span>
-                        <span className="text-brand-gray text-xs text-center font-medium">vs</span>
-                        <span className="text-white text-sm font-semibold truncate group-hover:text-brand-red transition-colors">{m.awayTeam}</span>
-                      </div>
-                      <div className="text-right ml-4 flex-shrink-0">
-                        <div className="text-brand-gold text-xs font-bold">{fmtDate(m.date)}</div>
+                      <div className="w-20 flex-shrink-0">
+                        <div className="text-brand-gold text-[11px] font-bold">{fmtDate(m.date)}</div>
                         <div className="text-brand-muted text-[10px]">{fmtTime(m.date)}</div>
                       </div>
+                      <div className="flex-1 grid grid-cols-[1fr_28px_1fr] items-center gap-1 min-w-0">
+                        <span className="text-white text-sm font-semibold text-right truncate group-hover:text-yellow-400 transition-colors">{m.homeTeam}</span>
+                        <span className="text-brand-gray text-xs text-center font-medium">vs</span>
+                        <span className="text-white text-sm font-semibold truncate group-hover:text-yellow-400 transition-colors">{m.awayTeam}</span>
+                      </div>
+                      <ArrowRight className="w-3 h-3 text-brand-muted group-hover:text-yellow-400 transition-colors flex-shrink-0" />
                     </Link>
                   ))}
                 </div>
-
-                <Link
-                  href="/fixtures"
-                  className="flex items-center justify-center gap-1.5 mt-4 py-2 text-brand-red text-sm font-semibold hover:text-brand-red-hover transition-colors"
-                >
-                  Full QF Schedule <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                <div className="px-5 py-3 border-t border-brand-border/40">
+                  <Link href="/fixtures" className="flex items-center justify-center gap-1.5 py-1 text-yellow-400 text-sm font-semibold hover:text-yellow-300 transition-colors">
+                    Full QF Fixtures & Predictions <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             )}
           </div>
