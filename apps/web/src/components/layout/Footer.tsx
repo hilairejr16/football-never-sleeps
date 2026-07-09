@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Zap, Twitter, Instagram } from 'lucide-react';
+import { Twitter, Instagram } from 'lucide-react';
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -102,8 +102,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-red-gradient rounded-xl flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white fill-white" />
+              <div className="w-10 h-10 rounded-full bg-brand-black border-2 border-brand-gold flex flex-col items-center justify-center flex-shrink-0">
+                <span className="font-display text-[12px] text-brand-gold leading-none tracking-tight">GRG</span>
               </div>
               <div>
                 <div className="font-display text-xl tracking-widest text-white">GOALRUSH</div>

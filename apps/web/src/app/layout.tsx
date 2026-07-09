@@ -1,6 +1,26 @@
 import type { Metadata, Viewport } from 'next';
+import { Inter, Bebas_Neue, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-bebas-neue',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 import Footer from '@/components/layout/Footer';
 import ScoreTicker from '@/components/layout/ScoreTicker';
 import FootballAgent from '@/components/ui/FootballAgent';
@@ -93,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${inter.variable} ${bebasNeue.variable} ${jetbrainsMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

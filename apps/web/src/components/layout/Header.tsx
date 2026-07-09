@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Search, Bell, Zap } from 'lucide-react';
+import { Menu, X, Search, Bell } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
@@ -48,8 +48,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 bg-red-gradient rounded-lg flex items-center justify-center group-hover:glow-red transition-all">
-              <Zap className="w-5 h-5 text-white fill-white" />
+            <div className="w-9 h-9 rounded-full bg-brand-black border-2 border-brand-gold flex flex-col items-center justify-center flex-shrink-0 group-hover:border-brand-gold-light transition-colors">
+              <span className="font-display text-[11px] text-brand-gold leading-none tracking-tight">GRG</span>
             </div>
             <div className="hidden sm:block">
               <div className="font-display text-xl tracking-widest text-white leading-none">
