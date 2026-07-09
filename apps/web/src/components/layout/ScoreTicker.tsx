@@ -6,30 +6,56 @@ import Link from 'next/link';
 import type { Match } from '@/lib/types';
 import { getScoreDisplay, isMatchLive } from '@/lib/utils';
 
+const WC_LEAGUE = { id: 1, name: 'World Cup 2026', shortName: 'WC26', logo: '', country: 'World', season: 2026, type: 'Cup' as const };
+
 const MOCK_LIVE: Match[] = [
   {
-    id: 1, status: 'LIVE', minute: 67,
-    homeTeam: { id: 33, name: 'Manchester United', shortName: 'MAN UTD', logo: '/teams/manu.png', country: 'England' },
-    awayTeam: { id: 34, name: 'Liverpool', shortName: 'LIV', logo: '/teams/lfc.png', country: 'England' },
+    id: 101, status: 'FT',
+    homeTeam: { id: 10, name: 'Spain',    shortName: 'ESP', logo: '', country: 'Spain' },
+    awayTeam: { id: 11, name: 'Japan',    shortName: 'JPN', logo: '', country: 'Japan' },
+    homeScore: 2, awayScore: 0,
+    date: new Date('2026-07-04T23:00:00Z').toISOString(),
+    league: WC_LEAGUE,
+  },
+  {
+    id: 102, status: 'FT',
+    homeTeam: { id: 12, name: 'France',   shortName: 'FRA', logo: '', country: 'France' },
+    awayTeam: { id: 13, name: 'Poland',   shortName: 'POL', logo: '', country: 'Poland' },
+    homeScore: 4, awayScore: 1,
+    date: new Date('2026-07-05T23:00:00Z').toISOString(),
+    league: WC_LEAGUE,
+  },
+  {
+    id: 103, status: 'FT',
+    homeTeam: { id: 14, name: 'Brazil',   shortName: 'BRA', logo: '', country: 'Brazil' },
+    awayTeam: { id: 15, name: 'Mexico',   shortName: 'MEX', logo: '', country: 'Mexico' },
+    homeScore: 3, awayScore: 1,
+    date: new Date('2026-07-06T23:00:00Z').toISOString(),
+    league: WC_LEAGUE,
+  },
+  {
+    id: 104, status: 'FT',
+    homeTeam: { id: 16, name: 'Argentina',shortName: 'ARG', logo: '', country: 'Argentina' },
+    awayTeam: { id: 17, name: 'Morocco',  shortName: 'MAR', logo: '', country: 'Morocco' },
     homeScore: 2, awayScore: 1,
-    date: new Date().toISOString(),
-    league: { id: 39, name: 'Premier League', shortName: 'PL', logo: '/leagues/pl.png', country: 'England', season: 2025, type: 'League' },
+    date: new Date('2026-07-06T19:00:00Z').toISOString(),
+    league: WC_LEAGUE,
   },
   {
-    id: 2, status: 'LIVE', minute: 34,
-    homeTeam: { id: 541, name: 'Real Madrid', shortName: 'RMA', logo: '/teams/real.png', country: 'Spain' },
-    awayTeam: { id: 529, name: 'Barcelona', shortName: 'BAR', logo: '/teams/barca.png', country: 'Spain' },
-    homeScore: 1, awayScore: 0,
-    date: new Date().toISOString(),
-    league: { id: 140, name: 'La Liga', shortName: 'LL', logo: '/leagues/laliga.png', country: 'Spain', season: 2025, type: 'League' },
+    id: 105, status: 'FT',
+    homeTeam: { id: 18, name: 'Portugal', shortName: 'POR', logo: '', country: 'Portugal' },
+    awayTeam: { id: 19, name: 'Switzerland', shortName: 'SUI', logo: '', country: 'Switzerland' },
+    homeScore: 3, awayScore: 0,
+    date: new Date('2026-07-07T23:00:00Z').toISOString(),
+    league: WC_LEAGUE,
   },
   {
-    id: 3, status: 'HT',
-    homeTeam: { id: 85, name: 'Paris SG', shortName: 'PSG', logo: '/teams/psg.png', country: 'France' },
-    awayTeam: { id: 1, name: 'Bayern Munich', shortName: 'BAY', logo: '/teams/bayern.png', country: 'Germany' },
-    homeScore: 0, awayScore: 1,
-    date: new Date().toISOString(),
-    league: { id: 2, name: 'Champions League', shortName: 'UCL', logo: '/leagues/ucl.png', country: 'Europe', season: 2025, type: 'Cup' },
+    id: 106, status: 'FT',
+    homeTeam: { id: 20, name: 'USA',      shortName: 'USA', logo: '', country: 'USA' },
+    awayTeam: { id: 21, name: 'Iran',     shortName: 'IRN', logo: '', country: 'Iran' },
+    homeScore: 2, awayScore: 1,
+    date: new Date('2026-07-07T19:00:00Z').toISOString(),
+    league: WC_LEAGUE,
   },
 ];
 

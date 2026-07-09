@@ -72,9 +72,9 @@ export default function OGImage() {
             {['Live Scores', 'World Cup 2026', 'Transfers', 'Analysis'].map((label) => (
               <div key={label} style={{
                 padding: '10px 22px',
-                background: 'rgba(59,130,246,0.14)',
+                background: 'rgba(34,197,94,0.14)',
                 borderRadius: 8, color: '#86efac', fontSize: 16, fontWeight: 500,
-                border: '1px solid rgba(59,130,246,0.3)',
+                border: '1px solid rgba(34,197,94,0.3)',
               }}>
                 {label}
               </div>

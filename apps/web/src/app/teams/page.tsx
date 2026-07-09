@@ -25,7 +25,7 @@ const QF_TEAMS = [
     formation: '4-3-3', ranking: 2, goalsFor: 14, goalsAgainst: 3,
     keyPlayers: ['Lamine Yamal (7G 5A)', 'Pedri (4A)', 'Morata (5G)'],
     form: 'WWWWW', strength: 92,
-    path: ['Group A — 1st', 'R16: vs Japan 2–0', 'QF: TBD'],
+    path: ['Group A — 1st', 'R16: vs Japan 2–0', 'QF: vs Germany'],
     info: 'Imperious in every phase. Yamal has been the tournament\'s standout player at just 18.',
   },
   {
@@ -33,7 +33,7 @@ const QF_TEAMS = [
     formation: '4-2-3-1', ranking: 4, goalsFor: 11, goalsAgainst: 6,
     keyPlayers: ['Florian Wirtz (4G 3A)', 'Kai Havertz (5G)', 'Kimmich (4A)'],
     form: 'WDWWW', strength: 87,
-    path: ['Group B — 2nd', 'R16: vs Belgium 2–1', 'QF: TBD'],
+    path: ['Group B — 2nd', 'R16: vs Belgium 2–1', 'QF: vs Spain'],
     info: 'Defensively exposed at times but deadly on the counter with Wirtz pulling strings.',
   },
   {
@@ -41,7 +41,7 @@ const QF_TEAMS = [
     formation: '4-3-3', ranking: 3, goalsFor: 9, goalsAgainst: 4,
     keyPlayers: ['Kylian Mbappé (6G 2A)', 'Griezmann (3A)', 'Camavinga (CM)'],
     form: 'WWWLW', strength: 89,
-    path: ['Group C — 1st', 'R16: vs Poland 4–1', 'QF: TBD'],
+    path: ['Group C — 1st', 'R16: vs Poland 4–1', 'QF: vs England'],
     info: 'La machine is purring. Mbappé at his irresistible best — already the Golden Boot frontrunner.',
   },
   {
@@ -49,7 +49,7 @@ const QF_TEAMS = [
     formation: '4-2-3-1', ranking: 5, goalsFor: 10, goalsAgainst: 5,
     keyPlayers: ['Harry Kane (5G)', 'Bellingham (3G 4A)', 'Saka (3G 3A)'],
     form: 'WWWDW', strength: 85,
-    path: ['Group D — 1st', 'R16: vs Senegal 2–0', 'QF: TBD'],
+    path: ['Group D — 1st', 'R16: vs Senegal 2–0', 'QF: vs France'],
     info: 'Defensively solid and clinical in front of goal. It\'s finally coming home? This squad says yes.',
   },
   {
@@ -57,7 +57,7 @@ const QF_TEAMS = [
     formation: '4-2-3-1', ranking: 1, goalsFor: 16, goalsAgainst: 4,
     keyPlayers: ['Vinícius Jr (5G 4A)', 'Rodrygo (4G)', 'Casemiro (DM)'],
     form: 'WWWWW', strength: 91,
-    path: ['Group E — 1st', 'R16: vs Mexico 3–1', 'QF: TBD'],
+    path: ['Group E — 1st', 'R16: vs Mexico 3–1', 'QF: vs Argentina'],
     info: 'The most dangerous attack in the tournament. Vinicius Jr is terrifying defenders at every turn.',
   },
   {
@@ -65,7 +65,7 @@ const QF_TEAMS = [
     formation: '4-3-3', ranking: 1, goalsFor: 13, goalsAgainst: 5,
     keyPlayers: ['Lionel Messi (4G 6A)', 'Julián Álvarez (5G)', 'Mac Allister (CM)'],
     form: 'DWWWW', strength: 90,
-    path: ['Group F — 1st', 'R16: vs Morocco 2–1 AET', 'QF: TBD'],
+    path: ['Group F — 1st', 'R16: vs Morocco 2–1 AET', 'QF: vs Brazil'],
     info: 'The world champions grinding through. Messi showing the world he still has another miracle in him.',
   },
   {
@@ -73,7 +73,7 @@ const QF_TEAMS = [
     formation: '4-2-3-1', ranking: 6, goalsFor: 12, goalsAgainst: 4,
     keyPlayers: ['Cristiano Ronaldo (4G)', 'Bruno Fernandes (2G 5A)', 'Rafael Leão (3G 3A)'],
     form: 'WWWWW', strength: 86,
-    path: ['Group G — 1st', 'R16: vs Switzerland 3–0', 'QF: TBD'],
+    path: ['Group G — 1st', 'R16: vs Switzerland 3–0', 'QF: vs USA'],
     info: 'Ronaldo\'s final World Cup, and he\'s making it count. A balanced squad with genuine depth.',
   },
   {
@@ -81,7 +81,7 @@ const QF_TEAMS = [
     formation: '4-3-3', ranking: 13, goalsFor: 8, goalsAgainst: 6,
     keyPlayers: ['Christian Pulisic (4G 2A)', 'Gio Reyna (3G)', 'Tyler Adams (DM)'],
     form: 'WWDWW', strength: 78,
-    path: ['Group H — 1st', 'R16: vs Iran 2–1', 'QF: TBD'],
+    path: ['Group H — 1st', 'R16: vs Iran 2–1', 'QF: vs Portugal'],
     info: 'The great hosts surprise. America\'s finest generation — buoyed by 80,000-strong home crowds.',
   },
 ];

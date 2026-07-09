@@ -22,10 +22,10 @@ async function fetchFixtures(path: string): Promise<Match[]> {
 }
 
 const WC_SCHEDULE = [
-  { round: 'Quarter-Final 1', date: 'Fri 10 Jul', time: '21:00 UTC', home: 'TBD', away: 'TBD', venue: 'SoFi Stadium, LA' },
-  { round: 'Quarter-Final 2', date: 'Fri 10 Jul', time: '01:00 UTC', home: 'TBD', away: 'TBD', venue: 'AT&T Stadium, Dallas' },
-  { round: 'Quarter-Final 3', date: 'Sat 11 Jul', time: '21:00 UTC', home: 'TBD', away: 'TBD', venue: 'MetLife Stadium, NJ' },
-  { round: 'Quarter-Final 4', date: 'Sat 12 Jul', time: '01:00 UTC', home: 'TBD', away: 'TBD', venue: 'Levi\'s Stadium, SF' },
+  { round: 'Quarter-Final 1', date: 'Fri 10 Jul', time: '21:00 UTC', home: 'Spain',    away: 'Germany',   venue: 'SoFi Stadium, LA' },
+  { round: 'Quarter-Final 2', date: 'Sat 11 Jul', time: '17:00 UTC', home: 'Brazil',   away: 'Argentina', venue: 'MetLife Stadium, NJ' },
+  { round: 'Quarter-Final 3', date: 'Sat 11 Jul', time: '21:00 UTC', home: 'France',   away: 'England',   venue: 'AT&T Stadium, Dallas' },
+  { round: 'Quarter-Final 4', date: 'Sun 12 Jul', time: '21:00 UTC', home: 'Portugal', away: 'USA',       venue: "Levi's Stadium, SF" },
   { round: 'Semi-Final 1',    date: 'Wed 15 Jul', time: '21:00 UTC', home: 'TBD', away: 'TBD', venue: 'MetLife Stadium, NJ' },
   { round: 'Semi-Final 2',    date: 'Thu 16 Jul', time: '21:00 UTC', home: 'TBD', away: 'TBD', venue: 'SoFi Stadium, LA' },
   { round: '3rd Place',       date: 'Sat 18 Jul', time: '19:00 UTC', home: 'TBD', away: 'TBD', venue: 'Estadio Azteca, MX' },
