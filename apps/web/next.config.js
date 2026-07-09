@@ -29,6 +29,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
               "connect-src 'self' https://renewed-ambition-production-ea0a.up.railway.app wss://renewed-ambition-production-ea0a.up.railway.app https://www.google-analytics.com",
+              "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
               "form-action 'self' mailto:",

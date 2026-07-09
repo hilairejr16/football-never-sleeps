@@ -104,6 +104,40 @@ router.get('/standings', asyncHandler(async (req, res) => {
   ok(res, data);
 }));
 
+// GET /world-cup/highlights  — proxies YouTube Data API, keeps key server-side
+router.get('/highlights', asyncHandler(async (req, res) => {
+  const key = process.env.YOUTUBE_API_KEY;
+  if (!key) return ok(res, []);
+
+  const today = new Date().toISOString().slice(0, 10);
+  const cacheKey = `wc:highlights:${today}`;
+
+  const data = await cacheGetOrSet(cacheKey, async () => {
+    const params = new URLSearchParams({
+      part: 'snippet',
+      q: 'FIFA World Cup 2026 highlights official',
+      order: 'date',
+      maxResults: '9',
+      type: 'video',
+      key,
+    });
+    const r = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`);
+    const json = await r.json();
+    if (json.error) return [];
+    return (json.items || [])
+      .filter(item => item.id?.videoId)
+      .map(item => ({
+        id:          item.id.videoId,
+        title:       item.snippet.title,
+        thumbnail:   item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url || '',
+        channelName: item.snippet.channelTitle,
+        publishedAt: item.snippet.publishedAt,
+      }));
+  }, 3600);
+
+  ok(res, data);
+}));
+
 // GET /world-cup/scorers
 router.get('/scorers', asyncHandler(async (req, res) => {
   const cacheKey = `wc:scorers:${WC_SEASON}`;

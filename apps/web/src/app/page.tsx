@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import HeroSection from '@/components/sections/HeroSection';
 import WorldCupBanner from '@/components/sections/WorldCupBanner';
 import LiveScoresSection from '@/components/sections/LiveScoresSection';
+import VideoHighlightsSection from '@/components/sections/VideoHighlightsSection';
 import LatestNewsSection from '@/components/sections/LatestNewsSection';
 import TransferNewsSection from '@/components/sections/TransferNewsSection';
 import PredictionsSection from '@/components/sections/PredictionsSection';
@@ -28,6 +29,11 @@ export default function HomePage() {
       {/* Live Scores */}
       <section className="max-w-screen-2xl mx-auto px-4 lg:px-6 mt-10">
         <LiveScoresSection />
+      </section>
+
+      {/* WC 2026 Video Highlights */}
+      <section className="max-w-screen-2xl mx-auto px-4 lg:px-6 mt-10">
+        <VideoHighlightsSection />
       </section>
 
       {/* Main Content Grid */}
