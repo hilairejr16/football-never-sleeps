@@ -9,19 +9,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // GoalRush Brand Palette — Pitch Green
+        // GoalRush Brand Palette — Premium Dark Blue
         brand: {
-          black:  '#091410',
-          dark:   '#0f1f16',
-          card:   '#142a1c',
-          border: '#1a3322',
-          muted:  '#2a5235',
-          red:    '#22c55e',       // accent color (class name kept for zero breaking changes)
-          'red-hover': '#16a34a',
-          'red-light': '#86efac',
-          gold:   '#f4a261',
-          'gold-light': '#f7c59f',
-          white:  '#e8f5ec',
+          black:  '#0a0f1e',
+          dark:   '#0f1729',
+          card:   '#162038',
+          border: '#1e2d4a',
+          muted:  '#2d4a7a',
+          red:    '#3b82f6',       // accent color (class name kept for zero breaking changes)
+          'red-hover': '#2563eb',
+          'red-light': '#93c5fd',
+          gold:   '#f59e0b',
+          'gold-light': '#fcd34d',
+          white:  '#e8f0fe',
           gray:   '#94a3b8',
         },
         live: '#10b981',
@@ -45,8 +45,8 @@ module.exports = {
           '100%': { transform: 'translateX(-50%)' },
         },
         'pulse-red': {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.4)' },
-          '50%':      { boxShadow: '0 0 0 8px rgba(34, 197, 94, 0)' },
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(59, 130, 246, 0.4)' },
+          '50%':      { boxShadow: '0 0 0 8px rgba(59, 130, 246, 0)' },
         },
         'slide-up': {
           from: { opacity: '0', transform: 'translateY(20px)' },
@@ -66,11 +66,11 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'hero-gradient':    'linear-gradient(135deg, #091410 0%, #0f1f16 50%, #091410 100%)',
-        'card-gradient':    'linear-gradient(180deg, #142a1c 0%, #0f1f16 100%)',
-        'red-gradient':     'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-        'gold-gradient':    'linear-gradient(135deg, #f4a261 0%, #e76f51 100%)',
-        'shimmer':          'linear-gradient(90deg, #142a1c 25%, #1a3322 50%, #142a1c 75%)',
+        'hero-gradient':    'linear-gradient(135deg, #0a0f1e 0%, #0f1729 50%, #0a0f1e 100%)',
+        'card-gradient':    'linear-gradient(180deg, #162038 0%, #0f1729 100%)',
+        'red-gradient':     'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+        'gold-gradient':    'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+        'shimmer':          'linear-gradient(90deg, #162038 25%, #1e2d4a 50%, #162038 75%)',
       },
     },
   },

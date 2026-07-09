@@ -229,7 +229,7 @@ export default async function WorldCupPage() {
       {/* ── Hero Header ─────────────────────────────────── */}
       <div
         className="relative rounded-2xl overflow-hidden mb-8 border border-yellow-500/20"
-        style={{ background: 'linear-gradient(135deg, #0a2a1a 0%, #1a3a0a 40%, #0f1923 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #0a0f2e 0%, #0d1a4a 40%, #080c1a 100%)' }}
       >
         <div className="relative px-6 py-8 sm:px-10 sm:py-10">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
@@ -295,11 +295,11 @@ export default async function WorldCupPage() {
                     status === 'active'
                       ? 'bg-yellow-500 border-yellow-400 text-black shadow-lg shadow-yellow-500/25'
                       : status === 'done'
-                      ? 'bg-green-900/40 border-green-700/50 text-green-400/70 line-through decoration-green-600/50'
+                      ? 'bg-blue-900/40 border-blue-700/50 text-blue-400/70 line-through decoration-blue-600/50'
                       : 'bg-white/5 border-white/20 text-white/55 hover:bg-white/10 hover:text-white hover:border-white/30'
                   }`}
                 >
-                  {status === 'done' && <span className="text-green-500">✓</span>}
+                  {status === 'done' && <span className="text-blue-400">✓</span>}
                   {status === 'active' && <span>▶</span>}
                   {status === 'upcoming' && <span className="opacity-50">{i + 1}</span>}
                   {s.label}

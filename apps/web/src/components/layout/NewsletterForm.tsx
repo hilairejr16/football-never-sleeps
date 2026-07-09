@@ -19,7 +19,7 @@ export default function NewsletterForm() {
         type="email"
         required
         placeholder="your@email.com"
-        className="bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder:text-red-200 text-sm focus:outline-none focus:border-white flex-1 md:w-72"
+        className="bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder:text-blue-200 text-sm focus:outline-none focus:border-white flex-1 md:w-72"
       />
       <button
         type="submit"

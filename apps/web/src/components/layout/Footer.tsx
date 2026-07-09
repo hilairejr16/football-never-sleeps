@@ -66,7 +66,7 @@ export default function Footer() {
               <h3 className="text-white font-display text-2xl tracking-wider">
                 NEVER MISS A GOAL
               </h3>
-              <p className="text-red-100 text-sm mt-1">
+              <p className="text-blue-100 text-sm mt-1">
                 Get breaking news and live updates delivered to your inbox.
               </p>
             </div>

@@ -145,7 +145,7 @@ export default async function HeroSection() {
           <div className="space-y-4">
             {/* World Cup countdown strip */}
             <div className="gr-card p-4 border border-yellow-500/20"
-              style={{ background: 'linear-gradient(135deg, #0a2a1a 0%, #1a3a0a 100%)' }}>
+              style={{ background: 'linear-gradient(135deg, #0a0f2e 0%, #0d1a4a 100%)' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Trophy className="w-4 h-4 text-yellow-400" />
                 <span className="text-yellow-400 text-xs font-bold uppercase tracking-widest">
@@ -184,7 +184,7 @@ export default async function HeroSection() {
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <div className="font-display text-3xl text-white">{stat.value}</div>
-                    <div className="text-red-100 text-[10px] font-medium mt-0.5">{stat.label}</div>
+                    <div className="text-blue-100 text-[10px] font-medium mt-0.5">{stat.label}</div>
                   </div>
                 ))}
               </div>

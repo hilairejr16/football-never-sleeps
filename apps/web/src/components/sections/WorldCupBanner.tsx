@@ -76,7 +76,7 @@ export default function WorldCupBanner() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(135deg, #0a2a1a 0%, #1a3a0a 30%, #0f1923 60%, #1a1400 100%)',
+          background: 'linear-gradient(135deg, #0a0f2e 0%, #0d1a4a 30%, #080c1a 60%, #0a0c1e 100%)',
         }}
       />
       {/* Subtle pattern overlay */}

@@ -68,7 +68,7 @@ export default async function FixturesPage() {
       </div>
 
       {/* WC Schedule card */}
-      <div className="gr-card mb-8 border border-yellow-500/20" style={{background:'linear-gradient(135deg,#0a2a1a,#1a3a0a 60%,#0f1923)'}}>
+      <div className="gr-card mb-8 border border-yellow-500/20" style={{background:'linear-gradient(135deg,#0a0f2e,#0d1a4a 60%,#080c1a)'}}>
         <div className="px-5 py-4 border-b border-yellow-500/20 flex items-center justify-between">
           <h2 className="text-yellow-400 font-semibold flex items-center gap-2"><Trophy className="w-4 h-4"/>World Cup 2026 — Remaining Schedule</h2>
           <Link href="/world-cup" className="text-yellow-400 text-xs flex items-center gap-1 hover:text-yellow-300">Full Hub <ArrowRight className="w-3 h-3"/></Link>
