@@ -1,19 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const { apiClient } = require('../services/footballApi');
 const { asyncHandler } = require('../middleware/errorHandler');
 const { cacheGetOrSet } = require('../config/redis');
 
 const ok = (res, data) => res.json({ status: 'success', data });
-
-const apiClient = axios.create({
-  baseURL: 'https://v3.football.api-sports.io',
-  headers: {
-    'x-rapidapi-host': 'v3.football.api-sports.io',
-    'x-rapidapi-key': process.env.FOOTBALL_API_KEY,
-  },
-  timeout: 10_000,
-});
 
 // GET /teams/league/:leagueId
 router.get('/league/:leagueId', asyncHandler(async (req, res) => {

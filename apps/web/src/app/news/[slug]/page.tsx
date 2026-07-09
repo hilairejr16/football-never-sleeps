@@ -238,13 +238,14 @@ function fmtViews(v: number) {
   return String(v);
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const article = ARTICLES.find(a => a.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = ARTICLES.find(a => a.slug === slug);
   if (!article) return { title: 'Article Not Found | GoalRush Global' };
   return {
     title: `${article.title} | GoalRush Global`,
     description: article.excerpt,
-    alternates: { canonical: `/news/${params.slug}` },
+    alternates: { canonical: `/news/${slug}` },
     openGraph: {
       type: 'article',
       title: article.title,
@@ -260,11 +261,12 @@ export async function generateStaticParams() {
   return ARTICLES.map(a => ({ slug: a.slug }));
 }
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  let article = ARTICLES.find(a => a.slug === params.slug) ?? null;
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  let article = ARTICLES.find(a => a.slug === slug) ?? null;
 
   try {
-    const res = await fetch(`${BASE}/news/${params.slug}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${BASE}/news/${slug}`, { next: { revalidate: 300 } });
     if (res.ok) {
       const { data } = await res.json();
       if (data?.title) {
@@ -276,7 +278,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   if (!article) notFound();
 
   const related = ARTICLES
-    .filter(a => a.slug !== params.slug && a.tags.some(t => article!.tags.includes(t)))
+    .filter(a => a.slug !== slug && a.tags.some(t => article!.tags.includes(t)))
     .slice(0, 3);
 
   const articleSchema = {
@@ -286,7 +288,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     description: article.excerpt,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
-    url: `https://www.goalrushglobal.com/news/${params.slug}`,
+    url: `https://www.goalrushglobal.com/news/${slug}`,
     keywords: article.tags.join(', '),
     articleSection: article.category,
     author: { '@type': 'Organization', name: article.author, url: 'https://www.goalrushglobal.com' },
@@ -295,7 +297,7 @@ export default async function ArticlePage({ params }: { params: { slug: string }
       name: 'GoalRush Global',
       logo: { '@type': 'ImageObject', url: 'https://www.goalrushglobal.com/og-image.jpg' },
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.goalrushglobal.com/news/${params.slug}` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.goalrushglobal.com/news/${slug}` },
   };
 
   return (

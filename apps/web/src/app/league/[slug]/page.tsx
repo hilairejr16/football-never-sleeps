@@ -22,13 +22,14 @@ const LEAGUE_MAP: Record<string, { id: number; name: string; flag: string; count
   'saudi-pro-league':  { id: 307, name: 'Saudi Pro League',         flag: '🇸🇦', country: 'Saudi Arabia', season: 2025, note: 'Season complete' },
 };
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const league = LEAGUE_MAP[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const league = LEAGUE_MAP[slug];
   if (!league) return { title: 'League — GoalRush Global' };
   return {
     title: `${league.name} — GoalRush Global`,
     description: `${league.name} ${league.season} standings, fixtures, results and news on GoalRush Global.`,
-    alternates: { canonical: `/league/${params.slug}` },
+    alternates: { canonical: `/league/${slug}` },
   };
 }
 
@@ -53,10 +54,11 @@ const OTHER_LEAGUES = [
   { slug: 'mls',              name: 'MLS',                   flag: '🇺🇸' },
 ];
 
-export default async function LeaguePage({ params }: { params: { slug: string } }) {
-  if (params.slug === 'world-cup') redirect('/world-cup');
+export default async function LeaguePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  if (slug === 'world-cup') redirect('/world-cup');
 
-  const league = LEAGUE_MAP[params.slug];
+  const league = LEAGUE_MAP[slug];
   if (!league) {
     return (
       <div className="max-w-screen-2xl mx-auto px-4 lg:px-6 py-20 text-center">
@@ -148,7 +150,7 @@ export default async function LeaguePage({ params }: { params: { slug: string } 
           <div className="gr-card p-5">
             <h3 className="text-white font-semibold mb-4">Other Leagues</h3>
             <div className="space-y-1">
-              {OTHER_LEAGUES.filter(l => l.slug !== params.slug).map(l => (
+              {OTHER_LEAGUES.filter(l => l.slug !== slug).map(l => (
                 <Link key={l.slug} href={`/league/${l.slug}`}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-dark transition-colors group">
                   <span className="text-xl">{l.flag}</span>

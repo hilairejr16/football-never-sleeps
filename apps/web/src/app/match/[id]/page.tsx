@@ -63,8 +63,9 @@ async function getMatch(id: string): Promise<MatchData | null> {
 
 // ── Metadata ───────────────────────────────────────────────
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const match = await getMatch(params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const match = await getMatch(id);
   if (!match) {
     return { title: 'Match Not Found' };
   }
@@ -73,7 +74,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title,
     description: `${match.league.name} ${match.league.round}: ${match.home} ${score} ${match.away}. ${match.venue}. ${match.date}.`,
-    alternates: { canonical: `/match/${params.id}` },
+    alternates: { canonical: `/match/${id}` },
   };
 }
 
@@ -98,8 +99,9 @@ function StatusBadge({ status }: { status: string }) {
 
 // ── Page ───────────────────────────────────────────────────
 
-export default async function MatchPage({ params }: { params: { id: string } }) {
-  const match = await getMatch(params.id);
+export default async function MatchPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const match = await getMatch(id);
 
   if (!match) return notFound();
 
