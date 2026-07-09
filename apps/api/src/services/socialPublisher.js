@@ -7,6 +7,17 @@
 
 const crypto = require('crypto');
 
+// ── GoalRush Global official accounts ─────────────────────
+const ACCOUNTS = {
+  x:         '@GoalRushGlobal',
+  instagram: '@GoalRushGlobal00',
+  tiktok:    '@goalrushglobal00',
+  facebook:  'GoalRush Global (Page)',
+  threads:   '@GoalRushGlobal00',
+  youtube:   '@GoalRushGlobal',
+  email:     'goalrushglobal83@gmail.com',
+};
+
 // ── In-memory post queue (Redis-backed when available) ─────
 const postQueue  = [];  // { id, platform, content, article, status, createdAt, postedAt }
 const postLog    = [];  // completed + failed posts (last 500)
@@ -251,7 +262,8 @@ async function publishArticle(article, { platforms: targetPlatforms } = {}) {
   const results  = {};
 
   const active = targetPlatforms || Object.keys(platforms).filter(p => platforms[p]());
-  console.log(`[Publisher] Publishing "${article.title}" to: ${active.join(', ') || 'none (no credentials)'}`);
+  const handles = active.map(p => ACCOUNTS[p] || p).join(', ');
+  console.log(`[Publisher] Publishing "${article.title}" → ${handles || 'no active platforms'}`);
 
   for (const platform of active) {
     if (!platforms[platform]()) {
@@ -389,4 +401,5 @@ module.exports = {
   clearQueue,
   getPlatformStatus,
   queuePost,
+  ACCOUNTS,
 };
