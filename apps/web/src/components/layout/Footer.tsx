@@ -1,6 +1,14 @@
 import Link from 'next/link';
 import { Zap, Twitter, Instagram, Youtube, Facebook } from 'lucide-react';
 
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.29 6.29 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.88a8.22 8.22 0 004.85 1.56V7a4.85 4.85 0 01-1.08-.31z"/>
+    </svg>
+  );
+}
+
 const LEAGUES: { name: string; href: string }[] = [
   { name: 'Premier League',      href: '/league/premier-league' },
   { name: 'La Liga',             href: '/league/la-liga' },
@@ -38,10 +46,11 @@ const COMPANY = [
 ];
 
 const SOCIALS = [
-  { icon: Twitter,   href: 'https://twitter.com/GoalRushGlobal', label: 'Twitter/X' },
-  { icon: Instagram, href: 'https://instagram.com/goalrushglobal', label: 'Instagram' },
-  { icon: Youtube,   href: 'https://youtube.com/@goalrushglobal', label: 'YouTube' },
-  { icon: Facebook,  href: 'https://facebook.com/goalrushglobal', label: 'Facebook' },
+  { icon: Twitter,    href: 'https://twitter.com/GoalRushGlobal',    label: 'X / Twitter' },
+  { icon: Instagram,  href: 'https://instagram.com/GoalRushGlobal00', label: 'Instagram' },
+  { icon: TikTokIcon, href: 'https://tiktok.com/@goalrushglobal00',   label: 'TikTok' },
+  { icon: Youtube,    href: 'https://youtube.com/@GoalRushGlobal',    label: 'YouTube' },
+  { icon: Facebook,   href: 'https://facebook.com/GoalRushGlobal',    label: 'Facebook' },
 ];
 
 export default function Footer() {
@@ -59,9 +68,22 @@ export default function Footer() {
                 Get breaking news and live updates delivered to your inbox.
               </p>
             </div>
-            <form className="flex gap-2 w-full md:w-auto">
+            <form
+              className="flex gap-2 w-full md:w-auto"
+              onSubmit={e => {
+                e.preventDefault();
+                const input = (e.currentTarget as HTMLFormElement).elements.namedItem('email') as HTMLInputElement;
+                if (input?.value) {
+                  window.location.href = `mailto:goalrushglobal83@gmail.com?subject=Newsletter+Subscription&body=Please+add+${encodeURIComponent(input.value)}+to+the+GoalRush+Global+newsletter.`;
+                }
+              }}
+            >
+              <label htmlFor="footer-email" className="sr-only">Email address</label>
               <input
+                id="footer-email"
+                name="email"
                 type="email"
+                required
                 placeholder="your@email.com"
                 className="bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder:text-red-200 text-sm focus:outline-none focus:border-white flex-1 md:w-72"
               />

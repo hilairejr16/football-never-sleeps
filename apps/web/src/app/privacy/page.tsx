@@ -29,7 +29,7 @@ const SECTIONS = [
   },
   {
     title: '6. Your Rights',
-    body: `You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at privacy@goalrushglobal.com. EU/UK users have additional rights under GDPR/UK GDPR.`,
+    body: `You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at goalrushglobal83@gmail.com. EU/UK users have additional rights under GDPR/UK GDPR.`,
   },
   {
     title: '7. Changes to This Policy',
@@ -37,7 +37,7 @@ const SECTIONS = [
   },
   {
     title: '8. Contact',
-    body: `Questions about this policy? Contact our privacy team at privacy@goalrushglobal.com or write to: GoalRush Global, Privacy Team, c/o editorial@goalrushglobal.com.`,
+    body: `Questions about this policy? Contact our privacy team at goalrushglobal83@gmail.com or write to: GoalRush Global, Privacy Team, c/o editorial@goalrushglobal.com.`,
   },
 ];
 

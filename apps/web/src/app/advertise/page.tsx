@@ -62,7 +62,7 @@ export default function AdvertisePage() {
       <div className="gr-card p-8 text-center">
         <h2 className="text-white font-semibold text-xl mb-3">Ready to reach football fans?</h2>
         <p className="text-brand-gray text-sm mb-6">Contact our advertising team for a custom proposal.</p>
-        <Link href="mailto:ads@goalrushglobal.com" className="gr-btn-primary px-8">Get in Touch</Link>
+        <Link href="mailto:goalrushglobal83@gmail.com?subject=Advertising+Enquiry" className="gr-btn-primary px-8">Get in Touch</Link>
       </div>
     </div>
   );

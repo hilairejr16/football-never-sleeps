@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 const SECTIONS = [
   {
     title: '1. Acceptance of Terms',
-    body: `By accessing or using GoalRush Global (&ldquo;the Service&rdquo;), you agree to be bound by these Terms of Service. If you do not agree to all terms, do not use the Service.`,
+    body: 'By accessing or using GoalRush Global ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to all terms, do not use the Service.',
   },
   {
     title: '2. Use of the Service',
-    body: `You may use the Service for personal, non-commercial purposes. You must not: scrape or systematically download content, reproduce or redistribute content without permission, use the Service for any unlawful purpose, or attempt to interfere with the security or performance of the platform.`,
+    body: 'You may use the Service for personal, non-commercial purposes. You must not: scrape or systematically download content, reproduce or redistribute content without permission, use the Service for any unlawful purpose, or attempt to interfere with the security or performance of the platform.',
   },
   {
     title: '3. Intellectual Property',
@@ -33,7 +33,7 @@ const SECTIONS = [
   },
   {
     title: '7. Disclaimer of Warranties',
-    body: `The Service is provided &ldquo;as is&rdquo; without warranty of any kind. We do not guarantee that the Service will be uninterrupted, error-free, or that live score data will be accurate or up to date at all times.`,
+    body: 'The Service is provided "as is" without warranty of any kind. We do not guarantee that the Service will be uninterrupted, error-free, or that live score data will be accurate or up to date at all times.',
   },
   {
     title: '8. Changes to Terms',
@@ -53,7 +53,7 @@ export default function TermsPage() {
         {SECTIONS.map(s => (
           <div key={s.title} className="gr-card p-6">
             <h2 className="text-white font-semibold mb-3">{s.title}</h2>
-            <p className="text-brand-gray text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: s.body }}/>
+            <p className="text-brand-gray text-sm leading-relaxed">{s.body}</p>
           </div>
         ))}
       </div>

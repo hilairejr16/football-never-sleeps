@@ -125,8 +125,9 @@ export default function Header() {
 
             {/* Breaking News CTA */}
             <Link
-              href="/news/breaking"
+              href="/news"
               className="hidden md:flex items-center gap-2 gr-badge-red text-xs font-bold"
+              aria-label="Breaking news"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-red-light animate-live-dot" />
               Breaking
