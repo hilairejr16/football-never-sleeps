@@ -3,12 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
-      { protocol: 'https', hostname: 'media.api-sports.io' },
-      { protocol: 'https', hostname: 'crests.football-data.org' },
-      { protocol: 'https', hostname: 'upload.wikimedia.org' },
-      { protocol: 'https', hostname: 'resources.premierleague.com' },
-      { protocol: 'https', hostname: '**.cloudfront.net' },
-      { protocol: 'https', hostname: 's3.amazonaws.com' },
+      { protocol: 'https', hostname: '**' },
+      { protocol: 'http',  hostname: '**' },
     ],
     formats: ['image/avif', 'image/webp'],
   },
@@ -31,7 +27,7 @@ const nextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://media.api-sports.io https://crests.football-data.org https://upload.wikimedia.org https://resources.premierleague.com https://*.cloudfront.net https://s3.amazonaws.com",
+              "img-src 'self' data: blob: https:",
               "connect-src 'self' https://renewed-ambition-production-ea0a.up.railway.app wss://renewed-ambition-production-ea0a.up.railway.app https://www.google-analytics.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",

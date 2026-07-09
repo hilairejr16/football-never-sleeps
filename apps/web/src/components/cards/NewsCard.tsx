@@ -21,9 +21,9 @@ export default function NewsCard({
   if (variant === 'hero') {
     return (
       <Link href={`/news/${article.slug}`} className={cn('group block', className)}>
-        <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
+        <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-brand-card">
           <Image
-            src={article.imageUrl || '/placeholder-news.jpg'}
+            src={article.imageUrl || '/placeholder-news.svg'}
             alt={article.imageAlt}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -65,9 +65,9 @@ export default function NewsCard({
         href={`/news/${article.slug}`}
         className={cn('group gr-card-sm flex gap-4 p-3', className)}
       >
-        <div className="relative w-24 h-16 rounded-lg overflow-hidden flex-shrink-0">
+        <div className="relative w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-brand-card">
           <Image
-            src={article.imageUrl || '/placeholder-news.jpg'}
+            src={article.imageUrl || '/placeholder-news.svg'}
             alt={article.imageAlt}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -118,9 +118,9 @@ export default function NewsCard({
   // Default card
   return (
     <Link href={`/news/${article.slug}`} className={cn('group gr-card block', className)}>
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-[16/9] overflow-hidden bg-brand-card">
         <Image
-          src={article.imageUrl || '/placeholder-news.jpg'}
+          src={article.imageUrl || '/placeholder-news.svg'}
           alt={article.imageAlt}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
