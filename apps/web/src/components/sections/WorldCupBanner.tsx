@@ -8,6 +8,13 @@ import type { Match } from '@/lib/types';
 const WC_FINAL = new Date('2026-07-19T00:00:00Z');
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 
+const WC_NEXT_FIXTURES = [
+  { home: 'Spain',     away: 'Germany',   date: 'Jul 10', time: '3 PM ET' },
+  { home: 'France',   away: 'England',   date: 'Jul 10', time: '7 PM ET' },
+  { home: 'Brazil',   away: 'Argentina', date: 'Jul 11', time: '3 PM ET' },
+  { home: 'Portugal', away: 'USA',       date: 'Jul 12', time: '7 PM ET' },
+];
+
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0 });
 
@@ -43,7 +50,7 @@ function CountUnit({ value, label }: { value: number; label: string }) {
 function wcStage(): string {
   const d = new Date().toISOString().slice(0, 10);
   if (d <= '2026-07-02') return 'Group Stage';
-  if (d <= '2026-07-08') return 'Round of 16';
+  if (d <= '2026-07-07') return 'Round of 16';
   if (d <= '2026-07-12') return 'Quarter-Finals';
   if (d <= '2026-07-16') return 'Semi-Finals';
   if (d <= '2026-07-18') return '3rd Place';
@@ -133,9 +140,26 @@ export default function WorldCupBanner() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center gap-2 text-white/40 text-sm">
-                <Clock className="w-4 h-4" />
-                <span>No World Cup matches today — next fixtures loading from API</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 text-yellow-400/70 text-xs font-bold uppercase tracking-widest mb-2">
+                  <Clock className="w-3.5 h-3.5" />
+                  Quarter-Finals — Jul 10–12
+                </div>
+                <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                  {WC_NEXT_FIXTURES.map(f => (
+                    <div
+                      key={f.home}
+                      className="flex-shrink-0 bg-white/5 border border-white/10 rounded-lg px-3 py-2 min-w-[150px]"
+                    >
+                      <div className="text-[10px] text-yellow-400/50 font-semibold mb-1">{f.date} · {f.time}</div>
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-white text-xs font-semibold truncate">{f.home}</span>
+                        <span className="text-white/30 text-[10px] flex-shrink-0">vs</span>
+                        <span className="text-white text-xs font-semibold truncate text-right">{f.away}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
