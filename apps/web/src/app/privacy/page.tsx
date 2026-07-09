@@ -4,6 +4,8 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Privacy Policy — GoalRush Global',
   description: 'GoalRush Global privacy policy — how we collect, use, and protect your data.',
+  alternates: { canonical: '/privacy' },
+  robots: { index: false },
 };
 
 const SECTIONS = [

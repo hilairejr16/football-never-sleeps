@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 312" width="820" height="312" role="img" aria-label="GoalRush Global Facebook Cover">
+  <title>GoalRush Global — Facebook Page Cover</title>
+  <!--
+    Facebook page cover: 820 × 312px
+    Profile photo: 168×168px circle, bottom-left, centered ~x:96, partially overlapping bottom edge
+    Safe zone for text: x:240–820, y:20–260
+  -->
+  <defs>
+    <linearGradient id="bg-fb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0e0e"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+    <radialGradient id="red-glow-fb" cx="20%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="red-badge-fb" cx="36%" cy="28%" r="65%">
+      <stop offset="0%" stop-color="#f05555"/>
+      <stop offset="55%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+    <linearGradient id="gold-fb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d76e"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#92700a"/>
+    </linearGradient>
+    <linearGradient id="diagonal-fb" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <filter id="badge-shadow-fb">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#000" flood-opacity="0.70"/>
+    </filter>
+    <filter id="glow-fb" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="820" height="312" fill="url(#bg-fb)"/>
+  <rect width="820" height="312" fill="url(#red-glow-fb)"/>
+
+  <!-- Diagonal accent slashes -->
+  <polygon points="140,0 175,0 380,312 345,312" fill="url(#diagonal-fb)" opacity="0.30"/>
+  <polygon points="200,0 220,0 425,312 405,312" fill="url(#diagonal-fb)" opacity="0.14"/>
+
+  <!-- Gold rule top -->
+  <line x1="0" y1="3" x2="820" y2="3" stroke="url(#gold-fb)" stroke-width="1.5" opacity="0.50"/>
+  <!-- Gold rule bottom -->
+  <line x1="0" y1="309" x2="820" y2="309" stroke="url(#gold-fb)" stroke-width="1.5" opacity="0.50"/>
+
+  <!-- Badge icon (left, compact) -->
+  <circle cx="96" cy="156" r="96" fill="#dc2626" opacity="0.08" filter="url(#glow-fb)"/>
+  <circle cx="96" cy="156" r="86" fill="none" stroke="url(#gold-fb)" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="96" cy="156" r="80" fill="url(#red-badge-fb)" filter="url(#badge-shadow-fb)"/>
+  <ellipse cx="72" cy="118" rx="30" ry="18" fill="white" opacity="0.07"/>
+  <g transform="translate(96,156) scale(1.15) translate(-50,-50)">
+    <path d="M 57,4 L 24,54 L 47,54 L 43,96 L 76,46 L 53,46 Z" fill="white"/>
+    <path d="M 57,4 L 53,46 L 60,25 Z" fill="white" opacity="0.28"/>
+  </g>
+
+  <!-- Separator -->
+  <line x1="200" y1="32" x2="200" y2="280" stroke="#dc2626" stroke-width="1" opacity="0.40"/>
+
+  <!-- GOALRUSH wordmark -->
+  <text x="220" y="168"
+    font-family="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+    font-size="104" font-weight="900" fill="white" letter-spacing="-1">GOALRUSH</text>
+
+  <!-- GLOBAL -->
+  <text x="228" y="212"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="32" fill="url(#gold-fb)" letter-spacing="18">GLOBAL</text>
+
+  <!-- Red rule -->
+  <rect x="220" y="222" width="582" height="2" fill="#dc2626" rx="1"/>
+
+  <!-- Tagline -->
+  <text x="222" y="256"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic" font-size="17" fill="#d4af37" opacity="0.78" letter-spacing="1">Football Never Sleeps.</text>
+
+  <!-- Handle top right -->
+  <text x="800" y="32" text-anchor="end"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="18" fill="url(#gold-fb)" opacity="0.65">@GoalRushGlobal</text>
+</svg>

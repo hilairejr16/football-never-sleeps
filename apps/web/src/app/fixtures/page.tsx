@@ -6,6 +6,7 @@ import type { Match } from '@/lib/types';
 export const metadata: Metadata = {
   title: 'Fixtures & Schedule — World Cup 2026',
   description: 'Full FIFA World Cup 2026 fixture schedule, upcoming matches, and results from the knockout stages.',
+  alternates: { canonical: '/fixtures' },
 };
 
 export const revalidate = 300;

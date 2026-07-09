@@ -4,6 +4,7 @@ import { Users, Trophy, Star, Flag } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'World Cup 2026 Teams',
   description: 'All 8 FIFA World Cup 2026 quarter-finalists with squad profiles, tournament stats, and knockout path.',
+  alternates: { canonical: '/teams' },
 };
 
 export const revalidate = 300;

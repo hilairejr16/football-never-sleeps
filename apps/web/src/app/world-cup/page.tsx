@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { Trophy, Clock, Star, TrendingUp, ArrowRight, Flag } from 'lucide-react';
 import type { Match, Standing, Player } from '@/lib/types';
 import WCSummaryPlayer from '@/components/ui/WCSummaryPlayer';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'FIFA World Cup 2026 — Live Results, Scores & Updates',
   description: 'Complete FIFA World Cup 2026 coverage: live scores, match results, standings, top scorers and AI-powered analysis. USA · Canada · Mexico.',
+  alternates: { canonical: '/world-cup' },
 };
 
 export const revalidate = 60;
@@ -119,6 +121,7 @@ export default async function WorldCupPage() {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 lg:px-6 py-8">
+      <BreadcrumbSchema crumbs={[{ name: 'FIFA World Cup 2026', path: '/world-cup' }]} />
 
       {/* ── Hero Header ─────────────────────────────────── */}
       <div

@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${league.name} — GoalRush Global`,
     description: `${league.name} ${league.season} standings, fixtures, results and news on GoalRush Global.`,
+    alternates: { canonical: `/league/${params.slug}` },
   };
 }
 

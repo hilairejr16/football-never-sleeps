@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440" width="2560" height="1440" role="img" aria-label="GoalRush Global YouTube Banner">
+  <title>GoalRush Global — YouTube Channel Art</title>
+  <!--
+    YOUTUBE SAFE ZONES:
+    Desktop full view : 2560 × 1440 (entire canvas)
+    Tablet safe area  : 1855 × 423  (centered)
+    Mobile safe area  : 1546 × 423  (centered)
+    TV display        : 2560 × 1440 (entire canvas)
+    Critical content  : center 1546 × 423 — keep all key text/logo here
+  -->
+  <defs>
+    <linearGradient id="bg-yt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0d0d"/>
+      <stop offset="40%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </linearGradient>
+    <radialGradient id="center-glow-yt" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="left-glow-yt" cx="0%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="red-badge-yt" cx="36%" cy="28%" r="65%">
+      <stop offset="0%" stop-color="#f05555"/>
+      <stop offset="55%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+    <linearGradient id="gold-yt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d76e"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#92700a"/>
+    </linearGradient>
+    <linearGradient id="scanline-yt" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="transparent"/>
+      <stop offset="49%" stop-color="transparent"/>
+      <stop offset="50%" stop-color="rgba(255,255,255,0.015)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0.015)"/>
+    </linearGradient>
+    <!-- Diagonal speed lines (cinematic motion blur effect) -->
+    <linearGradient id="speed-left" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="speed-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="badge-shadow-yt" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="30" flood-color="#000" flood-opacity="0.75"/>
+    </filter>
+    <filter id="glow-yt" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="text-glow-yt" x="-10%" y="-40%" width="120%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="2560" height="1440" fill="url(#bg-yt)"/>
+
+  <!-- Ambient red glow layers -->
+  <rect width="2560" height="1440" fill="url(#center-glow-yt)"/>
+  <rect width="2560" height="1440" fill="url(#left-glow-yt)"/>
+
+  <!-- Subtle scanlines texture (TV broadcast feel) -->
+  <rect width="2560" height="1440" fill="url(#scanline-yt)" opacity="0.4"/>
+
+  <!-- Diagonal speed lines — left panel -->
+  <polygon points="0,300 800,580 800,620 0,340" fill="url(#speed-left)"/>
+  <polygon points="0,420 700,660 700,680 0,440" fill="url(#speed-left)" opacity="0.6"/>
+  <polygon points="0,520 600,720 600,735 0,535" fill="url(#speed-left)" opacity="0.35"/>
+  <polygon points="0,620 500,790 500,800 0,630" fill="url(#speed-left)" opacity="0.2"/>
+  <!-- Diagonal speed lines — right panel -->
+  <polygon points="2560,300 1760,580 1760,620 2560,340" fill="url(#speed-right)"/>
+  <polygon points="2560,420 1860,660 1860,680 2560,440" fill="url(#speed-right)" opacity="0.6"/>
+  <polygon points="2560,520 1960,720 1960,735 2560,535" fill="url(#speed-right)" opacity="0.35"/>
+  <polygon points="2560,620 2060,790 2060,800 2560,630" fill="url(#speed-right)" opacity="0.2"/>
+
+  <!-- Gold horizontal rule — top safe zone marker -->
+  <line x1="507" y1="508" x2="2053" y2="508" stroke="url(#gold-yt)" stroke-width="1" opacity="0.15"/>
+  <!-- Gold horizontal rule — bottom safe zone marker -->
+  <line x1="507" y1="932" x2="2053" y2="932" stroke="url(#gold-yt)" stroke-width="1" opacity="0.15"/>
+
+  <!-- === SAFE ZONE CONTENT (1546×423, centered → x:507–2053, y:508–932) === -->
+
+  <!-- Badge icon — left side of safe zone -->
+  <!-- Ambient glow -->
+  <circle cx="760" cy="720" r="230" fill="#dc2626" opacity="0.12" filter="url(#glow-yt)"/>
+  <!-- Gold rings -->
+  <circle cx="760" cy="720" r="214" fill="none" stroke="url(#gold-yt)" stroke-width="2.5" opacity="0.40"/>
+  <circle cx="760" cy="720" r="206" fill="none" stroke="url(#gold-yt)" stroke-width="1"   opacity="0.60"/>
+  <!-- Red badge -->
+  <circle cx="760" cy="720" r="196" fill="url(#red-badge-yt)" filter="url(#badge-shadow-yt)"/>
+  <!-- Glass highlight -->
+  <ellipse cx="700" cy="638" rx="78" ry="48" fill="white" opacity="0.07"/>
+  <!-- Lightning bolt -->
+  <g transform="translate(760,720) scale(2.8) translate(-50,-50)">
+    <path d="M 57,4 L 24,54 L 47,54 L 43,96 L 76,46 L 53,46 Z" fill="white"/>
+    <path d="M 57,4 L 53,46 L 60,25 Z" fill="white" opacity="0.28"/>
+  </g>
+
+  <!-- Vertical separator -->
+  <line x1="1005" y1="550" x2="1005" y2="890" stroke="#dc2626" stroke-width="2" opacity="0.50"/>
+
+  <!-- Main wordmark block — right of separator -->
+  <!-- GOALRUSH -->
+  <text x="1040" y="740"
+    font-family="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+    font-size="192" font-weight="900" fill="white" letter-spacing="-2"
+    filter="url(#text-glow-yt)" opacity="0.06">GOALRUSH</text>
+  <text x="1040" y="740"
+    font-family="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+    font-size="192" font-weight="900" fill="white" letter-spacing="-2">GOALRUSH</text>
+
+  <!-- GLOBAL in gold -->
+  <text x="1050" y="820"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="58" fill="url(#gold-yt)" letter-spacing="36">GLOBAL</text>
+
+  <!-- Red accent rule -->
+  <rect x="1040" y="836" width="1010" height="3" fill="#dc2626" rx="1.5"/>
+
+  <!-- Tagline -->
+  <text x="1042" y="878"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic" font-size="34" fill="#d4af37" opacity="0.80" letter-spacing="2">Football Never Sleeps.</text>
+
+  <!-- === EDGE CONTENT (visible on desktop/TV, not critical) === -->
+
+  <!-- Left edge decorative score ticker simulation -->
+  <text x="90" y="350" font-family="Impact, sans-serif" font-size="22" fill="#dc2626" opacity="0.35" letter-spacing="2">LIVE</text>
+  <text x="90" y="382" font-family="'Arial', sans-serif" font-size="18" fill="white" opacity="0.20">MAN UTD  2 – 1  ARSENAL</text>
+  <text x="90" y="414" font-family="'Arial', sans-serif" font-size="18" fill="white" opacity="0.14">BARCELONA  3 – 0  SEVILLA</text>
+  <text x="90" y="446" font-family="'Arial', sans-serif" font-size="18" fill="white" opacity="0.10">PSG  1 – 1  LYON</text>
+
+  <!-- Right edge — social handle -->
+  <text x="2470" y="350" text-anchor="end"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="28" fill="url(#gold-yt)" opacity="0.40" letter-spacing="2">@GoalRushGlobal</text>
+  <text x="2470" y="390" text-anchor="end"
+    font-family="'Arial', sans-serif"
+    font-size="20" fill="white" opacity="0.22">goalrushglobal.com</text>
+
+  <!-- Top right corner — GRG monogram badge (small) -->
+  <circle cx="2430" cy="130" r="68" fill="url(#red-badge-yt)" opacity="0.80"/>
+  <circle cx="2430" cy="130" r="74" fill="none" stroke="url(#gold-yt)" stroke-width="1.5" opacity="0.45"/>
+  <text x="2430" y="144" text-anchor="middle"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="32" fill="white" letter-spacing="6">GRG</text>
+
+  <!-- Bottom edge — platform icons text -->
+  <text x="1280" y="1360" text-anchor="middle"
+    font-family="'Arial', sans-serif"
+    font-size="22" fill="white" opacity="0.18" letter-spacing="4">TikTok · Instagram · X · YouTube · Facebook · Telegram · Discord</text>
+</svg>

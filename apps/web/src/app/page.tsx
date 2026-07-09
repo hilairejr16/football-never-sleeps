@@ -11,6 +11,7 @@ import TrendingWidget from '@/components/widgets/TrendingWidget';
 export const metadata: Metadata = {
   title: 'GoalRush Global — Football Never Sleeps',
   description: 'Live football scores, breaking news, transfer updates, and match predictions from every major league worldwide.',
+  alternates: { canonical: '/' },
 };
 
 export const revalidate = 60; // ISR — revalidate every 60 seconds

@@ -4,6 +4,7 @@ import { BarChart2, Target, TrendingUp, Shield, Zap } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'World Cup 2026 Statistics',
   description: 'Top scorers, assists leaders, clean sheets, and advanced team stats from FIFA World Cup 2026.',
+  alternates: { canonical: '/statistics' },
 };
 
 export const revalidate = 300;

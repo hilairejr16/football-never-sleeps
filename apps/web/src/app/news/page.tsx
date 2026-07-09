@@ -3,10 +3,12 @@ import Link from 'next/link';
 import { Clock, TrendingUp, Trophy } from 'lucide-react';
 import NewsCard from '@/components/cards/NewsCard';
 import type { NewsArticle } from '@/lib/types';
+import BreadcrumbSchema from '@/components/seo/BreadcrumbSchema';
 
 export const metadata: Metadata = {
   title: 'Football News — GoalRush Global',
   description: 'World Cup 2026 match reports, analysis, and transfer news — AI-powered coverage 24/7.',
+  alternates: { canonical: '/news' },
 };
 
 export const revalidate = 60;
@@ -175,6 +177,7 @@ export default async function NewsPage() {
 
   return (
     <div className="max-w-screen-2xl mx-auto px-4 lg:px-6 py-8">
+      <BreadcrumbSchema crumbs={[{ name: 'Football News', path: '/news' }]} />
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-display tracking-wider text-white mb-2">FOOTBALL NEWS</h1>

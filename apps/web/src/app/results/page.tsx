@@ -5,6 +5,7 @@ import { Flag, Trophy, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Match Results — World Cup 2026',
   description: 'Full FIFA World Cup 2026 match results from the Round of 16, Quarter-Finals and beyond.',
+  alternates: { canonical: '/results' },
 };
 
 export const revalidate = 300;

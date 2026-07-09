@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" role="img" aria-label="GoalRush Global X/Twitter Banner">
+  <title>GoalRush Global — X / Twitter Header</title>
+  <!--
+    X (Twitter) header: 1500 × 500px
+    Profile photo overlaps bottom-left: ~220px circle centered ~275,430
+    Safe text zone: roughly x:520–1480, y:40–440
+  -->
+  <defs>
+    <linearGradient id="bg-tw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e0e0e"/>
+      <stop offset="55%" stop-color="#141414"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </linearGradient>
+    <radialGradient id="red-glow-tw" cx="22%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="center-glow-tw" cx="65%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <radialGradient id="red-badge-tw" cx="36%" cy="28%" r="65%">
+      <stop offset="0%" stop-color="#f05555"/>
+      <stop offset="55%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+    <linearGradient id="gold-tw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d76e"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#92700a"/>
+    </linearGradient>
+    <!-- Dynamic slash mark gradient -->
+    <linearGradient id="slash-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.60"/>
+      <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="badge-shadow-tw">
+      <feDropShadow dx="0" dy="6" stdDeviation="18" flood-color="#000" flood-opacity="0.70"/>
+    </filter>
+    <filter id="glow-tw" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base -->
+  <rect width="1500" height="500" fill="url(#bg-tw)"/>
+  <rect width="1500" height="500" fill="url(#red-glow-tw)"/>
+  <rect width="1500" height="500" fill="url(#center-glow-tw)"/>
+
+  <!-- Diagonal slash marks — energy / broadcast feel -->
+  <polygon points="300,0 360,0 700,500 640,500" fill="url(#slash-grad)" opacity="0.35"/>
+  <polygon points="400,0 430,0 770,500 740,500" fill="url(#slash-grad)" opacity="0.18"/>
+  <polygon points="180,0 210,0 550,500 520,500" fill="url(#slash-grad)" opacity="0.12"/>
+
+  <!-- Gold rule — top -->
+  <line x1="0" y1="4" x2="1500" y2="4" stroke="url(#gold-tw)" stroke-width="1.5" opacity="0.45"/>
+  <!-- Gold rule — bottom -->
+  <line x1="0" y1="496" x2="1500" y2="496" stroke="url(#gold-tw)" stroke-width="1.5" opacity="0.45"/>
+
+  <!-- Badge icon — left area (will partially underlie profile photo overlay on Twitter) -->
+  <circle cx="230" cy="250" r="185" fill="#dc2626" opacity="0.10" filter="url(#glow-tw)"/>
+  <circle cx="230" cy="250" r="168" fill="none" stroke="url(#gold-tw)" stroke-width="2" opacity="0.42"/>
+  <circle cx="230" cy="250" r="160" fill="url(#red-badge-tw)" filter="url(#badge-shadow-tw)"/>
+  <ellipse cx="175" cy="190" rx="60" ry="36" fill="white" opacity="0.07"/>
+  <g transform="translate(230,250) scale(2.3) translate(-50,-50)">
+    <path d="M 57,4 L 24,54 L 47,54 L 43,96 L 76,46 L 53,46 Z" fill="white"/>
+    <path d="M 57,4 L 53,46 L 60,25 Z" fill="white" opacity="0.28"/>
+  </g>
+
+  <!-- Vertical separator -->
+  <line x1="458" y1="60" x2="458" y2="440" stroke="#dc2626" stroke-width="1.5" opacity="0.45"/>
+
+  <!-- GOALRUSH wordmark -->
+  <text x="488" y="310"
+    font-family="Impact, 'Arial Black', 'Franklin Gothic Heavy', sans-serif"
+    font-size="210" font-weight="900" fill="white" letter-spacing="-3">GOALRUSH</text>
+
+  <!-- GLOBAL in gold — positioned tight below -->
+  <text x="498" y="378"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="50" fill="url(#gold-tw)" letter-spacing="30">GLOBAL</text>
+
+  <!-- Red rule -->
+  <rect x="488" y="390" width="980" height="2.5" fill="#dc2626" rx="1.5"/>
+
+  <!-- Tagline -->
+  <text x="490" y="432"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic" font-size="28" fill="#d4af37" opacity="0.78" letter-spacing="1.5">Football Never Sleeps.</text>
+
+  <!-- Handle — top right -->
+  <text x="1470" y="58" text-anchor="end"
+    font-family="Impact, 'Arial Black', sans-serif"
+    font-size="28" fill="url(#gold-tw)" opacity="0.70" letter-spacing="1">@GoalRushGlobal</text>
+
+  <!-- Decorative hexagon grid — top right corner (subtle texture) -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="0.8" fill="none">
+    <polygon points="1350,20 1380,36 1380,68 1350,84 1320,68 1320,36"/>
+    <polygon points="1410,20 1440,36 1440,68 1410,84 1380,68 1380,36"/>
+    <polygon points="1470,20 1500,36 1500,68 1470,84 1440,68 1440,36"/>
+    <polygon points="1380,84 1410,100 1410,132 1380,148 1350,132 1350,100"/>
+    <polygon points="1440,84 1470,100 1470,132 1440,148 1410,132 1410,100"/>
+    <polygon points="1350,148 1380,164 1380,196 1350,212 1320,196 1320,164"/>
+    <polygon points="1410,148 1440,164 1440,196 1410,212 1380,196 1380,164"/>
+    <polygon points="1470,148 1500,164 1500,196 1470,212 1440,196 1440,164"/>
+  </g>
+</svg>

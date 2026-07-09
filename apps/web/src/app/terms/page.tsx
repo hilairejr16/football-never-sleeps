@@ -4,6 +4,8 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Terms of Service — GoalRush Global',
   description: 'GoalRush Global terms of service — the rules governing your use of our platform.',
+  alternates: { canonical: '/terms' },
+  robots: { index: false },
 };
 
 const SECTIONS = [

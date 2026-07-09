@@ -4,6 +4,7 @@ import { Mail, MessageSquare, Globe } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Contact GoalRush Global',
   description: 'Get in touch with the GoalRush Global team for editorial enquiries, advertising, or technical support.',
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

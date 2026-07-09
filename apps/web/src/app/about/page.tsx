@@ -5,6 +5,7 @@ import { Zap, Globe, Shield, TrendingUp } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About GoalRush Global',
   description: 'GoalRush Global is the AI-powered football media platform delivering live scores, breaking news, and analysis 24/7.',
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

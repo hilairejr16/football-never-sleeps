@@ -5,6 +5,7 @@ import { Zap } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Advertise with GoalRush Global',
   description: 'Reach passionate football fans with GoalRush Global advertising solutions.',
+  alternates: { canonical: '/advertise' },
 };
 
 const PACKAGES = [
