@@ -277,26 +277,35 @@ export default async function WorldCupPage() {
           {/* Stage timeline — clickable pills */}
           <div className="mt-8 flex flex-wrap gap-2">
             {([
-              { label: 'Group Stage',    href: '/results',  done: true },
-              { label: 'Round of 16',    href: '/results',  done: true },
-              { label: 'Quarter-Finals', href: '/fixtures', done: new Date() > new Date('2026-07-12') },
-              { label: 'Semi-Finals',    href: '/fixtures', done: new Date() > new Date('2026-07-16') },
-              { label: 'Final',          href: '/fixtures', done: new Date() > new Date('2026-07-19') },
-            ] as { label: string; href: string; done: boolean }[]).map(s => (
-              <Link
-                key={s.label}
-                href={s.href}
-                className={`text-xs font-semibold px-3 py-1.5 rounded-full border transition-all hover:opacity-80 active:scale-95 ${
-                  s.label === stage.replace('🏆 ', '')
-                    ? 'bg-yellow-500 border-yellow-400 text-black'
-                    : s.done
-                    ? 'bg-white/10 border-white/20 text-white/50 line-through'
-                    : 'bg-white/5 border-white/10 text-white/30 hover:text-white/60 hover:border-white/20'
-                }`}
-              >
-                {s.label}
-              </Link>
-            ))}
+              { label: 'Group Stage',    href: '/results',  key: 'Group Stage' },
+              { label: 'Round of 16',    href: '/results',  key: 'Round of 16' },
+              { label: 'Quarter-Finals', href: '/fixtures', key: 'Quarter-Finals' },
+              { label: 'Semi-Finals',    href: '/fixtures', key: 'Semi-Finals' },
+              { label: '🏆 Final',       href: '/fixtures', key: '🏆 THE FINAL' },
+            ] as { label: string; href: string; key: string }[]).map((s, i) => {
+              const ORDER = ['Group Stage','Round of 16','Quarter-Finals','Semi-Finals','3rd Place Play-off','🏆 THE FINAL','Completed'];
+              const stageIdx = ORDER.indexOf(stage);
+              const pillIdx  = ORDER.indexOf(s.key);
+              const status   = pillIdx < stageIdx ? 'done' : pillIdx === stageIdx ? 'active' : 'upcoming';
+              return (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-all active:scale-95 ${
+                    status === 'active'
+                      ? 'bg-yellow-500 border-yellow-400 text-black shadow-lg shadow-yellow-500/25'
+                      : status === 'done'
+                      ? 'bg-green-900/40 border-green-700/50 text-green-400/70 line-through decoration-green-600/50'
+                      : 'bg-white/5 border-white/20 text-white/55 hover:bg-white/10 hover:text-white hover:border-white/30'
+                  }`}
+                >
+                  {status === 'done' && <span className="text-green-500">✓</span>}
+                  {status === 'active' && <span>▶</span>}
+                  {status === 'upcoming' && <span className="opacity-50">{i + 1}</span>}
+                  {s.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

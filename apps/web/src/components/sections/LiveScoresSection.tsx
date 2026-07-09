@@ -8,9 +8,9 @@ import type { Match } from '@/lib/types';
 
 const QF_FIXTURES = [
   { home: 'Spain',    homeFlag: '🇪🇸', away: 'Germany',   awayFlag: '🇩🇪', date: 'Thu Jul 10', time: '3:00 PM ET', venue: 'MetLife Stadium, NJ' },
-  { home: 'France',   homeFlag: '🇫🇷', away: 'England',   awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', date: 'Thu Jul 10', time: '7:00 PM ET', venue: 'AT&T Stadium, TX' },
+  { home: 'France',   homeFlag: '🇫🇷', away: 'England',   awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', date: 'Thu Jul 10', time: '7:00 PM ET', venue: 'AT&T Stadium, Dallas' },
   { home: 'Brazil',   homeFlag: '🇧🇷', away: 'Argentina', awayFlag: '🇦🇷', date: 'Fri Jul 11', time: '3:00 PM ET', venue: 'Rose Bowl, CA' },
-  { home: 'Portugal', homeFlag: '🇵🇹', away: 'USA',       awayFlag: '🇺🇸', date: 'Sun Jul 12', time: '7:00 PM ET', venue: "Levi's Stadium, CA" },
+  { home: 'Portugal', homeFlag: '🇵🇹', away: 'USA',       awayFlag: '🇺🇸', date: 'Sun Jul 12', time: '7:00 PM ET', venue: "Levi's Stadium, SF" },
 ];
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
