@@ -27,14 +27,14 @@ const WC_LEAGUE = { id: 1, name: 'FIFA World Cup 2026', shortName: 'WC 2026', lo
 const mkTeam = (name: string) => ({ id: 0, name, shortName: name, logo: '', country: '' });
 
 const WC_R16_RESULTS: Match[] = [
-  { id: 101, date: '2026-07-04T23:00:00Z', homeTeam: mkTeam('Spain'),     awayTeam: mkTeam('Japan'),       homeScore: 2, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 102, date: '2026-07-04T19:00:00Z', homeTeam: mkTeam('Germany'),   awayTeam: mkTeam('Belgium'),     homeScore: 2, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 103, date: '2026-07-05T23:00:00Z', homeTeam: mkTeam('France'),    awayTeam: mkTeam('Poland'),      homeScore: 4, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 104, date: '2026-07-05T19:00:00Z', homeTeam: mkTeam('England'),   awayTeam: mkTeam('Senegal'),     homeScore: 2, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 105, date: '2026-07-06T23:00:00Z', homeTeam: mkTeam('Brazil'),    awayTeam: mkTeam('Mexico'),      homeScore: 3, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 106, date: '2026-07-06T19:00:00Z', homeTeam: mkTeam('Argentina'), awayTeam: mkTeam('Morocco'),     homeScore: 2, awayScore: 1, status: 'AET', minute: 120, league: WC_LEAGUE },
-  { id: 107, date: '2026-07-07T23:00:00Z', homeTeam: mkTeam('Portugal'),  awayTeam: mkTeam('Switzerland'), homeScore: 3, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
-  { id: 108, date: '2026-07-07T19:00:00Z', homeTeam: mkTeam('USA'),       awayTeam: mkTeam('Iran'),        homeScore: 2, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 101, date: '2026-07-04T19:00:00Z', homeTeam: mkTeam('Morocco'),     awayTeam: mkTeam('Canada'),    homeScore: 3, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 102, date: '2026-07-04T23:00:00Z', homeTeam: mkTeam('France'),      awayTeam: mkTeam('Paraguay'),  homeScore: 1, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 103, date: '2026-07-05T19:00:00Z', homeTeam: mkTeam('Norway'),      awayTeam: mkTeam('Brazil'),    homeScore: 2, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 104, date: '2026-07-05T23:00:00Z', homeTeam: mkTeam('England'),     awayTeam: mkTeam('Mexico'),    homeScore: 3, awayScore: 2, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 105, date: '2026-07-06T19:00:00Z', homeTeam: mkTeam('Spain'),       awayTeam: mkTeam('Portugal'),  homeScore: 1, awayScore: 0, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 106, date: '2026-07-06T23:00:00Z', homeTeam: mkTeam('Belgium'),     awayTeam: mkTeam('USA'),       homeScore: 4, awayScore: 1, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 107, date: '2026-07-07T19:00:00Z', homeTeam: mkTeam('Argentina'),   awayTeam: mkTeam('Egypt'),     homeScore: 3, awayScore: 2, status: 'FT',  minute: 90,  league: WC_LEAGUE },
+  { id: 108, date: '2026-07-07T23:00:00Z', homeTeam: mkTeam('Switzerland'), awayTeam: mkTeam('Colombia'),  homeScore: 0, awayScore: 0, status: 'PEN', minute: 120, league: WC_LEAGUE },
 ];
 
 interface WCFixture {
@@ -51,17 +51,17 @@ interface WCFixture {
 
 const WC_KNOCKOUT: WCFixture[] = [
   // Quarter-Finals
-  { id: 'qf1',   round: 'Quarter-Final',      date: '2026-07-10T19:00:00Z', homeTeam: 'Spain',    awayTeam: 'Germany',  venue: 'MetLife Stadium, NJ',   status: 'SCHEDULED', homeScore: null, awayScore: null },
-  { id: 'qf2',   round: 'Quarter-Final',      date: '2026-07-10T23:00:00Z', homeTeam: 'France',   awayTeam: 'England',  venue: 'AT&T Stadium, TX',      status: 'SCHEDULED', homeScore: null, awayScore: null },
-  { id: 'qf3',   round: 'Quarter-Final',      date: '2026-07-11T19:00:00Z', homeTeam: 'Brazil',   awayTeam: 'Argentina',venue: 'Rose Bowl, CA',          status: 'SCHEDULED', homeScore: null, awayScore: null },
-  { id: 'qf4',   round: 'Quarter-Final',      date: '2026-07-12T23:00:00Z', homeTeam: 'Portugal', awayTeam: 'USA',      venue: "Levi's Stadium, CA",     status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'qf1',   round: 'Quarter-Final',      date: '2026-07-09T20:00:00Z', homeTeam: 'France',    awayTeam: 'Morocco',      venue: 'Gillette Stadium, Boston',        status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'qf2',   round: 'Quarter-Final',      date: '2026-07-10T19:00:00Z', homeTeam: 'Spain',     awayTeam: 'Belgium',      venue: 'SoFi Stadium, Inglewood CA',      status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'qf3',   round: 'Quarter-Final',      date: '2026-07-11T21:00:00Z', homeTeam: 'Norway',    awayTeam: 'England',      venue: 'Hard Rock Stadium, Miami',        status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'qf4',   round: 'Quarter-Final',      date: '2026-07-12T01:00:00Z', homeTeam: 'Argentina', awayTeam: 'Switzerland',  venue: 'Arrowhead Stadium, Kansas City',  status: 'SCHEDULED', homeScore: null, awayScore: null },
   // Semi-Finals
-  { id: 'sf1',   round: 'Semi-Final',         date: '2026-07-14T23:00:00Z', homeTeam: 'QF1 Winner', awayTeam: 'QF3 Winner', venue: 'MetLife Stadium, NJ', status: 'SCHEDULED', homeScore: null, awayScore: null },
-  { id: 'sf2',   round: 'Semi-Final',         date: '2026-07-15T23:00:00Z', homeTeam: 'QF2 Winner', awayTeam: 'QF4 Winner', venue: 'AT&T Stadium, TX',   status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'sf1',   round: 'Semi-Final',         date: '2026-07-14T19:00:00Z', homeTeam: 'QF1 Winner', awayTeam: 'QF2 Winner', venue: 'AT&T Stadium, Dallas',            status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'sf2',   round: 'Semi-Final',         date: '2026-07-15T19:00:00Z', homeTeam: 'QF3 Winner', awayTeam: 'QF4 Winner', venue: 'Mercedes-Benz Stadium, Atlanta',  status: 'SCHEDULED', homeScore: null, awayScore: null },
   // 3rd Place
-  { id: '3rd',   round: '3rd Place Play-off', date: '2026-07-18T19:00:00Z', homeTeam: 'SF1 Loser',  awayTeam: 'SF2 Loser',  venue: 'Rose Bowl, CA',      status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: '3rd',   round: '3rd Place Play-off', date: '2026-07-18T19:00:00Z', homeTeam: 'SF1 Loser',  awayTeam: 'SF2 Loser',  venue: 'Rose Bowl, CA',                   status: 'SCHEDULED', homeScore: null, awayScore: null },
   // Final
-  { id: 'final', round: '🏆 THE FINAL',       date: '2026-07-19T23:00:00Z', homeTeam: 'SF1 Winner', awayTeam: 'SF2 Winner', venue: 'MetLife Stadium, NJ', status: 'SCHEDULED', homeScore: null, awayScore: null },
+  { id: 'final', round: '🏆 THE FINAL',       date: '2026-07-19T23:00:00Z', homeTeam: 'SF1 Winner', awayTeam: 'SF2 Winner', venue: 'MetLife Stadium, NJ',             status: 'SCHEDULED', homeScore: null, awayScore: null },
 ];
 
 function MatchRow({ match }: { match: Match }) {
@@ -241,7 +241,7 @@ export default function LiveScoresPage() {
           </h1>
           <p className="text-brand-gray text-sm mt-1">
             {filter === 'wc'
-              ? 'FIFA World Cup 2026 · Quarter-Finals · July 10–12 · Final July 19'
+              ? 'FIFA World Cup 2026 · Quarter-Finals · July 9–11 · Final July 19'
               : 'Real-time scores from all major leagues'}
           </p>
         </div>
@@ -323,7 +323,7 @@ export default function LiveScoresPage() {
               <div className="px-5 py-4 border-b border-brand-border flex items-center gap-2">
                 <Calendar className="w-4 h-4 text-yellow-400" />
                 <h2 className="text-white font-semibold">Knockout Schedule</h2>
-                <span className="text-yellow-400/60 text-xs ml-auto">Jul 10 → Jul 19</span>
+                <span className="text-yellow-400/60 text-xs ml-auto">Jul 9 → Jul 19</span>
               </div>
               <div>
                 {upcomingFixtures.map(f => <FixtureRow key={f.id} fixture={f} />)}

@@ -5,15 +5,13 @@ import Link from 'next/link';
 import { Search, Clock, Eye } from 'lucide-react';
 
 const SEARCHABLE = [
-  { type: 'Article', href: '/news/england-france-qf-preview',     title: 'England vs France: The Quarter-Final the World Has Been Waiting For', tags: ['England','France','Quarter-Final','Mbappé','Bellingham'] },
+  { type: 'Article', href: '/news/france-morocco-qf-preview',      title: 'France vs Morocco: Mbappé vs the Atlas Lions — Who Stops Who?',       tags: ['France','Morocco','Quarter-Final','Mbappé'] },
+  { type: 'Article', href: '/news/spain-belgium-qf-preview',       title: 'Spain vs Belgium: Yamal vs De Bruyne in a Clash of Creators',         tags: ['Spain','Belgium','Quarter-Final','Yamal','De Bruyne'] },
+  { type: 'Article', href: '/news/norway-england-qf-preview',      title: 'Norway vs England: Haaland Has Already Eliminated Brazil',            tags: ['Norway','England','Quarter-Final','Haaland','Bellingham'] },
+  { type: 'Article', href: '/news/argentina-switzerland-qf-preview', title: 'Argentina vs Switzerland: Messi vs the Nati on the Biggest Stage',  tags: ['Argentina','Switzerland','Quarter-Final','Messi'] },
   { type: 'Article', href: '/news/yamal-masterclass-analysis',     title: "Yamal is the Player of the Tournament — and He's Only 18",             tags: ['Spain','Yamal','Analysis'] },
   { type: 'Article', href: '/news/messi-farewell-world-cup',       title: "The Last Dance: Is This Really Messi's Final World Cup Miracle?",       tags: ['Argentina','Messi','Analysis'] },
-  { type: 'Article', href: '/news/brazil-argentina-qf-preview',    title: 'Brazil vs Argentina: The Super Clásico That Shakes the World',         tags: ['Brazil','Argentina','Quarter-Final'] },
-  { type: 'Article', href: '/news/mbappe-golden-boot-race',        title: "Mbappé vs Vinícius: The Golden Boot Race Is Getting Spicy",            tags: ['Mbappé','Vinícius Jr','Golden Boot','France','Brazil'] },
-  { type: 'Article', href: '/news/usa-surprise-package',           title: "USA's Stunning Run: How America Became the Tournament's Biggest Story", tags: ['USA','Pulisic'] },
-  { type: 'Article', href: '/news/transfer-window-post-wc',        title: 'Summer 2026 Transfer Window: Which Stars Will Move After the World Cup?', tags: ['Transfers','Wirtz','Osimhen','Yamal'] },
-  { type: 'Article', href: '/news/ronaldo-last-dance-portugal',    title: "Ronaldo's Last Dance: Four Goals, One Final Chance at Glory",          tags: ['Portugal','Ronaldo'] },
-  { type: 'Article', href: '/news/germany-dark-horses',            title: "Germany: The Dark Horses Nobody Is Talking About Enough",              tags: ['Germany','Wirtz','Tactics'] },
+  { type: 'Article', href: '/news/transfer-window-post-wc',        title: 'Summer 2026 Transfer Window: Which Stars Will Move After the World Cup?', tags: ['Transfers','Osimhen','Yamal','Haaland'] },
   { type: 'Article', href: '/news/metlife-stadium-final-venue',    title: "MetLife Stadium: The Cathedral That Will Host Football's Greatest Moment", tags: ['MetLife','Final','USA'] },
   { type: 'Article', href: '/news/spain-possession-stats',         title: 'Spain by the Numbers: The Most Dominant Team at World Cup 2026',       tags: ['Spain','Stats'] },
   { type: 'Article', href: '/news/48-team-format-verdict',         title: '48 Teams: Was the Expanded Format a Success?',                         tags: ['FIFA','Format'] },

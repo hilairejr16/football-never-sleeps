@@ -21,68 +21,68 @@ async function fetchStandings() {
 
 const QF_TEAMS = [
   {
-    name: 'Spain', code: 'ESP', flag: '🇪🇸', group: 'A Winners', manager: 'Luis de la Fuente',
-    formation: '4-3-3', ranking: 2, goalsFor: 14, goalsAgainst: 3,
-    keyPlayers: ['Lamine Yamal (7G 5A)', 'Pedri (4A)', 'Morata (5G)'],
-    form: 'WWWWW', strength: 92,
-    path: ['Group A — 1st', 'R16: vs Japan 2–0', 'QF: vs Germany'],
-    info: 'Imperious in every phase. Yamal has been the tournament\'s standout player at just 18.',
-  },
-  {
-    name: 'Germany', code: 'GER', flag: '🇩🇪', group: 'B Runners-Up', manager: 'Julian Nagelsmann',
-    formation: '4-2-3-1', ranking: 4, goalsFor: 11, goalsAgainst: 6,
-    keyPlayers: ['Florian Wirtz (4G 3A)', 'Kai Havertz (5G)', 'Kimmich (4A)'],
-    form: 'WDWWW', strength: 87,
-    path: ['Group B — 2nd', 'R16: vs Belgium 2–1', 'QF: vs Spain'],
-    info: 'Defensively exposed at times but deadly on the counter with Wirtz pulling strings.',
-  },
-  {
-    name: 'France', code: 'FRA', flag: '🇫🇷', group: 'C Winners', manager: 'Didier Deschamps',
-    formation: '4-3-3', ranking: 3, goalsFor: 9, goalsAgainst: 4,
+    name: 'France', code: 'FRA', flag: '🇫🇷', group: 'Group C Winners', manager: 'Didier Deschamps',
+    formation: '4-3-3', ranking: 3, goalsFor: 10, goalsAgainst: 3,
     keyPlayers: ['Kylian Mbappé (6G 2A)', 'Griezmann (3A)', 'Camavinga (CM)'],
-    form: 'WWWLW', strength: 89,
-    path: ['Group C — 1st', 'R16: vs Poland 4–1', 'QF: vs England'],
+    form: 'WWWWW', strength: 90,
+    path: ['Group C — 1st', 'R16: vs Paraguay 1–0', 'QF: vs Morocco'],
     info: 'La machine is purring. Mbappé at his irresistible best — already the Golden Boot frontrunner.',
   },
   {
-    name: 'England', code: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', group: 'D Winners', manager: 'Gareth Southgate',
-    formation: '4-2-3-1', ranking: 5, goalsFor: 10, goalsAgainst: 5,
+    name: 'Morocco', code: 'MAR', flag: '🇲🇦', group: 'Group A Winners', manager: 'Walid Regragui',
+    formation: '4-3-3', ranking: 14, goalsFor: 9, goalsAgainst: 2,
+    keyPlayers: ['Hakim Ziyech (3G 4A)', 'Youssef En-Nesyri (4G)', 'Sofyan Amrabat (DM)'],
+    form: 'WWWWW', strength: 82,
+    path: ['Group A — 1st', 'R16: vs Canada 3–0', 'QF: vs France'],
+    info: 'The Atlas Lions are doing it again. Morocco have conceded just twice — the tournament\'s meanest defence.',
+  },
+  {
+    name: 'Spain', code: 'ESP', flag: '🇪🇸', group: 'Group D Winners', manager: 'Luis de la Fuente',
+    formation: '4-3-3', ranking: 2, goalsFor: 12, goalsAgainst: 3,
+    keyPlayers: ['Lamine Yamal (6G 4A)', 'Pedri (4A)', 'Morata (5G)'],
+    form: 'WWWWW', strength: 91,
+    path: ['Group D — 1st', 'R16: vs Portugal 1–0', 'QF: vs Belgium'],
+    info: 'Imperious in every phase. Yamal has been the tournament\'s standout player at just 18.',
+  },
+  {
+    name: 'Belgium', code: 'BEL', flag: '🇧🇪', group: 'Group B Winners', manager: 'Domenico Tedesco',
+    formation: '4-2-3-1', ranking: 5, goalsFor: 14, goalsAgainst: 5,
+    keyPlayers: ['Kevin De Bruyne (2G 7A)', 'Romelu Lukaku (5G)', 'Thibaut Courtois (GK)'],
+    form: 'WWWWW', strength: 87,
+    path: ['Group B — 1st', 'R16: vs USA 4–1', 'QF: vs Spain'],
+    info: 'The Golden Generation delivering at last. De Bruyne is pulling every string in midfield.',
+  },
+  {
+    name: 'Norway', code: 'NOR', flag: '🇳🇴', group: 'Group F Winners', manager: 'Ståle Solbakken',
+    formation: '4-3-3', ranking: 23, goalsFor: 13, goalsAgainst: 4,
+    keyPlayers: ['Erling Haaland (8G 3A)', 'Martin Ødegaard (3G 5A)', 'Alexander Sørloth (4G)'],
+    form: 'WWWWW', strength: 84,
+    path: ['Group F — 1st', 'R16: vs Brazil 2–0', 'QF: vs England'],
+    info: 'The biggest shock of the tournament. Haaland is a man on a mission — Brazil couldn\'t handle him.',
+  },
+  {
+    name: 'England', code: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', group: 'Group E Winners', manager: 'Gareth Southgate',
+    formation: '4-2-3-1', ranking: 5, goalsFor: 11, goalsAgainst: 6,
     keyPlayers: ['Harry Kane (5G)', 'Bellingham (3G 4A)', 'Saka (3G 3A)'],
     form: 'WWWDW', strength: 85,
-    path: ['Group D — 1st', 'R16: vs Senegal 2–0', 'QF: vs France'],
-    info: 'Defensively solid and clinical in front of goal. It\'s finally coming home? This squad says yes.',
+    path: ['Group E — 1st', 'R16: vs Mexico 3–2', 'QF: vs Norway'],
+    info: 'Grinding through — three leads in tournament play. England are dangerous but will need to tighten up against Haaland.',
   },
   {
-    name: 'Brazil', code: 'BRA', flag: '🇧🇷', group: 'E Winners', manager: 'Fernando Diniz',
-    formation: '4-2-3-1', ranking: 1, goalsFor: 16, goalsAgainst: 4,
-    keyPlayers: ['Vinícius Jr (5G 4A)', 'Rodrygo (4G)', 'Casemiro (DM)'],
-    form: 'WWWWW', strength: 91,
-    path: ['Group E — 1st', 'R16: vs Mexico 3–1', 'QF: vs Argentina'],
-    info: 'The most dangerous attack in the tournament. Vinicius Jr is terrifying defenders at every turn.',
-  },
-  {
-    name: 'Argentina', code: 'ARG', flag: '🇦🇷', group: 'F Winners', manager: 'Lionel Scaloni',
-    formation: '4-3-3', ranking: 1, goalsFor: 13, goalsAgainst: 5,
+    name: 'Argentina', code: 'ARG', flag: '🇦🇷', group: 'Group G Winners', manager: 'Lionel Scaloni',
+    formation: '4-3-3', ranking: 1, goalsFor: 14, goalsAgainst: 6,
     keyPlayers: ['Lionel Messi (4G 6A)', 'Julián Álvarez (5G)', 'Mac Allister (CM)'],
-    form: 'DWWWW', strength: 90,
-    path: ['Group F — 1st', 'R16: vs Morocco 2–1 AET', 'QF: vs Brazil'],
-    info: 'The world champions grinding through. Messi showing the world he still has another miracle in him.',
+    form: 'WWWWW', strength: 90,
+    path: ['Group G — 1st', 'R16: vs Egypt 3–2', 'QF: vs Switzerland'],
+    info: 'The world champions in full flight. Messi orchestrating another miracle on the grandest stage.',
   },
   {
-    name: 'Portugal', code: 'POR', flag: '🇵🇹', group: 'G Winners', manager: 'Roberto Martínez',
-    formation: '4-2-3-1', ranking: 6, goalsFor: 12, goalsAgainst: 4,
-    keyPlayers: ['Cristiano Ronaldo (4G)', 'Bruno Fernandes (2G 5A)', 'Rafael Leão (3G 3A)'],
-    form: 'WWWWW', strength: 86,
-    path: ['Group G — 1st', 'R16: vs Switzerland 3–0', 'QF: vs USA'],
-    info: 'Ronaldo\'s final World Cup, and he\'s making it count. A balanced squad with genuine depth.',
-  },
-  {
-    name: 'USA', code: 'USA', flag: '🇺🇸', group: 'H Winners', manager: 'Gregg Berhalter',
-    formation: '4-3-3', ranking: 13, goalsFor: 8, goalsAgainst: 6,
-    keyPlayers: ['Christian Pulisic (4G 2A)', 'Gio Reyna (3G)', 'Tyler Adams (DM)'],
-    form: 'WWDWW', strength: 78,
-    path: ['Group H — 1st', 'R16: vs Iran 2–1', 'QF: vs Portugal'],
-    info: 'The great hosts surprise. America\'s finest generation — buoyed by 80,000-strong home crowds.',
+    name: 'Switzerland', code: 'SUI', flag: '🇨🇭', group: 'Group H Winners', manager: 'Murat Yakin',
+    formation: '3-4-3', ranking: 19, goalsFor: 10, goalsAgainst: 5,
+    keyPlayers: ['Granit Xhaka (CM)', 'Breel Embolo (4G)', 'Yann Sommer (GK)'],
+    form: 'WWWWD', strength: 79,
+    path: ['Group H — 1st', 'R16: vs Colombia 0–0 (PKs)', 'QF: vs Argentina'],
+    info: 'Switzerland never give up. They went the distance against Colombia and are quietly dangerous — don\'t write off the Nati.',
   },
 ];
 
@@ -117,7 +117,7 @@ export default async function TeamsPage() {
       <div className="gr-card p-5 mb-8 bg-gradient-to-r from-brand-card to-brand-dark border border-yellow-500/20">
         <div className="flex flex-wrap items-center gap-6">
           <div className="flex items-center gap-2"><Trophy className="w-5 h-5 text-yellow-400"/>
-            <div><div className="text-white font-semibold text-sm">Quarter-Finals</div><div className="text-brand-gray text-xs">July 10–12 · 8 Nations Remain</div></div>
+            <div><div className="text-white font-semibold text-sm">Quarter-Finals</div><div className="text-brand-gray text-xs">July 9–11 · 8 Nations Remain</div></div>
           </div>
           {[{l:'Host Nations',v:'3'},{l:'Continents',v:'6'},{l:'Goals Scored',v:'93'},{l:'Avg per Game',v:'2.9'}].map(s=>(
             <div key={s.l} className="text-center">
@@ -134,7 +134,7 @@ export default async function TeamsPage() {
           <h2 className="text-yellow-400 font-semibold flex items-center gap-2"><Star className="w-4 h-4"/>Quarter-Final Draw</h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-yellow-500/10">
-          {[['Spain','Germany'],['France','England'],['Brazil','Argentina'],['Portugal','USA']].map(([h,a],i)=>(
+          {[['France','Morocco'],['Spain','Belgium'],['Norway','England'],['Argentina','Switzerland']].map(([h,a],i)=>(
             <div key={i} className="px-5 py-4 flex items-center justify-between gap-4">
               <span className="text-white font-semibold text-sm">{h}</span>
               <span className="text-yellow-400 text-xs font-bold px-3 py-1 bg-yellow-500/10 rounded">QF {i+1}</span>

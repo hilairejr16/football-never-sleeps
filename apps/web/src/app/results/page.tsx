@@ -21,25 +21,25 @@ async function fetchResults() {
 }
 
 const R16_RESULTS = [
-  { id: 'r1', date: 'Sat 4 Jul', home: 'Spain',    away: 'Japan',       hs: 2, as: 0, venue: 'MetLife Stadium, NJ',      note: '' },
-  { id: 'r2', date: 'Sat 4 Jul', home: 'Germany',  away: 'Belgium',     hs: 2, as: 1, venue: 'SoFi Stadium, LA',          note: '' },
-  { id: 'r3', date: 'Sun 5 Jul', home: 'France',   away: 'Poland',      hs: 4, as: 1, venue: 'AT&T Stadium, Dallas',      note: '' },
-  { id: 'r4', date: 'Sun 5 Jul', home: 'England',  away: 'Senegal',     hs: 2, as: 0, venue: 'Estadio Azteca, MX',        note: '' },
-  { id: 'r5', date: 'Mon 6 Jul', home: 'Brazil',   away: 'Mexico',      hs: 3, as: 1, venue: 'Levi\'s Stadium, SF',       note: '' },
-  { id: 'r6', date: 'Mon 6 Jul', home: 'Argentina',away: 'Morocco',     hs: 2, as: 1, venue: 'BC Place, Vancouver',       note: 'AET' },
-  { id: 'r7', date: 'Tue 7 Jul', home: 'Portugal', away: 'Switzerland', hs: 3, as: 0, venue: 'BMO Field, Toronto',        note: '' },
-  { id: 'r8', date: 'Tue 7 Jul', home: 'USA',      away: 'Iran',        hs: 2, as: 1, venue: 'Arrowhead Stadium, KC',     note: '' },
+  { id: 'r1', date: 'Sat 4 Jul', home: 'Morocco',     away: 'Canada',    hs: 3, as: 0, venue: 'AT&T Stadium, Dallas',             note: '' },
+  { id: 'r2', date: 'Sat 4 Jul', home: 'France',      away: 'Paraguay',  hs: 1, as: 0, venue: 'MetLife Stadium, NJ',              note: '' },
+  { id: 'r3', date: 'Sun 5 Jul', home: 'Norway',      away: 'Brazil',    hs: 2, as: 0, venue: 'Rose Bowl, CA',                    note: '' },
+  { id: 'r4', date: 'Sun 5 Jul', home: 'England',     away: 'Mexico',    hs: 3, as: 2, venue: 'AT&T Stadium, Dallas',             note: '' },
+  { id: 'r5', date: 'Mon 6 Jul', home: 'Spain',       away: 'Portugal',  hs: 1, as: 0, venue: 'SoFi Stadium, Inglewood',         note: '' },
+  { id: 'r6', date: 'Mon 6 Jul', home: 'Belgium',     away: 'USA',       hs: 4, as: 1, venue: "Levi's Stadium, SF",              note: '' },
+  { id: 'r7', date: 'Tue 7 Jul', home: 'Argentina',   away: 'Egypt',     hs: 3, as: 2, venue: 'Hard Rock Stadium, Miami',        note: '' },
+  { id: 'r8', date: 'Tue 7 Jul', home: 'Switzerland', away: 'Colombia',  hs: 0, as: 0, venue: 'Arrowhead Stadium, KC',           note: 'PEN' },
 ];
 
 const NOTABLE_EXITS = [
-  { team: 'Japan',        flag: '🇯🇵', lost_to: 'Spain',       score: '0–2', round: 'R16' },
-  { team: 'Belgium',      flag: '🇧🇪', lost_to: 'Germany',     score: '1–2', round: 'R16' },
-  { team: 'Poland',       flag: '🇵🇱', lost_to: 'France',      score: '1–4', round: 'R16' },
-  { team: 'Senegal',      flag: '🇸🇳', lost_to: 'England',     score: '0–2', round: 'R16' },
-  { team: 'Mexico',       flag: '🇲🇽', lost_to: 'Brazil',      score: '1–3', round: 'R16' },
-  { team: 'Morocco',      flag: '🇲🇦', lost_to: 'Argentina',   score: '1–2', round: 'R16 AET' },
-  { team: 'Switzerland',  flag: '🇨🇭', lost_to: 'Portugal',    score: '0–3', round: 'R16' },
-  { team: 'Iran',         flag: '🇮🇷', lost_to: 'USA',         score: '1–2', round: 'R16' },
+  { team: 'Canada',       flag: '🇨🇦', lost_to: 'Morocco',     score: '0–3', round: 'R16' },
+  { team: 'Paraguay',     flag: '🇵🇾', lost_to: 'France',      score: '0–1', round: 'R16' },
+  { team: 'Brazil',       flag: '🇧🇷', lost_to: 'Norway',      score: '0–2', round: 'R16' },
+  { team: 'Mexico',       flag: '🇲🇽', lost_to: 'England',     score: '2–3', round: 'R16' },
+  { team: 'Portugal',     flag: '🇵🇹', lost_to: 'Spain',       score: '0–1', round: 'R16' },
+  { team: 'USA',          flag: '🇺🇸', lost_to: 'Belgium',     score: '1–4', round: 'R16' },
+  { team: 'Egypt',        flag: '🇪🇬', lost_to: 'Argentina',   score: '2–3', round: 'R16' },
+  { team: 'Colombia',     flag: '🇨🇴', lost_to: 'Switzerland', score: 'PKs', round: 'R16' },
 ];
 
 function ResultRow({ r }: { r: typeof R16_RESULTS[0] }) {
@@ -77,8 +77,8 @@ export default async function ResultsPage() {
       <div className="gr-card p-4 mb-6 flex items-center gap-4 border border-yellow-500/20">
         <Trophy className="w-6 h-6 text-yellow-400 flex-shrink-0"/>
         <div className="flex-1">
-          <div className="text-yellow-400 text-xs font-bold">8 Nations Advance to Quarter-Finals · July 10–12</div>
-          <div className="text-brand-gray text-xs mt-0.5">Spain · Germany · France · England · Brazil · Argentina · Portugal · USA</div>
+          <div className="text-yellow-400 text-xs font-bold">8 Nations Advance to Quarter-Finals · July 9–11</div>
+          <div className="text-brand-gray text-xs mt-0.5">France · Morocco · Spain · Belgium · Norway · England · Argentina · Switzerland</div>
         </div>
         <Link href="/fixtures" className="text-yellow-400 text-xs font-semibold flex items-center gap-1 whitespace-nowrap">QF Fixtures<ArrowRight className="w-3 h-3"/></Link>
       </div>

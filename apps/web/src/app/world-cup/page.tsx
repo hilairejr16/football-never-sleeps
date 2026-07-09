@@ -99,11 +99,11 @@ const WC_TOP_SCORERS_FALLBACK: Player[] = [
 ];
 
 const WC_NEWS = [
-  { title: "England vs France: The Quarter-Final the World Has Been Waiting For",   category: 'Preview',  timeAgo: '30m ago' },
-  { title: "Yamal is the Player of the Tournament — and He's Only 18",              category: 'Analysis', timeAgo: '2h ago' },
-  { title: "Brazil vs Argentina: The Super Clásico That Shakes the World",          category: 'Preview',  timeAgo: '3h ago' },
-  { title: "Mbappé vs Vinícius: The Golden Boot Race Is Getting Spicy",             category: 'Analysis', timeAgo: '5h ago' },
-  { title: "USA's Stunning Run: How America Became the Tournament's Biggest Story", category: 'Report',   timeAgo: '7h ago' },
+  { title: "France vs Morocco: Mbappé vs the Atlas Lions — Who Stops Who?",         category: 'Preview',  timeAgo: '30m ago' },
+  { title: "Haaland Just Eliminated Brazil — Norway Are Now the Team to Fear",      category: 'Report',   timeAgo: '2h ago' },
+  { title: "Spain vs Belgium: Yamal vs De Bruyne in the QF Clash of Creators",      category: 'Preview',  timeAgo: '3h ago' },
+  { title: "Argentina vs Switzerland: Messi vs the Nati on the Biggest Stage",      category: 'Preview',  timeAgo: '5h ago' },
+  { title: "Yamal Is Running the World Cup at 18 — How Is This Even Possible?",     category: 'Analysis', timeAgo: '7h ago' },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
