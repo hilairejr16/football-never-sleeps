@@ -16,7 +16,7 @@ const organizationSchema = {
   url: 'https://www.goalrushglobal.com',
   logo: 'https://www.goalrushglobal.com/og-image.jpg',
   sameAs: [
-    'https://twitter.com/GoalRushGlobal',
+    'https://x.com/GoalRushGlobal',
     'https://instagram.com/GoalRushGlobal00',
     'https://tiktok.com/@goalrushglobal00',
   ],

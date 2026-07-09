@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Zap, Twitter, Instagram, Youtube, Facebook } from 'lucide-react';
+import { Zap, Twitter, Instagram } from 'lucide-react';
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -46,11 +46,9 @@ const COMPANY = [
 ];
 
 const SOCIALS = [
-  { icon: Twitter,    href: 'https://twitter.com/GoalRushGlobal',    label: 'X / Twitter' },
+  { icon: Twitter,    href: 'https://x.com/GoalRushGlobal',           label: 'X / Twitter' },
   { icon: Instagram,  href: 'https://instagram.com/GoalRushGlobal00', label: 'Instagram' },
   { icon: TikTokIcon, href: 'https://tiktok.com/@goalrushglobal00',   label: 'TikTok' },
-  { icon: Youtube,    href: 'https://youtube.com/@GoalRushGlobal',    label: 'YouTube' },
-  { icon: Facebook,   href: 'https://facebook.com/GoalRushGlobal',    label: 'Facebook' },
 ];
 
 export default function Footer() {

@@ -37,7 +37,7 @@ const SECTIONS = [
   },
   {
     title: '8. Contact',
-    body: `Questions about this policy? Contact our privacy team at goalrushglobal83@gmail.com or write to: GoalRush Global, Privacy Team, c/o editorial@goalrushglobal.com.`,
+    body: `Questions about this policy? Contact us at goalrushglobal83@gmail.com.`,
   },
 ];
 
