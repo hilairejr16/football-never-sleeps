@@ -9,19 +9,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // GoalRush Brand Palette — Premier Blue
+        // GoalRush Brand Palette — Pitch Green
         brand: {
-          black:  '#05101f',
-          dark:   '#0a1929',
-          card:   '#0f2240',
-          border: '#1e3a5f',
-          muted:  '#3a5580',
-          red:    '#3b82f6',
-          'red-hover': '#1d4ed8',
-          'red-light': '#93c5fd',
+          black:  '#091410',
+          dark:   '#0f1f16',
+          card:   '#142a1c',
+          border: '#1a3322',
+          muted:  '#2a5235',
+          red:    '#22c55e',       // accent color (class name kept for zero breaking changes)
+          'red-hover': '#16a34a',
+          'red-light': '#86efac',
           gold:   '#f4a261',
           'gold-light': '#f7c59f',
-          white:  '#e8f0ff',
+          white:  '#e8f5ec',
           gray:   '#94a3b8',
         },
         live: '#10b981',
@@ -45,8 +45,8 @@ module.exports = {
           '100%': { transform: 'translateX(-50%)' },
         },
         'pulse-red': {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(59, 130, 246, 0.4)' },
-          '50%':      { boxShadow: '0 0 0 8px rgba(59, 130, 246, 0)' },
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(34, 197, 94, 0.4)' },
+          '50%':      { boxShadow: '0 0 0 8px rgba(34, 197, 94, 0)' },
         },
         'slide-up': {
           from: { opacity: '0', transform: 'translateY(20px)' },
@@ -66,11 +66,11 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'hero-gradient':    'linear-gradient(135deg, #05101f 0%, #0a1929 50%, #05101f 100%)',
-        'card-gradient':    'linear-gradient(180deg, #0f2240 0%, #0a1929 100%)',
-        'red-gradient':     'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+        'hero-gradient':    'linear-gradient(135deg, #091410 0%, #0f1f16 50%, #091410 100%)',
+        'card-gradient':    'linear-gradient(180deg, #142a1c 0%, #0f1f16 100%)',
+        'red-gradient':     'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
         'gold-gradient':    'linear-gradient(135deg, #f4a261 0%, #e76f51 100%)',
-        'shimmer':          'linear-gradient(90deg, #0f2240 25%, #1e3a5f 50%, #0f2240 75%)',
+        'shimmer':          'linear-gradient(90deg, #142a1c 25%, #1a3322 50%, #142a1c 75%)',
       },
     },
   },

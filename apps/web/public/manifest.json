@@ -4,8 +4,8 @@
   "description": "Football Never Sleeps — live scores, breaking news & analysis",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#05101f",
-  "theme_color": "#05101f",
+  "background_color": "#091410",
+  "theme_color": "#091410",
   "orientation": "portrait-primary",
   "categories": ["sports", "news"],
   "icons": [

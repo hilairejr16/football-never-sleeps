@@ -16,7 +16,7 @@ export default function OGImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #05101f 0%, #0a1929 60%, #05101f 100%)',
+          background: 'linear-gradient(135deg, #091410 0%, #0f1f16 60%, #091410 100%)',
           position: 'relative',
           fontFamily: 'system-ui, sans-serif',
         }}
@@ -24,18 +24,18 @@ export default function OGImage() {
         {/* Subtle grid */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(59,130,246,0.07) 1px, transparent 0)',
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(34,197,94,0.07) 1px, transparent 0)',
           backgroundSize: '40px 40px',
         }} />
         {/* Left accent bar */}
         <div style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: 6,
-          background: 'linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%)',
+          background: 'linear-gradient(180deg, #22c55e 0%, #16a34a 100%)',
         }} />
         {/* Bottom bar */}
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0, height: 4,
-          background: 'linear-gradient(90deg, #3b82f6, #1d4ed8, #3b82f6)',
+          background: 'linear-gradient(90deg, #22c55e, #16a34a, #22c55e)',
         }} />
 
         {/* Main content */}
@@ -43,7 +43,7 @@ export default function OGImage() {
           {/* Logo icon */}
           <div style={{
             width: 72, height: 72,
-            background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
             borderRadius: 18,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: 38, marginBottom: 28,
@@ -60,7 +60,7 @@ export default function OGImage() {
           </div>
 
           {/* Divider */}
-          <div style={{ width: 72, height: 3, background: '#3b82f6', borderRadius: 2, margin: '30px 0' }} />
+          <div style={{ width: 72, height: 3, background: '#22c55e', borderRadius: 2, margin: '30px 0' }} />
 
           {/* Tagline */}
           <div style={{ fontSize: 30, color: '#94a3b8', letterSpacing: '0.06em', fontWeight: 400 }}>
@@ -73,7 +73,7 @@ export default function OGImage() {
               <div key={label} style={{
                 padding: '10px 22px',
                 background: 'rgba(59,130,246,0.14)',
-                borderRadius: 8, color: '#93c5fd', fontSize: 16, fontWeight: 500,
+                borderRadius: 8, color: '#86efac', fontSize: 16, fontWeight: 500,
                 border: '1px solid rgba(59,130,246,0.3)',
               }}>
                 {label}
