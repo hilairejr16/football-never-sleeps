@@ -1,310 +1,244 @@
 const axios = require('axios');
 const { cacheGetOrSet } = require('../config/redis');
 
-// Shared client — imported by route files so the key is injected once
+// football-data.org v4 — free tier covers WC, CL, PL, PD, BL1, SA, FL1, DED, PPL
 const apiClient = axios.create({
-  baseURL: 'https://v3.football.api-sports.io',
-  headers: {
-    'x-rapidapi-host': 'v3.football.api-sports.io',
-    'x-rapidapi-key': process.env.FOOTBALL_API_KEY,
-  },
+  baseURL: 'https://api.football-data.org/v4',
+  headers: { 'X-Auth-Token': process.env.FOOTBALL_DATA_KEY },
   timeout: 10_000,
 });
 
-// ─── League catalogue ─────────────────────────────────────
-const LEAGUES = {
-  WORLD_CUP:      { id: 1,   season: 2026, name: 'FIFA World Cup'          },
-  GOLD_CUP:       { id: 22,  season: 2025, name: 'CONCACAF Gold Cup'       },
-  CHAMPIONS:      { id: 2,   season: 2025, name: 'UEFA Champions League'   },
-  EUROPA:         { id: 3,   season: 2025, name: 'UEFA Europa League'      },
-  CONFERENCE:     { id: 848, season: 2025, name: 'UEFA Conference League'  },
-  PREMIER_LEAGUE: { id: 39,  season: 2025, name: 'Premier League'          },
-  LA_LIGA:        { id: 140, season: 2025, name: 'La Liga'                 },
-  BUNDESLIGA:     { id: 78,  season: 2025, name: 'Bundesliga'              },
-  SERIE_A:        { id: 135, season: 2025, name: 'Serie A'                 },
-  LIGUE_1:        { id: 61,  season: 2025, name: 'Ligue 1'                 },
-  EREDIVISIE:     { id: 88,  season: 2025, name: 'Eredivisie'              },
-  PRIMEIRA_LIGA:  { id: 94,  season: 2025, name: 'Primeira Liga'           },
-  MLS:            { id: 253, season: 2026, name: 'MLS'                     },
-  SAUDI_PRO:      { id: 307, season: 2025, name: 'Saudi Pro League'        },
-  COPA_LIBERTADORES: { id: 13, season: 2026, name: 'Copa Libertadores'     },
-  AFCON:          { id: 6,   season: 2025, name: 'Africa Cup of Nations'   },
+// Internal league IDs → football-data.org competition codes
+const ID_TO_CODE = {
+  1:   'WC',   // FIFA World Cup
+  2:   'CL',   // UEFA Champions League
+  39:  'PL',   // Premier League
+  140: 'PD',   // La Liga
+  78:  'BL1',  // Bundesliga
+  135: 'SA',   // Serie A
+  61:  'FL1',  // Ligue 1
+  88:  'DED',  // Eredivisie
+  94:  'PPL',  // Primeira Liga
 };
 
-// ─── Live fixtures ────────────────────────────────────────
+const ALL_CODES = Object.values(ID_TO_CODE).join(',');
+
+const LEAGUES = {
+  WORLD_CUP:      { id: 1,   code: 'WC',  season: 2026, name: 'FIFA World Cup'         },
+  CHAMPIONS:      { id: 2,   code: 'CL',  season: 2025, name: 'UEFA Champions League'  },
+  PREMIER_LEAGUE: { id: 39,  code: 'PL',  season: 2025, name: 'Premier League'         },
+  LA_LIGA:        { id: 140, code: 'PD',  season: 2025, name: 'La Liga'                },
+  BUNDESLIGA:     { id: 78,  code: 'BL1', season: 2025, name: 'Bundesliga'             },
+  SERIE_A:        { id: 135, code: 'SA',  season: 2025, name: 'Serie A'               },
+  LIGUE_1:        { id: 61,  code: 'FL1', season: 2025, name: 'Ligue 1'              },
+  EREDIVISIE:     { id: 88,  code: 'DED', season: 2025, name: 'Eredivisie'           },
+  PRIMEIRA_LIGA:  { id: 94,  code: 'PPL', season: 2025, name: 'Primeira Liga'        },
+};
+
+// ─── Live fixtures ─────────────────────────────────────────────────────────
 
 async function getLiveFixtures(leagueId = null) {
-  const cacheKey = `live:fixtures${leagueId ? `:${leagueId}` : ''}`;
+  const cacheKey = `live:fdo${leagueId ? `:${leagueId}` : ''}`;
   return cacheGetOrSet(cacheKey, async () => {
-    const params = { live: 'all' };
-    if (leagueId) params.league = leagueId;
-    const { data } = await apiClient.get('/fixtures', { params });
-    return normalizeFixtures(data.response || []);
+    const liveStatus = 'IN_PLAY,PAUSED,EXTRA_TIME,PENALTY_SHOOTOUT';
+    if (leagueId && ID_TO_CODE[leagueId]) {
+      const { data } = await apiClient.get(`/competitions/${ID_TO_CODE[leagueId]}/matches`, {
+        params: { status: liveStatus },
+      });
+      return normalizeMatches(data.matches || [], leagueId);
+    }
+    const { data } = await apiClient.get('/matches', {
+      params: { status: liveStatus, competitions: ALL_CODES },
+    });
+    return normalizeMatches(data.matches || []);
   }, 30);
 }
 
-// ─── Fixtures by date ─────────────────────────────────────
+// ─── Fixtures by date ──────────────────────────────────────────────────────
 
 async function getFixturesByDate(date, leagueId = null) {
-  const cacheKey = `fixtures:${date}${leagueId ? `:${leagueId}` : ''}`;
+  const cacheKey = `fdo:date:${date}${leagueId ? `:${leagueId}` : ''}`;
   return cacheGetOrSet(cacheKey, async () => {
-    const params = { date, timezone: 'UTC' };
-    if (leagueId) params.league = leagueId;
-    const { data } = await apiClient.get('/fixtures', { params });
-    return normalizeFixtures(data.response || []);
+    if (leagueId && ID_TO_CODE[leagueId]) {
+      const { data } = await apiClient.get(`/competitions/${ID_TO_CODE[leagueId]}/matches`, {
+        params: { dateFrom: date, dateTo: date },
+      });
+      return normalizeMatches(data.matches || [], leagueId);
+    }
+    const { data } = await apiClient.get('/matches', {
+      params: { dateFrom: date, dateTo: date, competitions: ALL_CODES },
+    });
+    return normalizeMatches(data.matches || []);
   }, 300);
 }
 
-// ─── Fixtures by league & season ─────────────────────────
+// ─── Fixtures by league & date range ──────────────────────────────────────
 
 async function getFixturesByLeague(leagueId, season, { from, to, status, last } = {}) {
+  const code = ID_TO_CODE[leagueId];
+  if (!code) return [];
   const key = [leagueId, season, from, to, status, last].join(':');
-  const cacheKey = `fixtures:league:${key}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const params = { league: leagueId, season };
-    if (from)   params.from   = from;
-    if (to)     params.to     = to;
-    if (status) params.status = status;
-    if (last)   params.last   = last;
-    const { data } = await apiClient.get('/fixtures', { params });
-    return normalizeFixtures(data.response || []);
+  return cacheGetOrSet(`fdo:league:${key}`, async () => {
+    const params = {};
+    if (from)   params.dateFrom = from;
+    if (to)     params.dateTo   = to;
+    if (status) params.status   = status === 'LIVE' ? 'IN_PLAY,EXTRA_TIME' : status;
+    const { data } = await apiClient.get(`/competitions/${code}/matches`, { params });
+    let matches = normalizeMatches(data.matches || [], leagueId);
+    if (last) matches = matches.slice(-Math.abs(last));
+    return matches;
   }, 300);
 }
 
-// ─── Single fixture ───────────────────────────────────────
+// ─── Single fixture ────────────────────────────────────────────────────────
 
 async function getFixtureById(id) {
-  const cacheKey = `fixture:${id}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/fixtures', { params: { id } });
-    const fixtures = normalizeFixtures(data.response || []);
-    return fixtures[0] || null;
+  return cacheGetOrSet(`fdo:match:${id}`, async () => {
+    const { data } = await apiClient.get(`/matches/${id}`);
+    return normalizeMatch(data);
   }, 60);
 }
 
-// ─── Fixture statistics (shots, possession, cards …) ──────
-
-async function getFixtureStatistics(fixtureId) {
-  const cacheKey = `fixture:stats:${fixtureId}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/fixtures/statistics', { params: { fixture: fixtureId } });
-    return (data.response || []).map(t => ({
-      team: { id: t.team.id, name: t.team.name, logo: t.team.logo },
-      stats: Object.fromEntries(
-        (t.statistics || []).map(s => [s.type.toLowerCase().replace(/\s+/g, '_'), s.value])
-      ),
-    }));
-  }, 60);
-}
-
-// ─── Fixture lineups ──────────────────────────────────────
-
-async function getFixtureLineups(fixtureId) {
-  const cacheKey = `fixture:lineups:${fixtureId}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/fixtures/lineups', { params: { fixture: fixtureId } });
-    return (data.response || []).map(t => ({
-      team:       { id: t.team.id, name: t.team.name, logo: t.team.logo },
-      formation:  t.formation,
-      coach:      { id: t.coach?.id, name: t.coach?.name, photo: t.coach?.photo },
-      startXI:    (t.startXI    || []).map(p => ({ id: p.player.id, name: p.player.name, number: p.player.number, position: p.player.pos, grid: p.player.grid })),
-      substitutes:(t.substitutes|| []).map(p => ({ id: p.player.id, name: p.player.name, number: p.player.number, position: p.player.pos })),
-    }));
-  }, 3600);
-}
-
-// ─── Head-to-head ─────────────────────────────────────────
-
-async function getH2H(team1Id, team2Id, last = 10) {
-  const [a, b] = [Math.min(team1Id, team2Id), Math.max(team1Id, team2Id)];
-  const cacheKey = `h2h:${a}:${b}:${last}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/fixtures/headtohead', {
-      params: { h2h: `${team1Id}-${team2Id}`, last },
-    });
-    return normalizeFixtures(data.response || []);
-  }, 3600);
-}
-
-// ─── Standings ────────────────────────────────────────────
+// ─── Standings ─────────────────────────────────────────────────────────────
 
 async function getStandings(leagueId, season = new Date().getFullYear()) {
-  const cacheKey = `standings:${leagueId}:${season}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/standings', { params: { league: leagueId, season } });
-    return (data.response?.[0]?.league?.standings?.[0] || []).map(s => ({
-      rank:         s.rank,
+  const code = ID_TO_CODE[leagueId];
+  if (!code) return [];
+  return cacheGetOrSet(`fdo:standings:${leagueId}:${season}`, async () => {
+    const { data } = await apiClient.get(`/competitions/${code}/standings`);
+    const total = (data.standings || []).find(s => s.type === 'TOTAL');
+    if (!total) return [];
+    return (total.table || []).map(s => ({
+      rank:         s.position,
       team: {
         id:         s.team.id,
         name:       s.team.name,
-        shortName:  s.team.name,
-        logo:       s.team.logo,
+        shortName:  s.team.shortName || s.team.tla || s.team.name,
+        logo:       s.team.crest || '',
         country:    '',
       },
-      played:       s.all.played,
-      won:          s.all.win,
-      drawn:        s.all.draw,
-      lost:         s.all.lose,
-      goalsFor:     s.all.goals.for,
-      goalsAgainst: s.all.goals.against,
-      goalDiff:     s.goalsDiff,
+      played:       s.playedGames,
+      won:          s.won,
+      drawn:        s.draw,
+      lost:         s.lost,
+      goalsFor:     s.goalsFor,
+      goalsAgainst: s.goalsAgainst,
+      goalDiff:     s.goalDifference,
       points:       s.points,
       form:         s.form || '',
     }));
   }, 3600);
 }
 
-// ─── Top scorers ──────────────────────────────────────────
+// ─── Top scorers ───────────────────────────────────────────────────────────
 
 async function getTopScorers(leagueId, season = new Date().getFullYear()) {
-  const cacheKey = `topscorers:${leagueId}:${season}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/players/topscorers', { params: { league: leagueId, season } });
-    return normalizePlayerStats(data.response || []);
-  }, 3600);
-}
-
-// ─── Top assists ──────────────────────────────────────────
-
-async function getTopAssists(leagueId, season = new Date().getFullYear()) {
-  const cacheKey = `topassists:${leagueId}:${season}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/players/topassists', { params: { league: leagueId, season } });
-    return normalizePlayerStats(data.response || []);
-  }, 3600);
-}
-
-// ─── Injuries ─────────────────────────────────────────────
-
-async function getInjuries(leagueId, season, teamId = null) {
-  const cacheKey = `injuries:${leagueId}:${season}${teamId ? `:${teamId}` : ''}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const params = { league: leagueId, season };
-    if (teamId) params.team = teamId;
-    const { data } = await apiClient.get('/injuries', { params });
-    return (data.response || []).map(r => ({
-      player:  { id: r.player.id, name: r.player.name, photo: r.player.photo, type: r.player.type, reason: r.player.reason },
-      team:    { id: r.team.id,   name: r.team.name,   logo:  r.team.logo   },
-      fixture: { id: r.fixture.id, date: r.fixture.date },
+  const code = ID_TO_CODE[leagueId];
+  if (!code) return [];
+  return cacheGetOrSet(`fdo:scorers:${leagueId}:${season}`, async () => {
+    const { data } = await apiClient.get(`/competitions/${code}/scorers`);
+    return (data.scorers || []).map(s => ({
+      id:          s.player.id,
+      name:        s.player.name,
+      firstName:   s.player.firstName || '',
+      lastName:    s.player.lastName  || '',
+      nationality: s.player.nationality || '',
+      age:         null,
+      photo:       '',
+      position:    'Forward',
+      teamId:      s.team?.id,
+      team:        s.team ? { id: s.team.id, name: s.team.name, logo: s.team.crest || '' } : null,
+      stats: {
+        goals:         s.goals        || 0,
+        assists:       s.assists      || 0,
+        appearances:   s.playedMatches || 0,
+        minutesPlayed: 0,
+        yellowCards:   0,
+        redCards:      0,
+        rating:        0,
+      },
     }));
-  }, 1800);
-}
-
-// ─── Match predictions ────────────────────────────────────
-
-async function getPredictions(fixtureId) {
-  const cacheKey = `predictions:${fixtureId}`;
-  return cacheGetOrSet(cacheKey, async () => {
-    const { data } = await apiClient.get('/predictions', { params: { fixture: fixtureId } });
-    const r = data.response?.[0];
-    if (!r) return null;
-    return {
-      winner:   r.predictions?.winner   || null,
-      advice:   r.predictions?.advice   || '',
-      percent:  r.predictions?.percent  || {},
-      goals:    r.predictions?.goals    || {},
-      h2h:      (r.h2h || []).slice(0, 5).map(m => normalizeFixtures([m])[0]).filter(Boolean),
-      homeTeam: r.teams?.home ? { lastFive: r.teams.home.last_5, form: r.teams.home.league?.form } : null,
-      awayTeam: r.teams?.away ? { lastFive: r.teams.away.last_5, form: r.teams.away.league?.form } : null,
-    };
   }, 3600);
 }
 
-// ─── Normalisers ──────────────────────────────────────────
+// ─── Stubs (not in free tier) ──────────────────────────────────────────────
 
-function normalizeFixtures(raw) {
-  return raw.map(f => ({
-    id:     f.fixture.id,
-    status: normalizeStatus(f.fixture.status.short),
-    minute: f.fixture.status.elapsed,
-    date:   f.fixture.date,
-    venue:  f.fixture.venue?.name,
-    city:   f.fixture.venue?.city,
-    referee:f.fixture.referee,
+async function getFixtureStatistics() { return []; }
+async function getFixtureLineups()    { return []; }
+async function getH2H()               { return []; }
+async function getPredictions()       { return null; }
+async function getInjuries()          { return []; }
+async function getTopAssists(leagueId, season) { return getTopScorers(leagueId, season); }
+
+// ─── Normalisers ───────────────────────────────────────────────────────────
+
+function normalizeMatches(matches, fallbackLeagueId = null) {
+  return matches.map(m => normalizeMatch(m, fallbackLeagueId));
+}
+
+function normalizeMatch(m, fallbackLeagueId = null) {
+  const comp = m.competition || {};
+  const leagueId = fallbackLeagueId
+    ?? Number(Object.entries(ID_TO_CODE).find(([, c]) => c === comp.code)?.[0] ?? 0);
+
+  return {
+    id:       m.id,
+    status:   normalizeStatus(m.status),
+    minute:   m.minute ?? null,
+    date:     m.utcDate,
+    venue:    null,
+    city:     null,
+    referee:  null,
     homeTeam: {
-      id:        f.teams.home.id,
-      name:      f.teams.home.name,
-      shortName: f.teams.home.name.slice(0, 12),
-      logo:      f.teams.home.logo,
-      country:   f.league.country,
-      winner:    f.teams.home.winner,
+      id:        m.homeTeam?.id   ?? 0,
+      name:      m.homeTeam?.name ?? 'TBD',
+      shortName: m.homeTeam?.shortName || m.homeTeam?.tla || (m.homeTeam?.name ?? '').slice(0, 12),
+      logo:      m.homeTeam?.crest ?? '',
+      country:   '',
+      winner:    m.score?.winner === 'HOME_TEAM',
     },
     awayTeam: {
-      id:        f.teams.away.id,
-      name:      f.teams.away.name,
-      shortName: f.teams.away.name.slice(0, 12),
-      logo:      f.teams.away.logo,
-      country:   f.league.country,
-      winner:    f.teams.away.winner,
+      id:        m.awayTeam?.id   ?? 0,
+      name:      m.awayTeam?.name ?? 'TBD',
+      shortName: m.awayTeam?.shortName || m.awayTeam?.tla || (m.awayTeam?.name ?? '').slice(0, 12),
+      logo:      m.awayTeam?.crest ?? '',
+      country:   '',
+      winner:    m.score?.winner === 'AWAY_TEAM',
     },
-    homeScore:        f.goals.home,
-    awayScore:        f.goals.away,
-    halftimeScore:    { home: f.score?.halftime?.home,  away: f.score?.halftime?.away  },
-    fulltimeScore:    { home: f.score?.fulltime?.home,  away: f.score?.fulltime?.away  },
-    extraTimeScore:   { home: f.score?.extratime?.home, away: f.score?.extratime?.away },
-    penaltiesScore:   { home: f.score?.penalty?.home,   away: f.score?.penalty?.away   },
+    homeScore:      m.score?.fullTime?.home  ?? null,
+    awayScore:      m.score?.fullTime?.away  ?? null,
+    halftimeScore:  { home: m.score?.halfTime?.home  ?? null, away: m.score?.halfTime?.away  ?? null },
+    fulltimeScore:  { home: m.score?.fullTime?.home  ?? null, away: m.score?.fullTime?.away  ?? null },
+    extraTimeScore: { home: null, away: null },
+    penaltiesScore: { home: null, away: null },
     league: {
-      id:        f.league.id,
-      name:      f.league.name,
-      shortName: f.league.name,
-      logo:      f.league.logo,
-      country:   f.league.country,
-      season:    f.league.season,
-      round:     f.league.round,
-      type:      'League',
+      id:        Number(leagueId),
+      name:      comp.name || '',
+      shortName: comp.code || '',
+      logo:      comp.emblem || '',
+      country:   '',
+      season:    m.season?.startDate?.slice(0, 4) ?? new Date().getFullYear(),
+      round:     m.matchday ? `Matchday ${m.matchday}` : (m.stage ?? ''),
+      type:      'Cup',
     },
-    events: (f.events || []).map(e => ({
-      id:          `${e.time.elapsed}_${e.team?.id}_${e.player?.id}`,
-      minute:      e.time.elapsed,
-      extraMinute: e.time.extra,
-      type:        normalizeEventType(e.type),
-      detail:      e.detail,
-      player:      { id: e.player?.id, name: e.player?.name },
-      assist:      e.assist?.id ? { id: e.assist.id, name: e.assist.name } : undefined,
-      team:        { id: e.team?.id, name: e.team?.name, shortName: e.team?.name, logo: e.team?.logo, country: '' },
-    })),
-  }));
-}
-
-function normalizePlayerStats(response) {
-  return response.map(r => ({
-    id:          r.player.id,
-    name:        r.player.name,
-    firstName:   r.player.firstname,
-    lastName:    r.player.lastname,
-    nationality: r.player.nationality,
-    age:         r.player.age,
-    photo:       r.player.photo,
-    position:    r.statistics[0]?.games?.position || 'Unknown',
-    teamId:      r.statistics[0]?.team?.id,
-    team:        r.statistics[0]?.team,
-    stats: {
-      goals:         r.statistics[0]?.goals?.total    || 0,
-      assists:       r.statistics[0]?.goals?.assists  || 0,
-      appearances:   r.statistics[0]?.games?.appearences || 0,
-      minutesPlayed: r.statistics[0]?.games?.minutes  || 0,
-      yellowCards:   r.statistics[0]?.cards?.yellow   || 0,
-      redCards:      r.statistics[0]?.cards?.red      || 0,
-      rating:        parseFloat(r.statistics[0]?.games?.rating || '0'),
-    },
-  }));
+    events: [],
+  };
 }
 
 function normalizeStatus(s) {
   const map = {
-    NS: 'SCHEDULED', '1H': 'LIVE', '2H': 'LIVE', ET: 'LIVE', INT: 'LIVE',
-    HT: 'HT', P: 'PEN', PEN: 'PEN', FT: 'FT', AET: 'AET',
-    SUSP: 'SUSP', ABD: 'ABD', CANC: 'CANC', TBD: 'TBD', PST: 'PST', WO: 'FT',
+    SCHEDULED:         'SCHEDULED',
+    TIMED:             'SCHEDULED',
+    IN_PLAY:           'LIVE',
+    PAUSED:            'HT',
+    EXTRA_TIME:        'LIVE',
+    PENALTY_SHOOTOUT:  'PEN',
+    FINISHED:          'FT',
+    POSTPONED:         'PST',
+    SUSPENDED:         'SUSP',
+    CANCELLED:         'CANC',
   };
-  return map[s] || 'SCHEDULED';
-}
-
-function normalizeEventType(t) {
-  if (t === 'Goal')  return 'GOAL';
-  if (t === 'Card')  return 'CARD';
-  if (t === 'subst') return 'SUBST';
-  if (t === 'Var')   return 'VAR';
-  return 'OTHER';
+  return map[s] ?? 'SCHEDULED';
 }
 
 module.exports = {
