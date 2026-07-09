@@ -37,12 +37,15 @@ const QUICK_LINKS = [
 ];
 
 const COMPANY = [
-  { href: '/about',         label: 'About Us' },
-  { href: '/contact',       label: 'Contact' },
-  { href: '/advertise',     label: 'Advertise' },
-  { href: '/privacy',       label: 'Privacy Policy' },
-  { href: '/terms',         label: 'Terms of Service' },
-  { href: '/sitemap.xml',   label: 'Sitemap' },
+  { href: '/about',              label: 'About Us' },
+  { href: '/contact',            label: 'Contact' },
+  { href: '/advertise',          label: 'Advertise' },
+  { href: '/editorial-policy',   label: 'Editorial Policy' },
+  { href: '/accessibility',      label: 'Accessibility' },
+  { href: '/privacy',            label: 'Privacy Policy' },
+  { href: '/terms',              label: 'Terms of Service' },
+  { href: '/cookies',            label: 'Cookie Policy' },
+  { href: '/sitemap.xml',        label: 'Sitemap' },
 ];
 
 const SOCIALS = [

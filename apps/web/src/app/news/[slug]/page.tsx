@@ -279,8 +279,31 @@ export default async function ArticlePage({ params }: { params: { slug: string }
     .filter(a => a.slug !== params.slug && a.tags.some(t => article!.tags.includes(t)))
     .slice(0, 3);
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    url: `https://www.goalrushglobal.com/news/${params.slug}`,
+    keywords: article.tags.join(', '),
+    articleSection: article.category,
+    author: { '@type': 'Organization', name: article.author, url: 'https://www.goalrushglobal.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'GoalRush Global',
+      logo: { '@type': 'ImageObject', url: 'https://www.goalrushglobal.com/og-image.jpg' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.goalrushglobal.com/news/${params.slug}` },
+  };
+
   return (
     <div className="max-w-screen-2xl mx-auto px-4 lg:px-6 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm mb-6">
