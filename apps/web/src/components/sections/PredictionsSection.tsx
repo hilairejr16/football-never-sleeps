@@ -16,22 +16,24 @@ async function fetchPredictions(): Promise<Prediction[]> {
   return WC_PREDICTIONS_FALLBACK;
 }
 
-// World Cup 2026 Quarter-Final predictions (July 10-12)
+// World Cup 2026 Quarter-Final AI predictions
+// QF1 Thu Jul 10 19:00 UTC = 3 PM ET  | QF2 Thu Jul 10 23:00 UTC = 7 PM ET
+// QF3 Fri Jul 11 19:00 UTC = 3 PM ET  | QF4 Sun Jul 12 23:00 UTC = 7 PM ET
 const WC_PREDICTIONS_FALLBACK: Prediction[] = [
   {
     id: 'wcp1',
     match: {
       id: 3001, status: 'SCHEDULED',
-      homeTeam: { id: 10, name: 'Spain', shortName: 'ESP', logo: '', country: 'Spain' },
+      homeTeam: { id: 10, name: 'Spain',   shortName: 'ESP', logo: '', country: 'Spain'   },
       awayTeam: { id: 11, name: 'Germany', shortName: 'GER', logo: '', country: 'Germany' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-10T21:00:00Z').toISOString(),
+      date: new Date('2026-07-10T19:00:00Z').toISOString(), // 3 PM ET
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
     homeWinPct: 40, drawPct: 24, awayWinPct: 36,
     predictedScore: { home: 2, away: 1 },
     btts: true, over25Goals: true,
-    keyFactor: "Spain's superior ball retention and Yamal's creative genius in tight spaces",
+    keyFactor: "Spain's superior ball retention and Yamal's creative genius in tight spaces gives them the edge",
     confidence: 71,
     generatedAt: new Date().toISOString(),
   },
@@ -39,17 +41,51 @@ const WC_PREDICTIONS_FALLBACK: Prediction[] = [
     id: 'wcp2',
     match: {
       id: 3002, status: 'SCHEDULED',
-      homeTeam: { id: 12, name: 'France', shortName: 'FRA', logo: '', country: 'France' },
+      homeTeam: { id: 12, name: 'France',  shortName: 'FRA', logo: '', country: 'France'  },
       awayTeam: { id: 13, name: 'England', shortName: 'ENG', logo: '', country: 'England' },
       homeScore: null, awayScore: null,
-      date: new Date('2026-07-11T21:00:00Z').toISOString(),
+      date: new Date('2026-07-10T23:00:00Z').toISOString(), // 7 PM ET — same day as QF1
       league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
     },
     homeWinPct: 42, drawPct: 26, awayWinPct: 32,
-    predictedScore: { home: 1, away: 1 },
-    btts: true, over25Goals: false,
+    predictedScore: { home: 2, away: 1 },
+    btts: true, over25Goals: true,
     keyFactor: "Mbappé vs the English backline — whoever wins that duel likely wins the match",
     confidence: 64,
+    generatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'wcp3',
+    match: {
+      id: 3003, status: 'SCHEDULED',
+      homeTeam: { id: 14, name: 'Brazil',    shortName: 'BRA', logo: '', country: 'Brazil'    },
+      awayTeam: { id: 15, name: 'Argentina', shortName: 'ARG', logo: '', country: 'Argentina' },
+      homeScore: null, awayScore: null,
+      date: new Date('2026-07-11T19:00:00Z').toISOString(), // 3 PM ET Fri Jul 11
+      league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
+    },
+    homeWinPct: 38, drawPct: 28, awayWinPct: 34,
+    predictedScore: { home: 1, away: 2 },
+    btts: true, over25Goals: false,
+    keyFactor: "Messi's genius and Argentina's tournament resilience tips the Super Clásico their way",
+    confidence: 58,
+    generatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'wcp4',
+    match: {
+      id: 3004, status: 'SCHEDULED',
+      homeTeam: { id: 16, name: 'Portugal', shortName: 'POR', logo: '', country: 'Portugal' },
+      awayTeam: { id: 17, name: 'USA',      shortName: 'USA', logo: '', country: 'USA'      },
+      homeScore: null, awayScore: null,
+      date: new Date('2026-07-12T23:00:00Z').toISOString(), // 7 PM ET Sun Jul 12
+      league: { id: 1, name: 'FIFA World Cup', shortName: 'WC', logo: '', country: 'World', season: 2026, type: 'Cup' },
+    },
+    homeWinPct: 52, drawPct: 22, awayWinPct: 26,
+    predictedScore: { home: 2, away: 1 },
+    btts: true, over25Goals: true,
+    keyFactor: "Ronaldo's experience on the biggest stage and Portugal's squad depth gives them the edge at Levi's",
+    confidence: 62,
     generatedAt: new Date().toISOString(),
   },
 ];

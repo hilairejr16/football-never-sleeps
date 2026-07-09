@@ -6,17 +6,32 @@ interface LeagueTableWidgetProps {
   leagueName: string;
 }
 
-const MOCK_STANDINGS: Standing[] = [
-  { rank: 1, team: { id: 42, name: 'Arsenal', shortName: 'ARS', logo: '', country: 'England' }, played: 35, won: 24, drawn: 6, lost: 5, goalsFor: 82, goalsAgainst: 34, goalDiff: 48, points: 78, form: 'WWWDW' },
-  { rank: 2, team: { id: 50, name: 'Man City', shortName: 'MCI', logo: '', country: 'England' }, played: 35, won: 23, drawn: 7, lost: 5, goalsFor: 78, goalsAgainst: 38, goalDiff: 40, points: 76, form: 'WWLDW' },
-  { rank: 3, team: { id: 34, name: 'Liverpool', shortName: 'LIV', logo: '', country: 'England' }, played: 35, won: 22, drawn: 8, lost: 5, goalsFor: 75, goalsAgainst: 40, goalDiff: 35, points: 74, form: 'DWWWW' },
-  { rank: 4, team: { id: 49, name: 'Chelsea', shortName: 'CHE', logo: '', country: 'England' }, played: 35, won: 20, drawn: 7, lost: 8, goalsFor: 68, goalsAgainst: 46, goalDiff: 22, points: 67, form: 'WDWLW' },
-  { rank: 5, team: { id: 47, name: 'Tottenham', shortName: 'TOT', logo: '', country: 'England' }, played: 35, won: 18, drawn: 9, lost: 8, goalsFor: 64, goalsAgainst: 48, goalDiff: 16, points: 63, form: 'DLWWD' },
-  { rank: 6, team: { id: 33, name: 'Man United', shortName: 'MUN', logo: '', country: 'England' }, played: 35, won: 16, drawn: 8, lost: 11, goalsFor: 54, goalsAgainst: 52, goalDiff: 2, points: 56, form: 'WLLWD' },
-];
+// Final 2024/25 season standings (on summer break during WC 2026)
+const FALLBACK: Record<number, Standing[]> = {
+  // Premier League — Liverpool won 2024/25
+  39: [
+    { rank: 1, team: { id: 40,  name: 'Liverpool',    shortName: 'LIV', logo: '', country: 'England' }, played: 38, won: 28, drawn: 6,  lost: 4,  goalsFor: 90, goalsAgainst: 37, goalDiff: 53, points: 90, form: 'WWWDW' },
+    { rank: 2, team: { id: 42,  name: 'Arsenal',      shortName: 'ARS', logo: '', country: 'England' }, played: 38, won: 24, drawn: 8,  lost: 6,  goalsFor: 79, goalsAgainst: 40, goalDiff: 39, points: 80, form: 'WWWLW' },
+    { rank: 3, team: { id: 65,  name: 'Nott\'m Forest', shortName: 'NFO', logo: '', country: 'England' }, played: 38, won: 18, drawn: 10, lost: 10, goalsFor: 55, goalsAgainst: 47, goalDiff:  8, points: 64, form: 'DLWDW' },
+    { rank: 4, team: { id: 49,  name: 'Chelsea',      shortName: 'CHE', logo: '', country: 'England' }, played: 38, won: 18, drawn: 9,  lost: 11, goalsFor: 67, goalsAgainst: 55, goalDiff: 12, points: 63, form: 'WWDLW' },
+    { rank: 5, team: { id: 50,  name: 'Man City',     shortName: 'MCI', logo: '', country: 'England' }, played: 38, won: 17, drawn: 9,  lost: 12, goalsFor: 64, goalsAgainst: 56, goalDiff:  8, points: 60, form: 'WDLWL' },
+    { rank: 6, team: { id: 34,  name: 'Newcastle',    shortName: 'NEW', logo: '', country: 'England' }, played: 38, won: 16, drawn: 8,  lost: 14, goalsFor: 58, goalsAgainst: 53, goalDiff:  5, points: 56, form: 'LDWWW' },
+  ],
+  // La Liga — Barcelona won 2024/25
+  140: [
+    { rank: 1, team: { id: 529, name: 'Barcelona',      shortName: 'BAR', logo: '', country: 'Spain' }, played: 38, won: 27, drawn: 6,  lost: 5,  goalsFor: 94, goalsAgainst: 38, goalDiff: 56, points: 87, form: 'WWWWW' },
+    { rank: 2, team: { id: 541, name: 'Real Madrid',    shortName: 'RMA', logo: '', country: 'Spain' }, played: 38, won: 24, drawn: 7,  lost: 7,  goalsFor: 81, goalsAgainst: 43, goalDiff: 38, points: 79, form: 'WDWWL' },
+    { rank: 3, team: { id: 530, name: 'Atlético Madrid',shortName: 'ATM', logo: '', country: 'Spain' }, played: 38, won: 21, drawn: 8,  lost: 9,  goalsFor: 66, goalsAgainst: 41, goalDiff: 25, points: 71, form: 'WWDLW' },
+    { rank: 4, team: { id: 531, name: 'Athletic Bilbao',shortName: 'ATH', logo: '', country: 'Spain' }, played: 38, won: 19, drawn: 8,  lost: 11, goalsFor: 58, goalsAgainst: 44, goalDiff: 14, points: 65, form: 'WDLWW' },
+    { rank: 5, team: { id: 533, name: 'Villarreal',     shortName: 'VIL', logo: '', country: 'Spain' }, played: 38, won: 17, drawn: 9,  lost: 12, goalsFor: 60, goalsAgainst: 51, goalDiff:  9, points: 60, form: 'DWWLD' },
+    { rank: 6, team: { id: 548, name: 'Real Sociedad',  shortName: 'RSO', logo: '', country: 'Spain' }, played: 38, won: 16, drawn: 10, lost: 12, goalsFor: 55, goalsAgainst: 48, goalDiff:  7, points: 58, form: 'LDWDW' },
+  ],
+};
+
+const DEFAULT_STANDINGS: Standing[] = FALLBACK[39];
 
 export default function LeagueTableWidget({ leagueId, leagueName }: LeagueTableWidgetProps) {
-  const standings = MOCK_STANDINGS;
+  const standings = FALLBACK[leagueId] ?? DEFAULT_STANDINGS;
 
   return (
     <div className="gr-card">

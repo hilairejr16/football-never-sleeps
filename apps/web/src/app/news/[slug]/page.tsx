@@ -43,7 +43,7 @@ const ARTICLES: ArticleData[] = [
     views: 284000, readTime: 6, league: 'World Cup 2026',
   },
   {
-    id: 'wc2', slug: 'yamal-masterclass-analysis', isBreaking: false,
+    id: 'wc2', slug: 'lamine-yamal-wc-2026-masterclass', isBreaking: false,
     title: "Yamal is the Player of the Tournament — and He's Only 18",
     excerpt: "From Barcelona teenager to World Cup superstar. Lamine Yamal's masterclass in Spain's run has left even the world's greatest in awe. A tactical breakdown.",
     paragraphs: [
