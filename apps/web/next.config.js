@@ -28,7 +28,7 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
-              "connect-src 'self' https://renewed-ambition-production-ea0a.up.railway.app wss://renewed-ambition-production-ea0a.up.railway.app https://www.google-analytics.com",
+              "connect-src 'self' https://renewed-ambition-production-ea0a.up.railway.app wss://renewed-ambition-production-ea0a.up.railway.app https://api.goalrushglobal.com wss://api.goalrushglobal.com https://www.google-analytics.com https://images.unsplash.com",
               "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
               "frame-ancestors 'none'",
               "base-uri 'self'",
