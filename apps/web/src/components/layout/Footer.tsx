@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Twitter, Instagram } from 'lucide-react';
+import { Twitter, Instagram, Youtube } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -50,9 +50,10 @@ const COMPANY = [
 ];
 
 const SOCIALS = [
-  { icon: Twitter,    href: 'https://x.com/GoalRushGlobal',           label: 'X / Twitter' },
-  { icon: Instagram,  href: 'https://instagram.com/GoalRushGlobal00', label: 'Instagram' },
-  { icon: TikTokIcon, href: 'https://tiktok.com/@goalrushglobal00',   label: 'TikTok' },
+  { icon: Twitter,    href: 'https://x.com/GoalRushGlobal',                    label: 'X / Twitter' },
+  { icon: Instagram,  href: 'https://instagram.com/GoalRushGlobal00',          label: 'Instagram' },
+  { icon: TikTokIcon, href: 'https://tiktok.com/@goalrushglobal00',            label: 'TikTok' },
+  { icon: Youtube,    href: 'https://www.youtube.com/@GoalRushGlobal00',       label: 'YouTube' },
 ];
 
 export default function Footer() {

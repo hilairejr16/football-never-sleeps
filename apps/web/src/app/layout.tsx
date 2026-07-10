@@ -40,6 +40,7 @@ const organizationSchema = {
     'https://x.com/GoalRushGlobal',
     'https://instagram.com/GoalRushGlobal00',
     'https://tiktok.com/@goalrushglobal00',
+    'https://www.youtube.com/@GoalRushGlobal00',
   ],
   description: 'AI-powered football media platform delivering live scores, breaking news, and analysis 24/7.',
 };

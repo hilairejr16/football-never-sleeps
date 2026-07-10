@@ -157,9 +157,10 @@ const WC_HIGHLIGHTS_FALLBACK: Highlight[] = [
 ];
 
 const CHANNELS = [
-  { label: 'Fox Sports Soccer', url: 'https://www.youtube.com/@FOXSports', color: 'text-blue-400' },
-  { label: 'ESPN FC',           url: 'https://www.youtube.com/@ESPN',       color: 'text-red-400' },
-  { label: 'FIFA World Cup',    url: 'https://www.youtube.com/@FIFAWorldCup', color: 'text-yellow-400' },
+  { label: 'GoalRush Global',  url: 'https://www.youtube.com/@GoalRushGlobal00', color: 'text-brand-gold' },
+  { label: 'Fox Sports Soccer', url: 'https://www.youtube.com/@FOXSports',       color: 'text-blue-400' },
+  { label: 'ESPN FC',           url: 'https://www.youtube.com/@ESPN',             color: 'text-red-400' },
+  { label: 'FIFA World Cup',    url: 'https://www.youtube.com/@FIFAWorldCup',     color: 'text-yellow-400' },
 ];
 
 function GradientThumbnail({ h }: { h: Highlight }) {
