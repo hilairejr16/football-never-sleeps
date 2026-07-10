@@ -9,7 +9,6 @@
       "NODE_VERSION": "20"
     }
   },
-  "skewProtection": true,
   "crons": [
     {
       "path": "/api/cron/daily",
