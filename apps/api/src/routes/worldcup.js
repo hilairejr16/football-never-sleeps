@@ -44,8 +44,12 @@ router.get('/info', asyncHandler(async (req, res) => {
 
 // GET /world-cup/live
 router.get('/live', asyncHandler(async (req, res) => {
-  const data = await getLiveFixtures(WC_LEAGUE_ID);
-  ok(res, data);
+  try {
+    const data = await getLiveFixtures(WC_LEAGUE_ID);
+    ok(res, data);
+  } catch {
+    ok(res, []); // no live matches right now
+  }
 }));
 
 // GET /world-cup/today

@@ -53,4 +53,9 @@ async function cacheGetOrSet(key, fetcher, ttlSeconds = 60) {
   return value;
 }
 
-module.exports = { setupRedis, getRedis, cacheGet, cacheSet, cacheDel, cacheGetOrSet };
+// Returns the raw ioredis client for use by rate-limit-redis (or null if not ready)
+function getClient() {
+  return redis || null;
+}
+
+module.exports = { setupRedis, getRedis, getClient, cacheGet, cacheSet, cacheDel, cacheGetOrSet };

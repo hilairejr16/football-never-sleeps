@@ -19,7 +19,8 @@ const signToken = user =>
 // POST /auth/register
 router.post('/register', authRateLimit, asyncHandler(async (req, res) => {
   const { email, password, name } = req.body;
-  if (!email || !password || !name) {
+  if (!email || !password || !name ||
+      typeof email !== 'string' || typeof password !== 'string' || typeof name !== 'string') {
     return res.status(400).json({ status: 'error', message: 'email, password and name are required' });
   }
   if (password.length < 8) {
@@ -44,7 +45,7 @@ router.post('/register', authRateLimit, asyncHandler(async (req, res) => {
 // POST /auth/login
 router.post('/login', authRateLimit, asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password) {
+  if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
     return res.status(400).json({ status: 'error', message: 'email and password are required' });
   }
 
