@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   BarChart2, Users, FileText, Video, Send, Settings,
   TrendingUp, DollarSign, Zap, Globe, RefreshCw,
@@ -43,9 +43,69 @@ const STATUS_CONFIG = {
 
 type Tab = 'overview' | 'content' | 'social' | 'ai' | 'analytics' | 'settings';
 
+const ADMIN_KEY = process.env.NEXT_PUBLIC_ADMIN_KEY ?? '';
+
 export default function AdminPage() {
+  const [authed, setAuthed]     = useState(false);
+  const [pw, setPw]             = useState('');
+  const [authError, setAuthError] = useState('');
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [generating, setGenerating] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('gr_admin_auth') === ADMIN_KEY && ADMIN_KEY) {
+      setAuthed(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    if (ADMIN_KEY && pw === ADMIN_KEY) {
+      sessionStorage.setItem('gr_admin_auth', ADMIN_KEY);
+      setAuthed(true);
+    } else {
+      setAuthError('Incorrect password');
+      setPw('');
+    }
+  };
+
+  if (!authed) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-brand-black px-4">
+        <div className="gr-card p-8 w-full max-w-sm">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center">
+              <Settings className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <div className="text-white font-display tracking-wider text-lg">ADMIN</div>
+              <div className="text-brand-gray text-xs">GoalRush Global</div>
+            </div>
+          </div>
+          <label className="block text-brand-gray text-xs font-semibold uppercase tracking-wider mb-2">
+            Password
+          </label>
+          <input
+            type="password"
+            value={pw}
+            onChange={e => { setPw(e.target.value); setAuthError(''); }}
+            onKeyDown={e => e.key === 'Enter' && handleLogin()}
+            placeholder="Enter admin password"
+            className="w-full bg-brand-dark border border-brand-border rounded-lg px-4 py-2.5 text-white text-sm mb-3 focus:outline-none focus:border-brand-red"
+            autoFocus
+          />
+          {authError && <p className="text-brand-red text-xs mb-3">{authError}</p>}
+          <button onClick={handleLogin} className="w-full gr-btn-primary py-2.5 text-sm">
+            Sign In
+          </button>
+          {!ADMIN_KEY && (
+            <p className="text-brand-muted text-xs mt-3 text-center">
+              Set <code className="text-brand-gold">NEXT_PUBLIC_ADMIN_KEY</code> in Vercel to enable access.
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   const TABS: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: 'overview',   label: 'Overview',   icon: BarChart2 },
