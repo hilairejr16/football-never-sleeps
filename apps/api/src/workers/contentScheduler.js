@@ -4,6 +4,7 @@ const cron = require('node-cron');
 const { aggregateAll }          = require('../services/rssAggregator');
 const { processBatch, generateDigest } = require('../services/newsProcessor');
 const { publishArticle, publishDigest } = require('../services/socialPublisher');
+const { checkAndAutoPost }       = require('../services/contentPipeline');
 
 // In-memory article store (DB-backed once schema is migrated)
 const articleStore = [];
@@ -187,11 +188,17 @@ function startContentScheduler() {
   // Weekly: Monday 10 AM UTC
   jobs.push(cron.schedule('0 10 * * 1', runWeeklyHighlights, { name: 'weekly-highlights' }));
 
+  // Video pipeline: auto-detect completed matches every 3 min
+  jobs.push(cron.schedule('*/3 * * * *', () => {
+    checkAndAutoPost().catch(e => console.error('[Scheduler] video-auto-check:', e.message));
+  }, { name: 'video-auto-post' }));
+
   console.log('[Scheduler] Content pipeline started:');
   console.log('  • Breaking news check:  every 5 min');
   console.log('  • Hourly digest:        :00 every hour');
   console.log('  • Daily roundup:        08:00 UTC daily');
   console.log('  • Weekly highlights:    Mon 10:00 UTC');
+  console.log('  • Video auto-post:      every 3 min (match detection)');
 }
 
 function stopContentScheduler() {

@@ -8,6 +8,7 @@ const { requireAdmin } = require('../middleware/auth');
 const { aggregateAll, RSS_FEEDS } = require('../services/rssAggregator');
 const { processArticle, processBatch, generateDigest } = require('../services/newsProcessor');
 const { publishArticle, publishDigest, getPlatformStatus, getQueue, getLog } = require('../services/socialPublisher');
+const { runVideoPipeline, checkAndAutoPost, getJob, getAllJobs } = require('../services/contentPipeline');
 const {
   runBreakingCheck, runHourlyDigest, runDailyRoundup, runWeeklyHighlights,
   getStats, getArticles,
@@ -136,6 +137,59 @@ router.get('/sources', (req, res) => {
     total:   RSS_FEEDS.length,
     sources: RSS_FEEDS,
   });
+});
+
+// ════════════════════════════════════════════════════════════
+// VIDEO PIPELINE — Faceless content generation
+// ════════════════════════════════════════════════════════════
+
+// ─── POST /content/video/generate ───────────────────────
+// Trigger video generation for a match (manual or test)
+// Body: { match: { id, homeTeam: {name}, awayTeam: {name}, homeScore, awayScore, league: {name, round}, stats: {possession, homeShots, awayShots, homeOnTarget, awayOnTarget} } }
+router.post('/video/generate', async (req, res) => {
+  const { match } = req.body;
+  if (!match?.homeTeam || !match?.awayTeam) {
+    return res.status(400).json({ status: 'error', message: 'match.homeTeam and match.awayTeam are required' });
+  }
+
+  // Fire-and-forget — returns jobId immediately
+  const { createJob } = require('../services/contentPipeline');
+  const jobId = createJob(match);
+
+  runVideoPipeline(match, jobId).catch(err =>
+    console.error(`[/content/video/generate] job ${jobId}:`, err.message)
+  );
+
+  res.json({
+    status:  'ok',
+    jobId,
+    message: 'Video pipeline started — poll /content/video/status/:jobId for progress',
+    platforms: {
+      youtube: !!process.env.YOUTUBE_CLIENT_ID,
+      twitter: !!process.env.TWITTER_API_KEY,
+      tiktok:  !!process.env.TIKTOK_ACCESS_TOKEN,
+      tts:     !!process.env.ELEVENLABS_API_KEY,
+    },
+  });
+});
+
+// ─── GET /content/video/status/:jobId ───────────────────
+router.get('/video/status/:jobId', (req, res) => {
+  const job = getJob(req.params.jobId);
+  if (!job) return res.status(404).json({ status: 'error', message: 'Job not found' });
+  res.json({ status: 'ok', job });
+});
+
+// ─── GET /content/video/jobs ────────────────────────────
+router.get('/video/jobs', (req, res) => {
+  res.json({ status: 'ok', jobs: getAllJobs().slice(0, 20) });
+});
+
+// ─── POST /content/video/auto-check ─────────────────────
+// Manually trigger the match detection scan
+router.post('/video/auto-check', async (req, res) => {
+  const count = await checkAndAutoPost();
+  res.json({ status: 'ok', completedMatchesFound: count });
 });
 
 module.exports = router;
