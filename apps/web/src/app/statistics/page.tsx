@@ -31,9 +31,9 @@ const TOP_SCORERS = [
 ];
 
 const TOP_ASSISTS = [
-  { rank: 1, name: 'Lionel Messi',    team: 'Argentina',flag: '🇦🇷', assists: 6, goals: 4, passes: 412 },
-  { rank: 2, name: 'Lamine Yamal',    team: 'Spain',    flag: '🇪🇸', assists: 6, goals: 4, passes: 387 },
-  { rank: 3, name: 'Kevin De Bruyne', team: 'Belgium',  flag: '🇧🇪', assists: 7, goals: 1, passes: 401 },
+  { rank: 1, name: 'Kevin De Bruyne', team: 'Belgium',  flag: '🇧🇪', assists: 7, goals: 1, passes: 401 },
+  { rank: 2, name: 'Lionel Messi',    team: 'Argentina',flag: '🇦🇷', assists: 6, goals: 4, passes: 412 },
+  { rank: 3, name: 'Lamine Yamal',    team: 'Spain',    flag: '🇪🇸', assists: 6, goals: 4, passes: 387 },
   { rank: 4, name: 'Bruno Fernandes', team: 'Portugal', flag: '🇵🇹', assists: 5, goals: 2, passes: 356 },
   { rank: 5, name: 'Vinícius Jr',     team: 'Brazil',   flag: '🇧🇷', assists: 4, goals: 5, passes: 298 },
 ];

@@ -108,23 +108,32 @@ export default function ListenButton({ text, title, className }: ListenButtonPro
 
     const content = (title ? `${title}. ` : '') + text.slice(0, 4800);
 
-    setState('loading');
+    // ── Start Web Speech SYNCHRONOUSLY first ─────────────────────
+    // Chrome drops the user-gesture context after any `await`, so
+    // speechSynthesis.speak() must be called before the ElevenLabs fetch.
+    playWithSpeechSynthesis(content);
 
-    // ── Try ElevenLabs first ─────────────────────────────────────
+    // ── Try ElevenLabs in background — upgrade if available ───────
     try {
+      const controller = new AbortController();
+      const tid = setTimeout(() => controller.abort(), 5000);
       const res = await fetch(`${API_BASE}/tts/article`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: content }),
+        signal: controller.signal,
       });
+      clearTimeout(tid);
 
-      if (res.ok) {
+      if (res.ok && engineRef.current === 'speechsynthesis') {
+        // Upgrade from browser TTS to ElevenLabs audio
+        window.speechSynthesis.cancel();
         const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
+        const url  = URL.createObjectURL(blob);
         blobUrlRef.current = url;
 
         const audio = new Audio(url);
-        audioRef.current = audio;
+        audioRef.current  = audio;
         engineRef.current = 'elevenlabs';
 
         audio.onended = () => { setState('idle'); engineRef.current = null; };
@@ -132,14 +141,10 @@ export default function ListenButton({ text, title, className }: ListenButtonPro
 
         await audio.play();
         setState('playing');
-        return;
       }
     } catch {
-      // ElevenLabs unavailable — fall through to Web Speech
+      // ElevenLabs unavailable or timed out — browser TTS already playing
     }
-
-    // ── Fallback: Web Speech API ─────────────────────────────────
-    playWithSpeechSynthesis(content);
   }, [state, text, title, playWithSpeechSynthesis]);
 
   const ICON: Record<State, React.ReactNode> = {
