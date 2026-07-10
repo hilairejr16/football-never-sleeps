@@ -57,6 +57,8 @@ export default function HomePage() {
               </div>
             </div>
             <LeagueTableWidget leagueId={140} leagueName="La Liga" />
+            <LeagueTableWidget leagueId={2019} leagueName="Serie A" />
+            <LeagueTableWidget leagueId={2016} leagueName="MLS" />
           </aside>
         </div>
       </section>

@@ -26,6 +26,24 @@ const FALLBACK: Record<number, Standing[]> = {
     { rank: 5, team: { id: 533, name: 'Villarreal',     shortName: 'VIL', logo: '', country: 'Spain' }, played: 38, won: 17, drawn: 9,  lost: 12, goalsFor: 60, goalsAgainst: 51, goalDiff:  9, points: 60, form: 'DWWLD' },
     { rank: 6, team: { id: 548, name: 'Real Sociedad',  shortName: 'RSO', logo: '', country: 'Spain' }, played: 38, won: 16, drawn: 10, lost: 12, goalsFor: 55, goalsAgainst: 48, goalDiff:  7, points: 58, form: 'LDWDW' },
   ],
+  // Serie A — Inter Milan won 2024/25
+  2019: [
+    { rank: 1, team: { id: 505, name: 'Inter Milan',  shortName: 'INT', logo: '', country: 'Italy' }, played: 38, won: 27, drawn: 7,  lost: 4,  goalsFor: 89, goalsAgainst: 34, goalDiff: 55, points: 88, form: 'WWWWW' },
+    { rank: 2, team: { id: 489, name: 'Napoli',       shortName: 'NAP', logo: '', country: 'Italy' }, played: 38, won: 24, drawn: 8,  lost: 6,  goalsFor: 74, goalsAgainst: 38, goalDiff: 36, points: 80, form: 'WWDWL' },
+    { rank: 3, team: { id: 496, name: 'Juventus',     shortName: 'JUV', logo: '', country: 'Italy' }, played: 38, won: 21, drawn: 9,  lost: 8,  goalsFor: 67, goalsAgainst: 41, goalDiff: 26, points: 72, form: 'WDWWL' },
+    { rank: 4, team: { id: 492, name: 'Atalanta',     shortName: 'ATA', logo: '', country: 'Italy' }, played: 38, won: 20, drawn: 8,  lost: 10, goalsFor: 70, goalsAgainst: 47, goalDiff: 23, points: 68, form: 'LWWWD' },
+    { rank: 5, team: { id: 488, name: 'AC Milan',     shortName: 'MIL', logo: '', country: 'Italy' }, played: 38, won: 18, drawn: 9,  lost: 11, goalsFor: 62, goalsAgainst: 48, goalDiff: 14, points: 63, form: 'WLDWW' },
+    { rank: 6, team: { id: 487, name: 'Lazio',        shortName: 'LAZ', logo: '', country: 'Italy' }, played: 38, won: 17, drawn: 8,  lost: 13, goalsFor: 59, goalsAgainst: 52, goalDiff:  7, points: 59, form: 'DWWLD' },
+  ],
+  // MLS — LA Galaxy won 2025 MLS Cup
+  2016: [
+    { rank: 1, team: { id: 1607, name: 'LA Galaxy',       shortName: 'LAG', logo: '', country: 'USA' }, played: 34, won: 20, drawn: 7,  lost: 7,  goalsFor: 68, goalsAgainst: 42, goalDiff: 26, points: 67, form: 'WWWWW' },
+    { rank: 2, team: { id: 1608, name: 'LAFC',            shortName: 'LAF', logo: '', country: 'USA' }, played: 34, won: 18, drawn: 9,  lost: 7,  goalsFor: 62, goalsAgainst: 38, goalDiff: 24, points: 63, form: 'WDWWL' },
+    { rank: 3, team: { id: 1599, name: 'Inter Miami',     shortName: 'MIA', logo: '', country: 'USA' }, played: 34, won: 17, drawn: 8,  lost: 9,  goalsFor: 65, goalsAgainst: 48, goalDiff: 17, points: 59, form: 'WWDLW' },
+    { rank: 4, team: { id: 1581, name: 'Columbus Crew',   shortName: 'CLB', logo: '', country: 'USA' }, played: 34, won: 16, drawn: 7,  lost: 11, goalsFor: 54, goalsAgainst: 45, goalDiff:  9, points: 55, form: 'WDLWW' },
+    { rank: 5, team: { id: 1580, name: 'NY City FC',      shortName: 'NYC', logo: '', country: 'USA' }, played: 34, won: 14, drawn: 9,  lost: 11, goalsFor: 50, goalsAgainst: 46, goalDiff:  4, points: 51, form: 'LDWDW' },
+    { rank: 6, team: { id: 1577, name: 'Seattle Sounders',shortName: 'SEA', logo: '', country: 'USA' }, played: 34, won: 13, drawn: 8,  lost: 13, goalsFor: 48, goalsAgainst: 49, goalDiff: -1, points: 47, form: 'WLLWW' },
+  ],
 };
 
 const DEFAULT_STANDINGS: Standing[] = FALLBACK[39];
@@ -83,14 +101,27 @@ export default function LeagueTableWidget({ leagueId, leagueName }: LeagueTableW
         ))}
       </div>
 
-      {/* Champions League zone legend */}
+      {/* Zone legend */}
       <div className="px-4 py-3 border-t border-brand-border flex items-center gap-4 text-[10px] text-brand-gray">
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 bg-brand-red rounded-full" /> Champions League
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 bg-brand-gold rounded-full" /> Europa League
-        </span>
+        {leagueId === 2016 ? (
+          <>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-brand-red rounded-full" /> Playoff
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-brand-gold rounded-full" /> Supporters' Shield
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-brand-red rounded-full" /> Champions League
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 bg-brand-gold rounded-full" /> Europa League
+            </span>
+          </>
+        )}
       </div>
     </div>
   );
