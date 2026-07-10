@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const ANALYSIS_PIECES = [
   {
-    slug: 'yamal-masterclass-analysis',
+    slug: 'lamine-yamal-wc-2026-masterclass',
     title: "Yamal is the Player of the Tournament — and He's Only 18",
     excerpt: "From Barcelona teenager to World Cup superstar. A complete tactical breakdown of how Yamal has dismantled every defence he has faced.",
     category: 'Player Analysis', tags: ['Spain', 'Yamal'], readTime: 8, views: 198000,

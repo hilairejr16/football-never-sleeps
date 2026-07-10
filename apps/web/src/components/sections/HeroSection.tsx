@@ -47,7 +47,7 @@ const WC_FALLBACK_ARTICLES: NewsArticle[] = [
     content: '',
     category: 'breaking',
     tags: ['World Cup 2026', 'France', 'Morocco', 'Quarter-Finals', 'Mbappé'],
-    imageUrl: '/placeholder-news.svg',
+    imageUrl: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'France vs Morocco World Cup QF Gillette Stadium Boston',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 30).toISOString(),
@@ -63,7 +63,7 @@ const WC_FALLBACK_ARTICLES: NewsArticle[] = [
     content: '',
     category: 'analysis',
     tags: ['World Cup 2026', 'Norway', 'England', 'Haaland', 'Bellingham', 'Quarter-Finals'],
-    imageUrl: '/placeholder-news.svg',
+    imageUrl: 'https://images.unsplash.com/photo-1551958219-acbc45e32bdf?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Norway vs England World Cup QF Miami',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
@@ -79,7 +79,7 @@ const WC_FALLBACK_ARTICLES: NewsArticle[] = [
     content: '',
     category: 'analysis',
     tags: ['World Cup 2026', 'Spain', 'Belgium', 'Quarter-Finals', 'Yamal', 'De Bruyne'],
-    imageUrl: '/placeholder-news.svg',
+    imageUrl: 'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Spain vs Belgium World Cup QF SoFi Stadium',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
@@ -95,7 +95,7 @@ const WC_FALLBACK_ARTICLES: NewsArticle[] = [
     content: '',
     category: 'analysis',
     tags: ['World Cup 2026', 'Argentina', 'Switzerland', 'Messi', 'Quarter-Finals'],
-    imageUrl: '/placeholder-news.svg',
+    imageUrl: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
     imageAlt: 'Argentina vs Switzerland World Cup QF Kansas City',
     author: 'GoalRush AI',
     publishedAt: new Date(Date.now() - 1000 * 60 * 270).toISOString(),
@@ -181,7 +181,7 @@ export default async function HeroSection() {
                 {[
                   { label: 'Live Matches',  value: stats.liveCount > 0 ? String(stats.liveCount) : '0' },
                   { label: 'WC Today',      value: stats.wcMatchesToday > 0 ? String(stats.wcMatchesToday) : '0' },
-                  { label: 'QF Kick-off',   value: 'Jul 10' },
+                  { label: 'QF Kick-off',   value: 'Jul 9' },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
                     <div className="font-display text-3xl text-white">{stat.value}</div>

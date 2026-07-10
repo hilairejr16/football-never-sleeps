@@ -9,18 +9,18 @@ export const metadata: Metadata = {
 };
 
 const TOP_PLAYERS = [
-  { name: 'Lamine Yamal',     team: 'Spain',    flag: '🇪🇸', pos: 'FW', goals: 4, assists: 6, rating: 9.3, slug: 'yamal-masterclass-analysis' },
+  { name: 'Lamine Yamal',     team: 'Spain',    flag: '🇪🇸', pos: 'FW', goals: 4, assists: 6, rating: 9.3, slug: 'lamine-yamal-wc-2026-masterclass' },
+  { name: 'Erling Haaland',   team: 'Norway',   flag: '🇳🇴', pos: 'FW', goals: 8, assists: 0, rating: 9.2, slug: 'norway-england-qf-preview' },
+  { name: 'Kylian Mbappé',    team: 'France',   flag: '🇫🇷', pos: 'FW', goals: 6, assists: 2, rating: 9.0, slug: 'mbappe-golden-boot-race' },
   { name: 'Vinícius Jr',      team: 'Brazil',   flag: '🇧🇷', pos: 'FW', goals: 5, assists: 4, rating: 9.1, slug: 'mbappe-golden-boot-race' },
-  { name: 'Kylian Mbappé',    team: 'France',   flag: '🇫🇷', pos: 'FW', goals: 6, assists: 2, rating: 8.9, slug: 'mbappe-golden-boot-race' },
   { name: 'Lionel Messi',     team: 'Argentina',flag: '🇦🇷', pos: 'FW', goals: 4, assists: 6, rating: 8.8, slug: 'messi-farewell-world-cup' },
-  { name: 'Florian Wirtz',    team: 'Germany',  flag: '🇩🇪', pos: 'MF', goals: 4, assists: 3, rating: 8.7, slug: 'germany-dark-horses' },
-  { name: 'Jude Bellingham',  team: 'England',  flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', goals: 3, assists: 4, rating: 8.6, slug: 'england-france-qf-preview' },
-  { name: 'Julián Álvarez',   team: 'Argentina',flag: '🇦🇷', pos: 'FW', goals: 5, assists: 1, rating: 8.4, slug: 'brazil-argentina-qf-preview' },
+  { name: 'Kevin De Bruyne',  team: 'Belgium',  flag: '🇧🇪', pos: 'MF', goals: 1, assists: 7, rating: 8.7, slug: 'spain-belgium-qf-preview' },
+  { name: 'Jude Bellingham',  team: 'England',  flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'MF', goals: 3, assists: 4, rating: 8.6, slug: 'norway-england-qf-preview' },
+  { name: 'Julián Álvarez',   team: 'Argentina',flag: '🇦🇷', pos: 'FW', goals: 5, assists: 1, rating: 8.4, slug: 'argentina-switzerland-qf-preview' },
   { name: 'Pedri',            team: 'Spain',    flag: '🇪🇸', pos: 'MF', goals: 2, assists: 4, rating: 8.3, slug: 'spain-possession-stats' },
+  { name: 'Harry Kane',       team: 'England',  flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', goals: 5, assists: 0, rating: 8.1, slug: 'norway-england-qf-preview' },
   { name: 'Christian Pulisic',team: 'USA',      flag: '🇺🇸', pos: 'FW', goals: 4, assists: 2, rating: 8.2, slug: 'usa-surprise-package' },
-  { name: 'Harry Kane',       team: 'England',  flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', pos: 'FW', goals: 5, assists: 0, rating: 8.1, slug: 'england-france-qf-preview' },
-  { name: 'Bruno Fernandes',  team: 'Portugal', flag: '🇵🇹', pos: 'MF', goals: 2, assists: 5, rating: 8.0, slug: 'ronaldo-last-dance-portugal' },
-  { name: 'Kai Havertz',      team: 'Germany',  flag: '🇩🇪', pos: 'FW', goals: 4, assists: 1, rating: 8.0, slug: 'germany-dark-horses' },
+  { name: 'Cristiano Ronaldo',team: 'Portugal', flag: '🇵🇹', pos: 'FW', goals: 4, assists: 0, rating: 7.8, slug: 'ronaldo-last-dance-portugal' },
 ];
 
 const POSITION_COLORS: Record<string, string> = {
@@ -31,10 +31,10 @@ const POSITION_COLORS: Record<string, string> = {
 };
 
 const TOP_GOALKEEPERS = [
-  { name: 'Alisson',          team: 'Brazil',  flag: '🇧🇷', cs: 3, saves: 14 },
-  { name: 'David Raya',       team: 'Spain',   flag: '🇪🇸', cs: 3, saves: 11 },
-  { name: 'Jordan Pickford',  team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', cs: 2, saves: 16 },
-  { name: 'Diogo Costa',      team: 'Portugal',flag: '🇵🇹', cs: 2, saves: 13 },
+  { name: 'Thibaut Courtois', team: 'Belgium',     flag: '🇧🇪', cs: 3, saves: 18 },
+  { name: 'David Raya',       team: 'Spain',       flag: '🇪🇸', cs: 3, saves: 11 },
+  { name: 'Jordan Pickford',  team: 'England',     flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', cs: 2, saves: 16 },
+  { name: 'Yann Sommer',      team: 'Switzerland', flag: '🇨🇭', cs: 2, saves: 22 },
 ];
 
 export default function PlayersPage() {
@@ -63,7 +63,7 @@ export default function PlayersPage() {
             <div className="text-center"><div className="font-display text-2xl text-brand-gold">6</div><div className="text-brand-gray text-xs">Assists</div></div>
             <div className="text-center"><div className="font-display text-2xl text-yellow-400">9.3</div><div className="text-brand-gray text-xs">Rating</div></div>
           </div>
-          <Link href="/news/yamal-masterclass-analysis" className="gr-btn-gold px-4 py-2 text-sm whitespace-nowrap">
+          <Link href="/news/lamine-yamal-wc-2026-masterclass" className="gr-btn-gold px-4 py-2 text-sm whitespace-nowrap">
             Full Analysis
           </Link>
         </div>

@@ -6,18 +6,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString();
 
   const articleSlugs = [
-    { slug: 'england-france-qf-preview',   date: '2026-07-09T10:00:00Z' },
-    { slug: 'yamal-masterclass-analysis',  date: '2026-07-09T08:30:00Z' },
-    { slug: 'messi-farewell-world-cup',    date: '2026-07-09T07:00:00Z' },
-    { slug: 'brazil-argentina-qf-preview', date: '2026-07-09T06:00:00Z' },
-    { slug: 'mbappe-golden-boot-race',     date: '2026-07-09T05:00:00Z' },
-    { slug: 'usa-surprise-package',        date: '2026-07-09T04:00:00Z' },
-    { slug: 'transfer-window-post-wc',     date: '2026-07-09T03:00:00Z' },
-    { slug: 'ronaldo-last-dance-portugal', date: '2026-07-09T02:00:00Z' },
-    { slug: 'germany-dark-horses',         date: '2026-07-09T01:00:00Z' },
-    { slug: 'metlife-stadium-final-venue', date: '2026-07-09T00:00:00Z' },
-    { slug: 'spain-possession-stats',      date: '2026-07-08T23:00:00Z' },
-    { slug: '48-team-format-verdict',      date: '2026-07-08T22:00:00Z' },
+    { slug: 'france-morocco-qf-preview',        date: '2026-07-09T12:00:00Z' },
+    { slug: 'norway-england-qf-preview',        date: '2026-07-09T11:30:00Z' },
+    { slug: 'spain-belgium-qf-preview',         date: '2026-07-09T11:00:00Z' },
+    { slug: 'argentina-switzerland-qf-preview', date: '2026-07-09T10:30:00Z' },
+    { slug: 'england-france-qf-preview',        date: '2026-07-09T10:00:00Z' },
+    { slug: 'lamine-yamal-wc-2026-masterclass', date: '2026-07-09T08:30:00Z' },
+    { slug: 'messi-farewell-world-cup',         date: '2026-07-09T07:00:00Z' },
+    { slug: 'brazil-argentina-qf-preview',      date: '2026-07-09T06:00:00Z' },
+    { slug: 'mbappe-golden-boot-race',          date: '2026-07-09T05:00:00Z' },
+    { slug: 'usa-surprise-package',             date: '2026-07-09T04:00:00Z' },
+    { slug: 'transfer-window-post-wc',          date: '2026-07-09T03:00:00Z' },
+    { slug: 'ronaldo-last-dance-portugal',      date: '2026-07-09T02:00:00Z' },
+    { slug: 'germany-dark-horses',              date: '2026-07-09T01:00:00Z' },
+    { slug: 'metlife-stadium-final-venue',      date: '2026-07-09T00:00:00Z' },
+    { slug: 'spain-possession-stats',           date: '2026-07-08T23:00:00Z' },
+    { slug: '48-team-format-verdict',           date: '2026-07-08T22:00:00Z' },
   ];
 
   const articlePages: MetadataRoute.Sitemap = articleSlugs.map(({ slug, date }) => ({

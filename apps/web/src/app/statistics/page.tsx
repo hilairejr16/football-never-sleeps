@@ -20,33 +20,33 @@ async function fetchScorers() {
 }
 
 const TOP_SCORERS = [
-  { rank: 1, name: 'Kylian Mbappé',    team: 'France',   flag: '🇫🇷', goals: 6, assists: 2, shots: 22, rating: 8.9 },
-  { rank: 2, name: 'Vinícius Jr',      team: 'Brazil',   flag: '🇧🇷', goals: 5, assists: 4, shots: 18, rating: 9.1 },
-  { rank: 3, name: 'Julián Álvarez',   team: 'Argentina',flag: '🇦🇷', goals: 5, assists: 1, shots: 14, rating: 8.4 },
-  { rank: 4, name: 'Lamine Yamal',     team: 'Spain',    flag: '🇪🇸', goals: 4, assists: 6, shots: 16, rating: 9.3 },
+  { rank: 1, name: 'Erling Haaland',   team: 'Norway',   flag: '🇳🇴', goals: 8, assists: 0, shots: 19, rating: 9.2 },
+  { rank: 2, name: 'Kylian Mbappé',    team: 'France',   flag: '🇫🇷', goals: 6, assists: 2, shots: 22, rating: 9.0 },
+  { rank: 3, name: 'Vinícius Jr',      team: 'Brazil',   flag: '🇧🇷', goals: 5, assists: 4, shots: 18, rating: 9.1 },
+  { rank: 4, name: 'Julián Álvarez',   team: 'Argentina',flag: '🇦🇷', goals: 5, assists: 1, shots: 14, rating: 8.4 },
   { rank: 5, name: 'Harry Kane',       team: 'England',  flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', goals: 5, assists: 0, shots: 13, rating: 8.1 },
-  { rank: 6, name: 'Christian Pulisic',team: 'USA',      flag: '🇺🇸', goals: 4, assists: 2, shots: 11, rating: 8.2 },
-  { rank: 7, name: 'Cristiano Ronaldo',team: 'Portugal', flag: '🇵🇹', goals: 4, assists: 0, shots: 17, rating: 7.8 },
-  { rank: 8, name: 'Kai Havertz',      team: 'Germany',  flag: '🇩🇪', goals: 4, assists: 1, shots: 12, rating: 8.0 },
+  { rank: 6, name: 'Lamine Yamal',     team: 'Spain',    flag: '🇪🇸', goals: 4, assists: 6, shots: 16, rating: 9.3 },
+  { rank: 7, name: 'Christian Pulisic',team: 'USA',      flag: '🇺🇸', goals: 4, assists: 2, shots: 11, rating: 8.2 },
+  { rank: 8, name: 'Cristiano Ronaldo',team: 'Portugal', flag: '🇵🇹', goals: 4, assists: 0, shots: 17, rating: 7.8 },
 ];
 
 const TOP_ASSISTS = [
   { rank: 1, name: 'Lionel Messi',    team: 'Argentina',flag: '🇦🇷', assists: 6, goals: 4, passes: 412 },
   { rank: 2, name: 'Lamine Yamal',    team: 'Spain',    flag: '🇪🇸', assists: 6, goals: 4, passes: 387 },
-  { rank: 3, name: 'Kevin De Bruyne', team: 'Belgium',  flag: '🇧🇪', assists: 4, goals: 1, passes: 401 },
-  { rank: 4, name: 'Vinícius Jr',     team: 'Brazil',   flag: '🇧🇷', assists: 4, goals: 5, passes: 298 },
-  { rank: 5, name: 'Bruno Fernandes', team: 'Portugal', flag: '🇵🇹', assists: 5, goals: 2, passes: 356 },
+  { rank: 3, name: 'Kevin De Bruyne', team: 'Belgium',  flag: '🇧🇪', assists: 7, goals: 1, passes: 401 },
+  { rank: 4, name: 'Bruno Fernandes', team: 'Portugal', flag: '🇵🇹', assists: 5, goals: 2, passes: 356 },
+  { rank: 5, name: 'Vinícius Jr',     team: 'Brazil',   flag: '🇧🇷', assists: 4, goals: 5, passes: 298 },
 ];
 
 const TEAM_STATS = [
-  { team: 'Brazil',    flag: '🇧🇷', goals: 16, conceded: 4,  shots: 87, possession: 61, passes: 2841, rating: 8.1 },
-  { team: 'Spain',     flag: '🇪🇸', goals: 14, conceded: 3,  shots: 74, possession: 64, passes: 3102, rating: 8.4 },
-  { team: 'France',    flag: '🇫🇷', goals: 13, conceded: 4,  shots: 69, possession: 58, passes: 2790, rating: 7.9 },
-  { team: 'Argentina', flag: '🇦🇷', goals: 13, conceded: 5,  shots: 71, possession: 55, passes: 2612, rating: 7.8 },
-  { team: 'Portugal',  flag: '🇵🇹', goals: 12, conceded: 4,  shots: 65, possession: 56, passes: 2589, rating: 7.7 },
-  { team: 'Germany',   flag: '🇩🇪', goals: 11, conceded: 6,  shots: 62, possession: 57, passes: 2644, rating: 7.6 },
-  { team: 'England',   flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', goals: 10, conceded: 5,  shots: 58, possession: 53, passes: 2488, rating: 7.5 },
-  { team: 'USA',       flag: '🇺🇸', goals: 8,  conceded: 6,  shots: 52, possession: 48, passes: 2204, rating: 7.3 },
+  { team: 'Belgium',     flag: '🇧🇪', goals: 15, conceded: 7,  shots: 78, possession: 55, passes: 2867, rating: 8.1 },
+  { team: 'Spain',       flag: '🇪🇸', goals: 14, conceded: 3,  shots: 74, possession: 64, passes: 3102, rating: 8.4 },
+  { team: 'France',      flag: '🇫🇷', goals: 13, conceded: 4,  shots: 69, possession: 58, passes: 2790, rating: 7.9 },
+  { team: 'Norway',      flag: '🇳🇴', goals: 13, conceded: 4,  shots: 65, possession: 52, passes: 2530, rating: 8.3 },
+  { team: 'Argentina',   flag: '🇦🇷', goals: 13, conceded: 5,  shots: 71, possession: 55, passes: 2612, rating: 7.8 },
+  { team: 'Morocco',     flag: '🇲🇦', goals: 10, conceded: 3,  shots: 52, possession: 49, passes: 2341, rating: 8.0 },
+  { team: 'England',     flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', goals: 10, conceded: 5,  shots: 58, possession: 53, passes: 2488, rating: 7.5 },
+  { team: 'Switzerland', flag: '🇨🇭', goals: 7,  conceded: 6,  shots: 48, possession: 46, passes: 2187, rating: 7.4 },
 ];
 
 const TOURNAMENT_STATS = [
@@ -194,10 +194,10 @@ export default async function StatisticsPage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-brand-border/40">
           {[
-            { name: 'Thibaut Courtois', team: 'Belgium', flag: '🇧🇪', cs: 3, saves: 18 },
-            { name: 'Alisson',          team: 'Brazil',  flag: '🇧🇷', cs: 3, saves: 14 },
-            { name: 'Jordan Pickford', team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', cs: 2, saves: 16 },
-            { name: 'David Raya',       team: 'Spain',   flag: '🇪🇸', cs: 3, saves: 11 },
+            { name: 'Thibaut Courtois', team: 'Belgium',     flag: '🇧🇪', cs: 3, saves: 18 },
+            { name: 'David Raya',       team: 'Spain',       flag: '🇪🇸', cs: 3, saves: 11 },
+            { name: 'Jordan Pickford',  team: 'England',     flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', cs: 2, saves: 16 },
+            { name: 'Yann Sommer',      team: 'Switzerland', flag: '🇨🇭', cs: 2, saves: 22 },
           ].map(g => (
             <div key={g.name} className="px-5 py-4 text-center">
               <div className="text-3xl mb-2">{g.flag}</div>

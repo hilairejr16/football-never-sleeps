@@ -9,7 +9,7 @@ const SEARCHABLE = [
   { type: 'Article', href: '/news/spain-belgium-qf-preview',       title: 'Spain vs Belgium: Yamal vs De Bruyne in a Clash of Creators',         tags: ['Spain','Belgium','Quarter-Final','Yamal','De Bruyne'] },
   { type: 'Article', href: '/news/norway-england-qf-preview',      title: 'Norway vs England: Haaland Has Already Eliminated Brazil',            tags: ['Norway','England','Quarter-Final','Haaland','Bellingham'] },
   { type: 'Article', href: '/news/argentina-switzerland-qf-preview', title: 'Argentina vs Switzerland: Messi vs the Nati on the Biggest Stage',  tags: ['Argentina','Switzerland','Quarter-Final','Messi'] },
-  { type: 'Article', href: '/news/yamal-masterclass-analysis',     title: "Yamal is the Player of the Tournament — and He's Only 18",             tags: ['Spain','Yamal','Analysis'] },
+  { type: 'Article', href: '/news/lamine-yamal-wc-2026-masterclass', title: "Yamal is the Player of the Tournament — and He's Only 18",            tags: ['Spain','Yamal','Analysis'] },
   { type: 'Article', href: '/news/messi-farewell-world-cup',       title: "The Last Dance: Is This Really Messi's Final World Cup Miracle?",       tags: ['Argentina','Messi','Analysis'] },
   { type: 'Article', href: '/news/transfer-window-post-wc',        title: 'Summer 2026 Transfer Window: Which Stars Will Move After the World Cup?', tags: ['Transfers','Osimhen','Yamal','Haaland'] },
   { type: 'Article', href: '/news/metlife-stadium-final-venue',    title: "MetLife Stadium: The Cathedral That Will Host Football's Greatest Moment", tags: ['MetLife','Final','USA'] },
