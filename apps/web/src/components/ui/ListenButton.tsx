@@ -125,7 +125,8 @@ export default function ListenButton({ text, title, className }: ListenButtonPro
       });
       clearTimeout(tid);
 
-      if (res.ok && engineRef.current === 'speechsynthesis') {
+      const engineNow = engineRef.current as Engine;
+      if (res.ok && engineNow === 'speechsynthesis') {
         // Upgrade from browser TTS to ElevenLabs audio
         window.speechSynthesis.cancel();
         const blob = await res.blob();

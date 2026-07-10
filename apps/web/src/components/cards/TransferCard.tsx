@@ -44,7 +44,7 @@ export default function TransferCard({ transfer, className }: TransferCardProps)
         </div>
         <div>
           <Link
-            href={`/players/${transfer.player.id}`}
+            href="/players"
             className="text-white font-bold hover:text-brand-gold transition-colors"
           >
             {transfer.player.name}
