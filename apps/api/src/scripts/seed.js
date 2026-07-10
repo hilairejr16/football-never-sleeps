@@ -16,64 +16,9 @@ const q = (sql, params = []) => pool.query(sql, params);
 // ── Schema ──────────────────────────────────────────────────────────────────
 
 async function createTables() {
-  await q(`
-    CREATE TABLE IF NOT EXISTS articles (
-      id            SERIAL PRIMARY KEY,
-      slug          TEXT UNIQUE NOT NULL,
-      title         TEXT NOT NULL,
-      excerpt       TEXT,
-      content       TEXT,
-      category      TEXT DEFAULT 'analysis',
-      tags          JSONB DEFAULT '[]',
-      image_url     TEXT,
-      image_alt     TEXT,
-      author        TEXT DEFAULT 'GoalRush AI',
-      seo_title     TEXT,
-      seo_description TEXT,
-      read_time     INT DEFAULT 4,
-      views         BIGINT DEFAULT 0,
-      is_breaking   BOOLEAN DEFAULT false,
-      published     BOOLEAN DEFAULT true,
-      published_at  TIMESTAMPTZ DEFAULT NOW(),
-      created_at    TIMESTAMPTZ DEFAULT NOW(),
-      league        TEXT
-    )
-  `);
-
-  await q(`
-    CREATE TABLE IF NOT EXISTS transfers (
-      id            SERIAL PRIMARY KEY,
-      player_name   TEXT NOT NULL,
-      player_age    INT,
-      position      TEXT,
-      nationality   TEXT,
-      from_club     TEXT,
-      to_club       TEXT,
-      fee           TEXT,
-      status        TEXT DEFAULT 'rumour',
-      source        TEXT,
-      created_at    TIMESTAMPTZ DEFAULT NOW()
-    )
-  `);
-
-  await q(`
-    CREATE TABLE IF NOT EXISTS players (
-      id            SERIAL PRIMARY KEY,
-      slug          TEXT UNIQUE NOT NULL,
-      name          TEXT NOT NULL,
-      team          TEXT,
-      nationality   TEXT,
-      position      TEXT,
-      age           INT,
-      goals         INT DEFAULT 0,
-      assists       INT DEFAULT 0,
-      rating        NUMERIC(3,1),
-      bio           TEXT,
-      created_at    TIMESTAMPTZ DEFAULT NOW()
-    )
-  `);
-
-  console.log('✅ Tables created');
+  // Tables already exist — just ensure uuid extension is available
+  await q(`CREATE EXTENSION IF NOT EXISTS "pgcrypto"`).catch(() => {});
+  console.log('✅ Tables verified');
 }
 
 // ── Articles ─────────────────────────────────────────────────────────────────
@@ -253,14 +198,14 @@ async function seedArticles() {
     try {
       await q(
         `INSERT INTO articles
-           (slug, title, excerpt, content, category, tags, image_url, image_alt,
-            author, read_time, views, is_breaking, published, published_at, league)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
+           (id, slug, title, excerpt, content, category, tags, image_url, image_alt,
+            author, read_time, views, is_breaking, published, published_at, league_id)
+         VALUES (gen_random_uuid(),$1,$2,$3,$4,$5::article_category,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
          ON CONFLICT (slug) DO NOTHING`,
         [
           a.slug, a.title, a.excerpt, a.content, a.category, a.tags,
           a.image_url, a.image_alt, 'GoalRush AI', a.read_time, a.views,
-          a.is_breaking, true, a.published_at, a.league || null,
+          a.is_breaking, true, a.published_at, 1, // 1 = World Cup
         ],
       );
       inserted++;
@@ -273,20 +218,9 @@ async function seedArticles() {
 }
 
 async function seedTransfers() {
-  let inserted = 0;
-  for (const t of TRANSFERS) {
-    try {
-      await q(
-        `INSERT INTO transfers (player_name, player_age, position, nationality, from_club, to_club, fee, status, source)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`,
-        [t.player_name, t.player_age, t.position, t.nationality, t.from_club, t.to_club, t.fee, t.status, t.source],
-      );
-      inserted++;
-    } catch (e) {
-      console.error(`  ✗ ${t.player_name}: ${e.message}`);
-    }
-  }
-  console.log(`✅ Transfers: ${inserted} inserted`);
+  // Transfers table is normalized (player_id, from_team_id, to_team_id FKs) —
+  // skip for now until player/team tables are populated.
+  console.log('⏭️  Transfers: skipped (requires player & team FK data)');
 }
 
 async function main() {
