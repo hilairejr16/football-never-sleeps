@@ -18,10 +18,12 @@ router.get('/', asyncHandler(async (req, res) => {
   const cacheKey = `news:list:${limit}:${page}:${category || 'all'}`;
 
   const data = await cacheGetOrSet(cacheKey, async () => {
+    // Valid category values — 'world-cup' is a tag filter, not a DB category
+    const VALID_CATEGORIES = ['match-report', 'analysis', 'transfer', 'preview', 'breaking', 'news'];
     let sql = `SELECT * FROM articles WHERE published = true`;
     const params = [];
 
-    if (category && category !== 'all') {
+    if (category && category !== 'all' && VALID_CATEGORIES.includes(category)) {
       params.push(category);
       sql += ` AND category = $${params.length}`;
     }

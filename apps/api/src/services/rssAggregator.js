@@ -2,28 +2,21 @@
 
 const crypto = require('crypto');
 
-// RSS_FEEDS — 15 premier football sources covering all global regions.
-// Each article is fetched, normalized, and attributed to its source.
+// RSS_FEEDS — verified working football sources (2026-07)
 const RSS_FEEDS = [
   // ── English Premier Sources ────────────────────────────────
   { name: 'BBC Sport Football',    url: 'https://feeds.bbci.co.uk/sport/football/rss.xml',              region: 'UK',   trust: 10 },
-  { name: 'Sky Sports Football',   url: 'https://www.skysports.com/rss/12040',                           region: 'UK',   trust: 10 },
-  { name: 'The Guardian Football', url: 'https://www.theguardian.com/football/rss',                      region: 'UK',   trust: 10 },
-  { name: 'ESPN Soccer',           url: 'https://www.espn.com/espn/rss/soccer/news',                     region: 'US',   trust: 9  },
-  { name: 'Goal.com',              url: 'https://www.goal.com/feeds/en/news',                            region: 'INT',  trust: 9  },
-  { name: '90min',                 url: 'https://www.90min.com/feed',                                    region: 'INT',  trust: 8  },
-  { name: 'Football365',           url: 'https://www.football365.com/feed',                              region: 'UK',   trust: 8  },
-  { name: 'Sport Bible',           url: 'https://www.sportbible.com/football/rss',                       region: 'UK',   trust: 7  },
-  { name: 'Planet Football',       url: 'https://www.planetfootball.com/feed/',                          region: 'UK',   trust: 7  },
-  // ── European Spanish Sources ───────────────────────────────
-  { name: 'AS English',            url: 'https://en.as.com/rss/',                                       region: 'ES',   trust: 9  },
-  { name: 'Marca English',         url: 'https://www.marca.com/en/rss/soccer.xml',                      region: 'ES',   trust: 8  },
-  { name: 'Mundo Deportivo',       url: 'https://www.mundodeportivo.com/feed/soccer.rss',               region: 'ES',   trust: 7  },
-  // ── Italian Source ─────────────────────────────────────────
-  { name: 'Football Italia',       url: 'https://www.football-italia.net/rss.xml',                      region: 'IT',   trust: 8  },
-  // ── Transfer & Data Specialists ────────────────────────────
-  { name: 'Tribal Football',       url: 'https://www.tribalfootball.com/rss.xml',                       region: 'INT',  trust: 7  },
-  { name: 'Sportsmole Football',   url: 'https://www.sportsmole.co.uk/football/feed.rss',               region: 'UK',   trust: 7  },
+  { name: 'The Guardian Football', url: 'https://www.theguardian.com/football/rss',                     region: 'UK',   trust: 10 },
+  { name: 'ESPN Soccer',           url: 'https://www.espn.com/espn/rss/soccer/news',                    region: 'US',   trust: 9  },
+  { name: 'UEFA.com',              url: 'https://www.uefa.com/rssfeed/rss/news/football/',              region: 'INT',  trust: 10 },
+  { name: 'FIFA News',             url: 'https://www.fifa.com/rss-feeds/latest-news',                   region: 'INT',  trust: 10 },
+  { name: 'Sky Sports Football',   url: 'https://www.skysports.com/rss/12040',                          region: 'UK',   trust: 9  },
+  { name: 'Planet Football',       url: 'https://www.planetfootball.com/feed/',                         region: 'UK',   trust: 7  },
+  // ── European Sources ───────────────────────────────────────
+  { name: 'AS English',            url: 'https://en.as.com/rss/football.xml',                          region: 'ES',   trust: 9  },
+  { name: 'Football Italia',       url: 'https://www.football-italia.net/rss.xml',                     region: 'IT',   trust: 8  },
+  // ── Transfer Specialists ───────────────────────────────────
+  { name: 'Sportsmole Football',   url: 'https://www.sportsmole.co.uk/football/feed.rss',              region: 'UK',   trust: 7  },
 ];
 
 // Keywords that indicate a World Cup / international article
@@ -53,13 +46,14 @@ function isNew(url) {
   return true;
 }
 
+// Returns only valid DB category enum values
 function detectCategory(text) {
   const t = text.toLowerCase();
   if (BREAKING_KW.some(k => t.includes(k)))  return 'breaking';
   if (TRANSFER_KW.some(k => t.includes(k)))  return 'transfer';
-  if (WC_KEYWORDS.some(k => t.includes(k)))  return 'world-cup';
   if (ANALYSIS_KW.some(k => t.includes(k)))  return 'analysis';
-  return 'general';
+  if (WC_KEYWORDS.some(k => t.includes(k)))  return 'analysis'; // WC → analysis (valid enum)
+  return 'analysis'; // safe default
 }
 
 function normalizeItem(item, source) {

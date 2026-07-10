@@ -10,8 +10,12 @@ const ok = (res, data, meta = {}) =>
 // GET /matches/live
 router.get('/live', asyncHandler(async (req, res) => {
   const { league } = req.query;
-  const data = await getLiveFixtures(league ? parseInt(league) : null);
-  ok(res, data);
+  try {
+    const data = await getLiveFixtures(league ? parseInt(league) : null);
+    ok(res, data);
+  } catch {
+    ok(res, []); // no live matches or upstream unavailable
+  }
 }));
 
 // GET /matches/today
