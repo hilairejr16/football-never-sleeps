@@ -9,7 +9,8 @@
     "pentest": "node src/scripts/pentest.js",
     "pentest:local": "PENTEST_TARGET=http://localhost:4000 node src/scripts/pentest.js",
     "pentest:prod": "PENTEST_TARGET=https://renewed-ambition-production-ea0a.up.railway.app node src/scripts/pentest.js",
-    "wc:update": "node src/scripts/wcDailyUpdate.js"
+    "wc:update": "node src/scripts/wcDailyUpdate.js",
+    "seed": "node src/scripts/seed.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.26.0",
